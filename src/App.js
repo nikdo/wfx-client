@@ -5,21 +5,24 @@ import './App.css'
 export default class App extends Component {
   constructor () {
     super()
-    this.state = { forecasts: [] }
+    this.state = { forecast: [] }
   }
 
   componentDidMount () {
     fetch('/data')
-      .then(response => response.json())
-      .then(forecasts => this.setState({ forecasts }))
+      .then(res => res.json())
+      .then(spot => {
+        document.title = spot.name
+        this.setState({ forecast: spot.forecast })
+      })
   }
 
-  renderForecast (forecast) {
-    return <tr key={forecast.time.toString()}>
-      <th>{moment(forecast.time).format('dd D.M. HH:mm')}</th>
-      <td>{forecast.windSpeed}m/s</td>
-      <td>{forecast.windGust}m/s</td>
-      <td>{forecast.windBearing}</td>
+  renderFrame (frame) {
+    return <tr key={frame.time.toString()}>
+      <th>{moment(frame.time).format('dd D.M. HH:mm')}</th>
+      <td>{frame.windSpeed}m/s</td>
+      <td>{frame.windGust}m/s</td>
+      <td>{frame.windBearing}</td>
     </tr>
   }
 
@@ -34,7 +37,7 @@ export default class App extends Component {
         </tr>
       </thead>
       <tbody>
-        {this.state.forecasts.map(this.renderForecast)}
+        {this.state.forecast.map(this.renderFrame)}
       </tbody>
     </table>
   }
