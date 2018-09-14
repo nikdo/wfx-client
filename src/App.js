@@ -3,17 +3,13 @@ import moment from 'moment'
 import './App.css'
 
 export default class App extends Component {
-  constructor () {
-    super()
-    this.state = { forecast: [] }
-  }
 
   componentDidMount () {
     fetch('/data')
       .then(res => res.json())
       .then(spot => {
         document.title = spot.name
-        this.setState({ forecast: spot.forecast })
+        this.setState(spot)
       })
   }
 
@@ -27,18 +23,25 @@ export default class App extends Component {
   }
 
   render () {
-    return <table>
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th>Wind speed</th>
-          <th>Wind gusts</th>
-          <th>Wind direction</th>
-        </tr>
-      </thead>
-      <tbody>
-        {this.state.forecast.map(this.renderFrame)}
-      </tbody>
-    </table>
+    return <main>
+      {this.state &&
+        <div>
+          <h1>{this.state.name}</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Wind speed</th>
+                <th>Wind gusts</th>
+                <th>Wind direction</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.forecast.map(this.renderFrame)}
+            </tbody>
+          </table>
+        </div>
+      }
+    </main>
   }
 }
