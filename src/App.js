@@ -1,27 +1,40 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 
-class App extends Component {
+export default class App extends Component {
+  constructor () {
+    super()
+    this.state = { forecasts: [] }
+  }
+
   componentDidMount () {
     fetch('/data')
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(forecasts => this.setState({ forecasts }))
+  }
+
+  renderForecast (forecast) {
+    return <tr key={forecast.time.toString()}>
+      <th>{forecast.time}</th>
+      <td>{forecast.windSpeed}m/s</td>
+      <td>{forecast.windGust}m/s</td>
+      <td>{forecast.windBearing}</td>
+    </tr>
   }
 
   render () {
-    return (
-      <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Welcome to React</h1>
-        </header>
-        <p className='App-intro'>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    )
+    return <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Wind speed</th>
+          <th>Wind gusts</th>
+          <th>Wind direction</th>
+        </tr>
+      </thead>
+      <tbody>
+        {this.state.forecasts.map(this.renderForecast)}
+      </tbody>
+    </table>
   }
 }
-
-export default App
