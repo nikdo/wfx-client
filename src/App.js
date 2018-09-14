@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import './App.css'
 
 export default class App extends Component {
@@ -15,7 +16,7 @@ export default class App extends Component {
 
   renderForecast (forecast) {
     return <tr key={forecast.time.toString()}>
-      <th>{forecast.time}</th>
+      <th>{moment(forecast.time).format('dd D.M. HH:mm')}</th>
       <td>{forecast.windSpeed}m/s</td>
       <td>{forecast.windGust}m/s</td>
       <td>{forecast.windBearing}</td>
