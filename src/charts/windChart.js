@@ -1,4 +1,5 @@
 import * as d3 from 'd3'
+import moment from 'moment'
 
 const evenNumbers = max => [...Array(max).keys()]
   .map(i => ++i)
@@ -8,18 +9,18 @@ const drawGuides = (chart, scales, dimensions, maxWindSpeed) => {
   const guides = {
     xAxis: d3.axisBottom()
       .scale(scales.x)
-      .tickValues(scales.x.domain().filter(d => d.match(/(00|06|12|18):00$/)))
+      .tickValues(scales.x.domain().filter(d => d.match(/T(00|06|12|18):00/)))
       .tickSize(0)
-      .tickFormat(d => d.replace(/ [0-9]+\.[0-9]+\./, '')),
-    yAxis: d3.axisLeft()
-      .scale(scales.y)
-      .tickSize(-dimensions.w)
-      .tickValues(evenNumbers(maxWindSpeed)),
+      .tickFormat(d => moment(d).format('dd HH:mm')),
     xGrid: d3.axisBottom()
       .scale(scales.x)
       .tickSize(-dimensions.h)
-      .tickValues(scales.x.domain().filter(d => d.match(/00:00$/)))
-      .tickFormat('')
+      .tickValues(scales.x.domain().filter(d => d.match(/T00:00/)))
+      .tickFormat(''),
+    yAxis: d3.axisLeft()
+      .scale(scales.y)
+      .tickSize(-dimensions.w)
+      .tickValues(evenNumbers(maxWindSpeed))
   }
 
   chart.append('g')
