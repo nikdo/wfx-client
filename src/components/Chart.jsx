@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { select } from 'd3'
 import './Chart.css'
 
 export default class Chart extends Component {
@@ -8,7 +9,13 @@ export default class Chart extends Component {
   }
 
   componentDidMount () {
-    console.log(this.node.current)
+    select(this.node.current)
+      .append('circle')
+      .style('stroke', 'gray')
+      .style('fill', 'white')
+      .attr('r', 40)
+      .attr('cx', 50)
+      .attr('cy', 50)
     console.log(this.props.forecast)
   }
 
