@@ -1,0 +1,19 @@
+svg path.wind {
+  stroke: #343838;
+  stroke-width: 2;
+  fill: none;
+}
+
+svg path.wind-fill {
+  stroke: none;
+  fill: #008c9e;
+}
+
+svg .axis {
+  color: #929292;
+}
+
+svg path.domain,
+svg .tick line {
+  color: #e6e6e6;
+}
