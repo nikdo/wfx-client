@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { select } from 'd3'
 import './Chart.css'
+import windChart from '../charts/windChart'
 
 export default class Chart extends Component {
   constructor (props) {
@@ -9,14 +9,7 @@ export default class Chart extends Component {
   }
 
   componentDidMount () {
-    select(this.node.current)
-      .append('circle')
-      .style('stroke', 'gray')
-      .style('fill', 'white')
-      .attr('r', 40)
-      .attr('cx', 50)
-      .attr('cy', 50)
-    console.log(this.props.forecast)
+    windChart(this.node.current, this.props.forecast)
   }
 
   render () {
