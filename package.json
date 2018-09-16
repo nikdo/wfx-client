@@ -1,5 +1,5 @@
 {
-  "name": "wind-alert",
+  "name": "wind-alert-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
