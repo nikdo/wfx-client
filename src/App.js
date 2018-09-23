@@ -5,17 +5,19 @@ import ForecastTable from './components/ForecastTable'
 import Spinner from './components/Spinner'
 import './App.css'
 
+const deserializeTime = spot => ({
+  ...spot,
+  forecast: spot.forecast.map(frame => ({
+    ...frame,
+    time: moment.unix(frame.time).tz(spot.timezone)
+  }))
+})
+
 export default class App extends Component {
   componentDidMount () {
     fetch('/data')
       .then(res => res.json())
-      .then(spot => ({
-        ...spot,
-        forecast: spot.forecast.map(frame => ({
-          ...frame,
-          time: moment.unix(frame.time).tz(spot.timezone)
-        }))
-      }))
+      .then(deserializeTime)
       .then(spot => {
         document.title = spot.name
         this.setState(spot)
