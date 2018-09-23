@@ -1,5 +1,4 @@
 import { axisBottom, axisLeft } from 'd3'
-import moment from 'moment'
 
 const evenNumbers = max => [...Array(max).keys()]
   .map(i => ++i)
@@ -9,13 +8,13 @@ export default (chart, scales, dimensions, maxWindSpeed) => {
   const guides = {
     xAxis: axisBottom()
       .scale(scales.x)
-      .tickValues(scales.x.domain().filter(d => d.match(/T(00|06|12|18):00/)))
+      .tickValues(scales.x.domain().filter(d => d.format('HH').match(/(00|06|12|18)/)))
       .tickSize(0)
-      .tickFormat(d => moment(d).format('dd HH:mm')),
+      .tickFormat(d => d.format('dd HH:mm')),
     xGrid: axisBottom()
       .scale(scales.x)
       .tickSize(-dimensions.h)
-      .tickValues(scales.x.domain().filter(d => d.match(/T00:00/)))
+      .tickValues(scales.x.domain().filter(d => d.format('HH').match(/00/)))
       .tickFormat(''),
     yAxis: axisLeft()
       .scale(scales.y)

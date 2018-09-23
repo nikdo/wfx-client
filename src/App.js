@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment-timezone'
 import Chart from './components/Chart'
 import ForecastTable from './components/ForecastTable'
 import Spinner from './components/Spinner'
@@ -8,6 +9,13 @@ export default class App extends Component {
   componentDidMount () {
     fetch('/data')
       .then(res => res.json())
+      .then(spot => ({
+        ...spot,
+        forecast: spot.forecast.map(frame => ({
+          ...frame,
+          time: moment.unix(frame.time).tz(spot.timezone)
+        }))
+      }))
       .then(spot => {
         document.title = spot.name
         this.setState(spot)
