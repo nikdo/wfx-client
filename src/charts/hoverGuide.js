@@ -45,7 +45,7 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
       hoverGuide.attr('transform', `translate(${x}, 0)`)
       line.attr('y1', y)
       value.attr('transform', `translate(0, ${y})`)
-      value.select('text').text(windSpeed)
+      value.select('text').text(windSpeed.toFixed(1))
       time.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
     }
   })
