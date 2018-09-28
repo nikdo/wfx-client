@@ -1,7 +1,7 @@
 import { scalePoint, scaleLinear, max, select } from 'd3'
-import drawGuides from './drawGuides'
-import drawLine from './drawLine'
-import createMask from './createMask'
+import guides from './guides'
+import windLine from './windLine'
+import levelMask from './levelMask'
 import hoverEffects from './hoverEffects'
 
 export default (svg, data) => {
@@ -31,11 +31,11 @@ export default (svg, data) => {
     .attr('height', dimensions.h)
     .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
-  createMask(select(svg), scales, dimensions)
+  levelMask(select(svg), scales, dimensions)
 
-  drawGuides(chart, scales, dimensions, maxWindSpeed)
+  guides(chart, scales, dimensions, maxWindSpeed)
 
-  drawLine(chart, scales, dimensions, data)
+  windLine(chart, scales, dimensions, data)
 
   hoverEffects(chart, scales, dimensions)
 }
