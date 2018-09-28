@@ -51,5 +51,8 @@ export default (chart, dimensions, scales, data) => {
     hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
   }
 
-  chartHover(chart, dimensions, onMouseOver, onMouseOut, onMouseMove)
+  const registerHoverEvents = ({ onMouseOver, onMouseOut, onMouseMove }) =>
+    chartHover(chart, dimensions, onMouseOver, onMouseOut, onMouseMove)
+
+  registerHoverEvents({ onMouseOver, onMouseOut, onMouseMove })
 }
