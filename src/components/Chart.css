@@ -57,6 +57,11 @@ svg .hover-guide .value text {
   stroke-width: 5px;
 }
 
+svg .hover-guide .value text tspan {
+  fill: #909090;
+  font-size: 12px;
+}
+
 svg .hover-guide .time text {
   font-size: 12px;
 }

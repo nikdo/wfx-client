@@ -19,7 +19,7 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
 
   value.append('text')
     .attr('x', lineHeight / 2)
-    .attr('alignment-baseline', 'middle')
+    .attr('dy', lineHeight / 4)
     .attr('paint-order', 'stroke')
     .attr('stroke-linejoin', 'round')
 
@@ -45,7 +45,9 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
       hoverGuide.attr('transform', `translate(${x}, 0)`)
       line.attr('y1', y)
       value.attr('transform', `translate(0, ${y})`)
-      value.select('text').text(windSpeed.toFixed(1))
+      value.select('text')
+        .text(windSpeed.toFixed(1))
+        .append('tspan').text(' ↑' + data[i].windGust.toFixed(1))
       time.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
     }
   })

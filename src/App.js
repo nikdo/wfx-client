@@ -10,7 +10,8 @@ const deserializeTime = spot => ({
   forecast: spot.forecast.map(frame => ({
     ...frame,
     time: moment.unix(frame.time).tz(spot.timezone),
-    windSpeed: Math.round(frame.windSpeed * 10) / 10
+    windSpeed: Math.round(frame.windSpeed * 10) / 10,
+    windGust: Math.round(frame.windGust * 10) / 10
   }))
 })
 
