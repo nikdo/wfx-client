@@ -11,6 +11,12 @@ const getPointScaleTickPositions = scale => {
     .map(pos => pos + 0.5)
 }
 
+const getClosestValueIndex = (array, value) => {
+  const r = bisect(array, value, 1)
+  const l = r - 1
+  return value - array[l] < array[r] - value ? l : r
+}
+
 export default (chart, scales, dimensions, data) => {
   const hourTickPositions = getPointScaleTickPositions(scales.x)
 
@@ -43,7 +49,7 @@ export default (chart, scales, dimensions, data) => {
     .on('mouseover', () => hover.style('display', null))
     .on('mouseout', () => hover.style('display', 'none'))
     .on('mousemove', function () {
-      const i = bisect(hourTickPositions, mouse(this)[0])
+      const i = getClosestValueIndex(hourTickPositions, mouse(this)[0])
       hover.attr('transform', `translate(${hourTickPositions[i]},0)`)
       hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
     })
