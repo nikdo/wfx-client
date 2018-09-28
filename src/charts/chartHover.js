@@ -19,6 +19,7 @@ const getClosestValueIndex = (array, value) => {
 
 export default (chart, dimensions, scales, eventHandlers) => {
   const hourTickPositions = getPointScaleTickPositions(scales.x)
+  let selectedIndex = null
   chart.append('rect')
     .attr('class', 'chart-hover')
     .attr('width', dimensions.w)
@@ -26,8 +27,11 @@ export default (chart, dimensions, scales, eventHandlers) => {
     .on('mouseover', () => eventHandlers.forEach(handler => handler.onMouseOver && handler.onMouseOver()))
     .on('mouseout', () => eventHandlers.forEach(handler => handler.onMouseOut && handler.onMouseOut()))
     .on('mousemove', function () {
-      const i = getClosestValueIndex(hourTickPositions, mouse(this)[0])
-      const x = hourTickPositions[i]
-      eventHandlers.forEach(handler => handler.onValueHover && handler.onValueHover(x, i))
+      const newIndex = getClosestValueIndex(hourTickPositions, mouse(this)[0])
+      if (newIndex !== selectedIndex) {
+        selectedIndex = newIndex
+        const x = hourTickPositions[selectedIndex]
+        eventHandlers.forEach(handler => handler.onValueHover && handler.onValueHover(x, selectedIndex))
+      }
     })
 }
