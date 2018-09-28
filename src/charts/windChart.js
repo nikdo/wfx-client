@@ -1,5 +1,4 @@
 import { scalePoint, scaleLinear, max, select } from 'd3'
-import levelMask from './levelMask'
 import xAxis from './xAxis'
 import yAxis from './yAxis'
 import xGrid from './xGrid'
@@ -36,8 +35,6 @@ export default (svg, data) => {
 
   const hoverEventHandlers = []
   const subscribeToHoverEvents = handler => hoverEventHandlers.push(handler)
-
-  levelMask(select(svg), dimensions, scales)
 
   xAxis(chart, dimensions, scales, subscribeToHoverEvents)
   yAxis(chart, dimensions, scales, maxWindSpeed)

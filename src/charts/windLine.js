@@ -1,6 +1,8 @@
 import { line, area, curveNatural } from 'd3'
 
 export default (chart, dimensions, scales, data) => {
+  const breakpoint = scales.y(4)
+
   const path = line()
     .x(d => scales.x(d.time))
     .y(d => scales.y(d.windSpeed))
@@ -12,15 +14,31 @@ export default (chart, dimensions, scales, data) => {
     .y0(() => dimensions.h)
     .curve(curveNatural)
 
-  chart.append('path')
-    .attr('class', 'wind-fill')
-    .datum(data)
-    .attr('d', fill)
-    .attr('mask', 'url(#transparency)')
+  const root = chart.append('g')
 
-  chart.append('path')
-    .attr('class', 'wind')
-    .datum(data)
-    .attr('d', path)
-    .attr('mask', 'url(#transparency)')
+  root.append('clipPath')
+    .attr('id', 'level-0')
+    .append('rect')
+    .attr('y', breakpoint)
+    .attr('width', dimensions.w)
+    .attr('height', dimensions.h - breakpoint)
+
+  root.append('clipPath')
+    .attr('id', 'level-1')
+    .append('rect')
+    .attr('width', dimensions.w)
+    .attr('height', breakpoint)
+
+  ;[0, 1].forEach(level => {
+    root.append('path')
+      .attr('class', `wind-fill level-${level}`)
+      .datum(data)
+      .attr('d', fill)
+      .attr('clip-path', `url(#level-${level})`)
+    root.append('path')
+      .attr('class', `wind level-${level}`)
+      .datum(data)
+      .attr('d', path)
+      .attr('clip-path', `url(#level-${level})`)
+  })
 }

@@ -1,11 +1,20 @@
 svg path.wind {
-  stroke: #343838;
+  stroke: #909090;
   stroke-width: 2;
   fill: none;
 }
 
+svg path.wind.level-1 {
+  stroke: #343838;
+}
+
 svg path.wind-fill {
   stroke: none;
+  fill: #e6e6e6;
+  opacity: 0.5;
+}
+
+svg path.wind-fill.level-1 {
   fill: #008c9e;
 }
 
