@@ -1,6 +1,19 @@
-import { mouse } from 'd3'
+import { mouse, range, bisect } from 'd3'
 
-export default (chart, scales, dimensions) => {
+// Based on https://stackoverflow.com/a/40574104/5763764
+// Haven't found any other way how to get tick positions from a point scale.
+// Plus: Not sure why but d3 axis ticks are 0.5px shifted.
+// Note: Last tick has to be added because range function excludes it.
+const getPointScaleTickPositions = scale => {
+  const [start, stop] = scale.range()
+  return range(start, stop, scale.step())
+    .concat([stop])
+    .map(pos => pos + 0.5)
+}
+
+export default (chart, scales, dimensions, data) => {
+  const hourTickPositions = getPointScaleTickPositions(scales.x)
+
   const hover = chart.append('g')
     .attr('class', 'hover')
     .style('display', 'none')
@@ -19,6 +32,7 @@ export default (chart, scales, dimensions) => {
     .on('mouseover', () => hover.style('display', null))
     .on('mouseout', () => hover.style('display', 'none'))
     .on('mousemove', function () {
-      hover.attr('transform', `translate(${mouse(this)[0]},0)`)
+      const i = bisect(hourTickPositions, mouse(this)[0])
+      hover.attr('transform', `translate(${hourTickPositions[i]},0)`)
     })
 }

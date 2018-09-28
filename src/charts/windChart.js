@@ -37,5 +37,5 @@ export default (svg, data) => {
 
   windLine(chart, scales, dimensions, data)
 
-  hoverEffects(chart, scales, dimensions)
+  hoverEffects(chart, scales, dimensions, data)
 }
