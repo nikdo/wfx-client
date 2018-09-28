@@ -1,6 +1,7 @@
 import { scalePoint, scaleLinear, max, select } from 'd3'
 import levelMask from './levelMask'
 import xAxis from './xAxis'
+import yAxis from './yAxis'
 import guides from './guides'
 import windLine from './windLine'
 import hoverEffects from './hoverEffects'
@@ -35,6 +36,7 @@ export default (svg, data) => {
   levelMask(select(svg), scales, dimensions)
 
   xAxis(chart, scales, dimensions)
+  yAxis(chart, scales, dimensions, maxWindSpeed)
 
   guides(chart, scales, dimensions, maxWindSpeed)
 
