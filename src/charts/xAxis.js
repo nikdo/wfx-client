@@ -15,7 +15,7 @@ export default (chart, dimensions, scales, subscribeToHoverEvents) => {
     .attr('font-size', null)
     .attr('font-family', null)
 
-  element.selectAll('text')
+  const labels = element.selectAll('text')
     .attr('y', 0)
     .attr('x', lineHeight / 2)
     .attr('dy', 0)
@@ -24,8 +24,8 @@ export default (chart, dimensions, scales, subscribeToHoverEvents) => {
     .style('text-anchor', 'start')
 
   subscribeToHoverEvents({
-    onMouseOver: () => element.attr('display', 'none'),
-    onMouseOut: () => element.attr('display', null)
+    onMouseOver: () => labels.attr('display', 'none'),
+    onMouseOut: () => labels.attr('display', null)
   })
 
   return element
