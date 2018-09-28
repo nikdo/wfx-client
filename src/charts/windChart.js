@@ -47,11 +47,5 @@ export default (svg, data) => {
 
   hoverEffects(chart, dimensions, scales, data, subscribeToHoverEvents)
 
-  chartHover(
-    chart,
-    dimensions,
-    () => eventHandlers.forEach(handler => handler.onMouseOver && handler.onMouseOver()),
-    () => eventHandlers.forEach(handler => handler.onMouseOver && handler.onMouseOut()),
-    ([x, y]) => eventHandlers.forEach(handler => handler.onMouseOver && handler.onMouseMove([x, y]))
-  )
+  chartHover(chart, dimensions, eventHandlers)
 }
