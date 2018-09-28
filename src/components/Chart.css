@@ -27,3 +27,9 @@ svg .hover line {
   stroke: #343838;
   stroke-width: 2px;
 }
+
+svg .hover circle {
+  fill: #fcfcfa;
+  stroke: #343838;
+  stroke-width: 2px;
+}

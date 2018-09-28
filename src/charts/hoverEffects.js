@@ -25,6 +25,17 @@ export default (chart, scales, dimensions, data) => {
     .attr('x2', 0)
     .attr('y2', dimensions.h)
 
+  const time = hover.append('g')
+    .attr('class', 'time')
+    .attr('transform', `translate(0, ${dimensions.h})`)
+
+  time.append('circle')
+    .attr('r', 3)
+
+  time.append('text')
+    .attr('x', 9)
+    .attr('alignment-baseline', 'middle')
+
   chart.append('rect')
     .attr('class', 'events-overlay')
     .attr('width', dimensions.w)
@@ -34,5 +45,6 @@ export default (chart, scales, dimensions, data) => {
     .on('mousemove', function () {
       const i = bisect(hourTickPositions, mouse(this)[0])
       hover.attr('transform', `translate(${hourTickPositions[i]},0)`)
+      hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
     })
 }
