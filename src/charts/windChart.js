@@ -34,18 +34,18 @@ export default (svg, data) => {
     .attr('height', dimensions.h)
     .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
+  const hoverEventHandlers = []
+  const subscribeToHoverEvents = handler => hoverEventHandlers.push(handler)
+
   levelMask(select(svg), dimensions, scales)
 
-  xAxis(chart, dimensions, scales)
+  xAxis(chart, dimensions, scales, subscribeToHoverEvents)
   yAxis(chart, dimensions, scales, maxWindSpeed)
   xGrid(chart, dimensions, scales)
 
   windLine(chart, dimensions, scales, data)
 
-  const eventHandlers = []
-  const subscribeToHoverEvents = handler => eventHandlers.push(handler)
-
   hoverEffects(chart, dimensions, scales, data, subscribeToHoverEvents)
 
-  chartHover(chart, dimensions, eventHandlers)
+  chartHover(chart, dimensions, hoverEventHandlers)
 }

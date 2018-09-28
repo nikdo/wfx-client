@@ -1,6 +1,6 @@
 import { axisBottom } from 'd3'
 
-export default (chart, dimensions, scales) => {
+export default (chart, dimensions, scales, subscribeToHoverEvents) => {
   const axis = axisBottom()
     .scale(scales.x)
     .tickValues(scales.x.domain().filter(d => d.format('HH').match(/(00|06|12|18)/)))
@@ -18,6 +18,11 @@ export default (chart, dimensions, scales) => {
     .attr('dy', '.35em')
     .attr('transform', 'rotate(90)')
     .style('text-anchor', 'start')
+
+  subscribeToHoverEvents({
+    onMouseOver: () => element.attr('display', 'none'),
+    onMouseOut: () => element.attr('display', null)
+  })
 
   return element
 }
