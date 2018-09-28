@@ -2,12 +2,12 @@ import { range, bisect } from 'd3'
 
 // Based on https://stackoverflow.com/a/40574104/5763764
 // Haven't found any other way how to get tick positions from a point scale.
-// Plus: Not sure why but d3 axis ticks are 0.5px shifted.
-// Note: Last tick has to be added because range function excludes it.
 const getPointScaleTickPositions = scale => {
   const [start, stop] = scale.range()
   return range(start, stop, scale.step())
+    // Last tick has to be added because range function excludes it.
     .concat([stop])
+    // Axis ticks have 0.5px offset: https://github.com/d3/d3/blob/master/CHANGES.md#axes-d3-axis
     .map(pos => pos + 0.5)
 }
 
