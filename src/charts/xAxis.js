@@ -1,4 +1,5 @@
 import { axisBottom } from 'd3'
+import { lineHeight } from './constants'
 
 export default (chart, dimensions, scales, subscribeToHoverEvents) => {
   const axis = axisBottom()
@@ -16,9 +17,10 @@ export default (chart, dimensions, scales, subscribeToHoverEvents) => {
 
   element.selectAll('text')
     .attr('y', 0)
-    .attr('x', 9)
-    .attr('dy', '.35em')
+    .attr('x', lineHeight / 2)
+    .attr('dy', 0)
     .attr('transform', 'rotate(90)')
+    .attr('alignment-baseline', 'middle')
     .style('text-anchor', 'start')
 
   subscribeToHoverEvents({

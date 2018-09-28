@@ -1,4 +1,5 @@
 import { range, bisect } from 'd3'
+import { lineHeight } from './constants'
 
 // Based on https://stackoverflow.com/a/40574104/5763764
 // Haven't found any other way how to get tick positions from a point scale.
@@ -40,8 +41,6 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
   const time = hover.append('g')
     .attr('class', 'time')
     .attr('transform', `translate(0, ${dimensions.h})`)
-
-  const lineHeight = 16
 
   time.append('path')
     .attr('fill', 'none')
