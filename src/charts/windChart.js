@@ -42,8 +42,16 @@ export default (svg, data) => {
 
   windLine(chart, dimensions, scales, data)
 
-  const registerHoverEvents = ({ onMouseOver, onMouseOut, onMouseMove }) =>
-    chartHover(chart, dimensions, onMouseOver, onMouseOut, onMouseMove)
+  const eventHandlers = []
+  const subscribeToHoverEvents = handler => eventHandlers.push(handler)
 
-  hoverEffects(chart, dimensions, scales, data, registerHoverEvents)
+  hoverEffects(chart, dimensions, scales, data, subscribeToHoverEvents)
+
+  chartHover(
+    chart,
+    dimensions,
+    () => eventHandlers.forEach(handler => handler.onMouseOver && handler.onMouseOver()),
+    () => eventHandlers.forEach(handler => handler.onMouseOver && handler.onMouseOut()),
+    ([x, y]) => eventHandlers.forEach(handler => handler.onMouseOver && handler.onMouseMove([x, y]))
+  )
 }

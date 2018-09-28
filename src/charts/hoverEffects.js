@@ -17,7 +17,7 @@ const getClosestValueIndex = (array, value) => {
   return value - array[l] < array[r] - value ? l : r
 }
 
-export default (chart, dimensions, scales, data, registerHoverEvents) => {
+export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
   const hourTickPositions = getPointScaleTickPositions(scales.x)
 
   const hover = chart.append('g')
@@ -42,7 +42,7 @@ export default (chart, dimensions, scales, data, registerHoverEvents) => {
     .attr('x', 9)
     .attr('alignment-baseline', 'middle')
 
-  registerHoverEvents({
+  subscribeToHoverEvents({
     onMouseOver: () => hover.style('display', null),
     onMouseOut: () => hover.style('display', 'none'),
     onMouseMove: ([x, y]) => {
