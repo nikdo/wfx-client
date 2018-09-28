@@ -1,14 +1,13 @@
 import { axisLeft } from 'd3'
 
 export default (chart, dimensions, scales, tickValues) => {
-  const yAxis = axisLeft()
+  const yGrid = axisLeft()
     .scale(scales.y)
-    .tickSize(0)
+    .tickSize(-dimensions.w)
     .tickValues(tickValues)
+    .tickFormat('')
 
   return chart.append('g')
-    .attr('class', 'y axis')
-    .call(yAxis)
-    .attr('font-size', null)
-    .attr('font-family', null)
+    .attr('class', 'y grid')
+    .call(yGrid)
 }

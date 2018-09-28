@@ -3,6 +3,7 @@ import evenNumbers from './util/evenNumbers'
 import xAxis from './xAxis'
 import yAxis from './yAxis'
 import xGrid from './xGrid'
+import yGrid from './yGrid'
 import windLine from './windLine'
 import hoverGuide from './hoverGuide'
 import hoverTarget from './hoverTarget'
@@ -15,6 +16,8 @@ export default (svg, data) => {
     ...data.map(d => d.windSpeed),
     16
   ])
+
+  const windTickValues = evenNumbers(maxWindSpeed)
 
   const scales = {
     x: scalePoint()
@@ -37,11 +40,13 @@ export default (svg, data) => {
   const hoverEventHandlers = []
   const subscribeToHoverEvents = handler => hoverEventHandlers.push(handler)
 
-  xAxis(chart, dimensions, scales, subscribeToHoverEvents)
-  yAxis(chart, dimensions, scales, evenNumbers(maxWindSpeed))
   xGrid(chart, dimensions, scales)
+  yGrid(chart, dimensions, scales, windTickValues)
 
   windLine(chart, dimensions, scales, data, subscribeToHoverEvents)
+
+  xAxis(chart, dimensions, scales, subscribeToHoverEvents)
+  yAxis(chart, dimensions, scales, windTickValues)
 
   hoverGuide(chart, dimensions, scales, data, subscribeToHoverEvents)
 
