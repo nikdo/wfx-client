@@ -1,5 +1,4 @@
 import { range, bisect } from 'd3'
-import chartHover from './chartHover'
 
 // Based on https://stackoverflow.com/a/40574104/5763764
 // Haven't found any other way how to get tick positions from a point scale.
@@ -18,7 +17,7 @@ const getClosestValueIndex = (array, value) => {
   return value - array[l] < array[r] - value ? l : r
 }
 
-export default (chart, dimensions, scales, data) => {
+export default (chart, dimensions, scales, data, registerHoverEvents) => {
   const hourTickPositions = getPointScaleTickPositions(scales.x)
 
   const hover = chart.append('g')
@@ -43,16 +42,13 @@ export default (chart, dimensions, scales, data) => {
     .attr('x', 9)
     .attr('alignment-baseline', 'middle')
 
-  const onMouseOver = () => hover.style('display', null)
-  const onMouseOut = () => hover.style('display', 'none')
-  const onMouseMove = function ([x, y]) {
-    const i = getClosestValueIndex(hourTickPositions, x)
-    hover.attr('transform', `translate(${hourTickPositions[i]},0)`)
-    hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
-  }
-
-  const registerHoverEvents = ({ onMouseOver, onMouseOut, onMouseMove }) =>
-    chartHover(chart, dimensions, onMouseOver, onMouseOut, onMouseMove)
-
-  registerHoverEvents({ onMouseOver, onMouseOut, onMouseMove })
+  registerHoverEvents({
+    onMouseOver: () => hover.style('display', null),
+    onMouseOut: () => hover.style('display', 'none'),
+    onMouseMove: ([x, y]) => {
+      const i = getClosestValueIndex(hourTickPositions, x)
+      hover.attr('transform', `translate(${hourTickPositions[i]},0)`)
+      hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
+    }
+  })
 }
