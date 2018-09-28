@@ -5,11 +5,11 @@ export default (chart, scales, dimensions) => {
     .attr('class', 'hover')
     .style('display', 'none')
 
-  const guide = hover.append('line')
+  hover.append('line')
     .attr('class', 'guide')
-    .attr('x1', 33)
+    .attr('x1', 0)
     .attr('y1', 0)
-    .attr('x2', 33)
+    .attr('x2', 0)
     .attr('y2', dimensions.h)
 
   chart.append('rect')
@@ -19,8 +19,6 @@ export default (chart, scales, dimensions) => {
     .on('mouseover', () => hover.style('display', null))
     .on('mouseout', () => hover.style('display', 'none'))
     .on('mousemove', function () {
-      const x = mouse(this)[0]
-      guide.attr('x1', x)
-      guide.attr('x2', x)
+      hover.attr('transform', `translate(${mouse(this)[0]},0)`)
     })
 }
