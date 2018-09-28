@@ -40,7 +40,7 @@ export default (svg, data) => {
   yAxis(chart, dimensions, scales, maxWindSpeed)
   xGrid(chart, dimensions, scales)
 
-  windLine(chart, dimensions, scales, data)
+  windLine(chart, dimensions, scales, data, subscribeToHoverEvents)
 
   hoverGuide(chart, dimensions, scales, data, subscribeToHoverEvents)
 

@@ -1,8 +1,7 @@
 import { line, area, curveNatural } from 'd3'
 
-export default (chart, dimensions, scales, data) => {
+export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
   const breakpoint = scales.y(4)
-
   const path = line()
     .x(d => scales.x(d.time))
     .y(d => scales.y(d.windSpeed))
@@ -40,5 +39,26 @@ export default (chart, dimensions, scales, data) => {
       .datum(data)
       .attr('d', path)
       .attr('clip-path', `url(#level-${level})`)
+  })
+
+  const mask = root.append('mask')
+    .attr('id', 'hover-overlay')
+
+  const visible = mask.append('rect')
+    .attr('height', dimensions.h)
+    .style('fill', '#fff')
+
+  const hidden = mask.append('rect')
+    .attr('width', dimensions.w)
+    .attr('height', dimensions.h)
+    .style('fill', '#222')
+
+  subscribeToHoverEvents({
+    onMouseOver: () => root.attr('mask', 'url(#hover-overlay)'),
+    onMouseOut: () => root.attr('mask', null),
+    onValueHover: x => {
+      visible.attr('width', x)
+      hidden.attr('x', x)
+    }
   })
 }
