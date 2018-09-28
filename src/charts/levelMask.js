@@ -1,4 +1,4 @@
-export default (svg, scales, dimensions) => {
+export default (svg, dimensions, scales) => {
   const breakpoint = scales.y(4)
 
   const mask = svg

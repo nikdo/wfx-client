@@ -33,13 +33,13 @@ export default (svg, data) => {
     .attr('height', dimensions.h)
     .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
-  levelMask(select(svg), scales, dimensions)
+  levelMask(select(svg), dimensions, scales)
 
-  xAxis(chart, scales, dimensions)
-  yAxis(chart, scales, dimensions, maxWindSpeed)
-  xGrid(chart, scales, dimensions)
+  xAxis(chart, dimensions, scales)
+  yAxis(chart, dimensions, scales, maxWindSpeed)
+  xGrid(chart, dimensions, scales)
 
-  windLine(chart, scales, dimensions, data)
+  windLine(chart, dimensions, scales, data)
 
-  hoverEffects(chart, scales, dimensions, data)
+  hoverEffects(chart, dimensions, scales, data)
 }

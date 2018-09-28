@@ -1,6 +1,6 @@
 import { axisBottom } from 'd3'
 
-export default (chart, scales, dimensions) => {
+export default (chart, dimensions, scales) => {
   const xGrid = axisBottom()
     .scale(scales.x)
     .tickSize(-dimensions.h)

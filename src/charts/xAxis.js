@@ -1,6 +1,6 @@
 import { axisBottom } from 'd3'
 
-export default (chart, scales, dimensions) => {
+export default (chart, dimensions, scales) => {
   const axis = axisBottom()
     .scale(scales.x)
     .tickValues(scales.x.domain().filter(d => d.format('HH').match(/(00|06|12|18)/)))

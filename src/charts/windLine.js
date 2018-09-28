@@ -1,6 +1,6 @@
 import { line, area, curveNatural } from 'd3'
 
-export default (chart, scales, dimensions, data) => {
+export default (chart, dimensions, scales, data) => {
   const path = line()
     .x(d => scales.x(d.time))
     .y(d => scales.y(d.windSpeed))

@@ -18,7 +18,7 @@ const getClosestValueIndex = (array, value) => {
   return value - array[l] < array[r] - value ? l : r
 }
 
-export default (chart, scales, dimensions, data) => {
+export default (chart, dimensions, scales, data) => {
   const hourTickPositions = getPointScaleTickPositions(scales.x)
 
   const hover = chart.append('g')
