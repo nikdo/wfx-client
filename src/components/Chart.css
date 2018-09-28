@@ -27,27 +27,27 @@ svg .grid .tick line {
   color: #e6e6e6;
 }
 
-svg .chart-hover {
+svg .hover-target {
   fill: none;
   pointer-events: all;
 }
 
-svg .hover line {
+svg .hover-guide line {
   stroke: #343838;
   stroke-width: 1px;
 }
 
-svg .hover circle {
+svg .hover-guide circle {
   fill: #fcfcfa;
   stroke: #343838;
   stroke-width: 2px;
 }
 
-svg .hover .time text {
+svg .hover-guide .time text {
   font-size: 12px;
 }
 
-svg .hover .time path {
+svg .hover-guide .time path {
   stroke: #343838;
   stroke-width: 1px;
 }

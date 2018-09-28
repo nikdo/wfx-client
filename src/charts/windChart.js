@@ -4,8 +4,8 @@ import xAxis from './xAxis'
 import yAxis from './yAxis'
 import xGrid from './xGrid'
 import windLine from './windLine'
-import chartHover from './chartHover'
-import hoverEffects from './hoverEffects'
+import hoverGuide from './hoverGuide'
+import hoverTarget from './hoverTarget'
 
 export default (svg, data) => {
   const dimensions = { w: 1200, h: 200 }
@@ -45,7 +45,7 @@ export default (svg, data) => {
 
   windLine(chart, dimensions, scales, data)
 
-  hoverEffects(chart, dimensions, scales, data, subscribeToHoverEvents)
+  hoverGuide(chart, dimensions, scales, data, subscribeToHoverEvents)
 
-  chartHover(chart, dimensions, scales, hoverEventHandlers)
+  hoverTarget(chart, dimensions, scales, hoverEventHandlers)
 }

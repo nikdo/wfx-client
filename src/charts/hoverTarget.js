@@ -21,7 +21,7 @@ export default (chart, dimensions, scales, eventHandlers) => {
   const hourTickPositions = getPointScaleTickPositions(scales.x)
   let selectedIndex = null
   chart.append('rect')
-    .attr('class', 'chart-hover')
+    .attr('class', 'hover-target')
     .attr('width', dimensions.w)
     .attr('height', dimensions.h)
     .on('mouseover', () => eventHandlers.forEach(handler => handler.onMouseOver && handler.onMouseOver()))
