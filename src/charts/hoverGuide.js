@@ -17,6 +17,12 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
   value.append('circle')
     .attr('r', 3)
 
+  value.append('text')
+    .attr('x', lineHeight / 2)
+    .attr('alignment-baseline', 'middle')
+    .attr('paint-order', 'stroke')
+    .attr('stroke-linejoin', 'round')
+
   const time = hoverGuide.append('g')
     .attr('class', 'time')
     .attr('transform', `translate(0, ${dimensions.h})`)
@@ -34,10 +40,12 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     onMouseOver: () => hoverGuide.style('display', null),
     onMouseOut: () => hoverGuide.style('display', 'none'),
     onValueHover: (x, i) => {
-      const y = scales.y(data[i].windSpeed)
+      const windSpeed = data[i].windSpeed
+      const y = scales.y(windSpeed)
       hoverGuide.attr('transform', `translate(${x}, 0)`)
       line.attr('y1', y)
       value.attr('transform', `translate(0, ${y})`)
+      value.select('text').text(windSpeed)
       time.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
     }
   })

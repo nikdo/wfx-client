@@ -46,10 +46,15 @@ svg .hover-guide line {
   stroke-width: 1px;
 }
 
-svg .hover-guide circle {
+svg .hover-guide .value circle {
   fill: #fcfcfa;
   stroke: #343838;
   stroke-width: 2px;
+}
+
+svg .hover-guide .value text {
+  stroke: #fcfcfa;
+  stroke-width: 5px;
 }
 
 svg .hover-guide .time text {
