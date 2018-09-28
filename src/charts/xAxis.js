@@ -11,6 +11,8 @@ export default (chart, dimensions, scales, subscribeToHoverEvents) => {
     .attr('class', 'x axis')
     .attr('transform', `translate(0, ${dimensions.h})`)
     .call(axis)
+    .attr('font-size', null)
+    .attr('font-family', null)
 
   element.selectAll('text')
     .attr('y', 0)

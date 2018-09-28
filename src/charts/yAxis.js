@@ -13,4 +13,6 @@ export default (chart, dimensions, scales, maxWindSpeed) => {
   return chart.append('g')
     .attr('class', 'y axis')
     .call(yAxis)
+    .attr('font-size', null)
+    .attr('font-family', null)
 }
