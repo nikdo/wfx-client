@@ -8,7 +8,7 @@ export default (chart, dimensions, scales, subscribeToHoverEvents) => {
     .tickFormat(d => d.format('dd HH:mm'))
 
   const element = chart.append('g')
-    .attr('class', 'x element')
+    .attr('class', 'x axis')
     .attr('transform', `translate(0, ${dimensions.h})`)
     .call(axis)
 
