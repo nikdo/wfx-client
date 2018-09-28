@@ -25,7 +25,7 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     .attr('class', 'hover')
     .style('display', 'none')
 
-  hover.append('line')
+  const line = hover.append('line')
     .attr('class', 'guide')
     .attr('x1', 0)
     .attr('y1', 0)
@@ -54,10 +54,12 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
   subscribeToHoverEvents({
     onMouseOver: () => hover.style('display', null),
     onMouseOut: () => hover.style('display', 'none'),
-    onMouseMove: ([x, y]) => {
+    onMouseMove: ([x]) => {
       const i = getClosestValueIndex(hourTickPositions, x)
-      hover.attr('transform', `translate(${hourTickPositions[i]},0)`)
-      value.attr('transform', `translate(0, ${scales.y(data[i].windSpeed)})`)
+      const y = scales.y(data[i].windSpeed)
+      hover.attr('transform', `translate(${hourTickPositions[i]}, 0)`)
+      line.attr('y1', y)
+      value.attr('transform', `translate(0, ${y})`)
       hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
     }
   })
