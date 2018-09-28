@@ -18,7 +18,7 @@ svg .tick line {
   color: #e6e6e6;
 }
 
-svg .events-overlay {
+svg .chart-hover {
   fill: none;
   pointer-events: all;
 }

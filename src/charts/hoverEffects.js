@@ -1,4 +1,5 @@
-import { mouse, range, bisect } from 'd3'
+import { range, bisect } from 'd3'
+import chartHover from './chartHover'
 
 // Based on https://stackoverflow.com/a/40574104/5763764
 // Haven't found any other way how to get tick positions from a point scale.
@@ -50,11 +51,5 @@ export default (chart, scales, dimensions, data) => {
     hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
   }
 
-  return chart.append('rect')
-    .attr('class', 'events-overlay')
-    .attr('width', dimensions.w)
-    .attr('height', dimensions.h)
-    .on('mouseover', onMouseOver)
-    .on('mouseout', onMouseOut)
-    .on('mousemove', function () { onMouseMove(mouse(this)) })
+  chartHover(chart, dimensions, onMouseOver, onMouseOut, onMouseMove)
 }
