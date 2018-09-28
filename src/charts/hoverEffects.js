@@ -31,6 +31,12 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     .attr('x2', 0)
     .attr('y2', dimensions.h)
 
+  const value = hover.append('g')
+    .attr('class', 'value')
+
+  value.append('circle')
+    .attr('r', 3)
+
   const time = hover.append('g')
     .attr('class', 'time')
     .attr('transform', `translate(0, ${dimensions.h})`)
@@ -48,6 +54,7 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     onMouseMove: ([x, y]) => {
       const i = getClosestValueIndex(hourTickPositions, x)
       hover.attr('transform', `translate(${hourTickPositions[i]},0)`)
+      value.attr('transform', `translate(0, ${scales.y(data[i].windSpeed)})`)
       hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
     }
   })
