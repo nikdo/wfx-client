@@ -17,3 +17,13 @@ svg path.domain,
 svg .tick line {
   color: #e6e6e6;
 }
+
+svg .events-overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+svg .hover line {
+  stroke: #343838;
+  stroke-width: 2px;
+}
