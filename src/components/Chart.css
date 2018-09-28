@@ -13,8 +13,16 @@ svg .axis {
   color: #929292;
 }
 
-svg path.domain,
-svg .tick line {
+svg .axis path.domain,
+svg .axis .tick line {
+  color: #e6e6e6;
+}
+
+svg .grid path.domain {
+  display: none;
+}
+
+svg .grid .tick line {
   color: #e6e6e6;
 }
 
