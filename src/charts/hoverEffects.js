@@ -42,15 +42,19 @@ export default (chart, scales, dimensions, data) => {
     .attr('x', 9)
     .attr('alignment-baseline', 'middle')
 
-  chart.append('rect')
+  const onMouseOver = () => hover.style('display', null)
+  const onMouseOut = () => hover.style('display', 'none')
+  const onMouseMove = function ([x, y]) {
+    const i = getClosestValueIndex(hourTickPositions, x)
+    hover.attr('transform', `translate(${hourTickPositions[i]},0)`)
+    hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
+  }
+
+  return chart.append('rect')
     .attr('class', 'events-overlay')
     .attr('width', dimensions.w)
     .attr('height', dimensions.h)
-    .on('mouseover', () => hover.style('display', null))
-    .on('mouseout', () => hover.style('display', 'none'))
-    .on('mousemove', function () {
-      const i = getClosestValueIndex(hourTickPositions, mouse(this)[0])
-      hover.attr('transform', `translate(${hourTickPositions[i]},0)`)
-      hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
-    })
+    .on('mouseover', onMouseOver)
+    .on('mouseout', onMouseOut)
+    .on('mousemove', function () { onMouseMove(mouse(this)) })
 }
