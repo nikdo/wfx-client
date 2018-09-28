@@ -1,26 +1,6 @@
-import { range, bisect } from 'd3'
 import { lineHeight } from './constants'
 
-// Based on https://stackoverflow.com/a/40574104/5763764
-// Haven't found any other way how to get tick positions from a point scale.
-const getPointScaleTickPositions = scale => {
-  const [start, stop] = scale.range()
-  return range(start, stop, scale.step())
-    // Last tick has to be added because range function excludes it.
-    .concat([stop])
-    // Axis ticks have 0.5px offset: https://github.com/d3/d3/blob/master/CHANGES.md#axes-d3-axis
-    .map(pos => pos + 0.5)
-}
-
-const getClosestValueIndex = (array, value) => {
-  const r = bisect(array, value, 1)
-  const l = r - 1
-  return value - array[l] < array[r] - value ? l : r
-}
-
 export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
-  const hourTickPositions = getPointScaleTickPositions(scales.x)
-
   const hover = chart.append('g')
     .attr('class', 'hover')
     .style('display', 'none')
@@ -54,10 +34,9 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
   subscribeToHoverEvents({
     onMouseOver: () => hover.style('display', null),
     onMouseOut: () => hover.style('display', 'none'),
-    onMouseMove: ([x]) => {
-      const i = getClosestValueIndex(hourTickPositions, x)
+    onValueHover: (x, i) => {
       const y = scales.y(data[i].windSpeed)
-      hover.attr('transform', `translate(${hourTickPositions[i]}, 0)`)
+      hover.attr('transform', `translate(${x}, 0)`)
       line.attr('y1', y)
       value.attr('transform', `translate(0, ${y})`)
       hover.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))

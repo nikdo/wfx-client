@@ -47,5 +47,5 @@ export default (svg, data) => {
 
   hoverEffects(chart, dimensions, scales, data, subscribeToHoverEvents)
 
-  chartHover(chart, dimensions, hoverEventHandlers)
+  chartHover(chart, dimensions, scales, hoverEventHandlers)
 }
