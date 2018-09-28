@@ -5,7 +5,7 @@ import createMask from './createMask'
 
 export default (svg, data) => {
   const dimensions = { w: 1200, h: 200 }
-  const margin = { top: 20, right: 30, bottom: 160, left: 20 }
+  const margin = { top: 20, right: 30, bottom: 60, left: 20 }
 
   const maxWindSpeed = max([
     ...data.map(d => d.windSpeed),
