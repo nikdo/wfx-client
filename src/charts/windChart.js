@@ -1,4 +1,5 @@
 import { scalePoint, scaleLinear, max, select } from 'd3'
+import evenNumbers from './util/evenNumbers'
 import xAxis from './xAxis'
 import yAxis from './yAxis'
 import xGrid from './xGrid'
@@ -37,7 +38,7 @@ export default (svg, data) => {
   const subscribeToHoverEvents = handler => hoverEventHandlers.push(handler)
 
   xAxis(chart, dimensions, scales, subscribeToHoverEvents)
-  yAxis(chart, dimensions, scales, maxWindSpeed)
+  yAxis(chart, dimensions, scales, evenNumbers(maxWindSpeed))
   xGrid(chart, dimensions, scales)
 
   windLine(chart, dimensions, scales, data, subscribeToHoverEvents)

@@ -1,14 +1,10 @@
 import { axisLeft } from 'd3'
 
-const evenNumbers = max => [...Array(max).keys()]
-  .map(i => ++i)
-  .filter(i => !(i % 2))
-
-export default (chart, dimensions, scales, maxWindSpeed) => {
+export default (chart, dimensions, scales, tickValues) => {
   const yAxis = axisLeft()
     .scale(scales.y)
     .tickSize(-dimensions.w)
-    .tickValues(evenNumbers(maxWindSpeed))
+    .tickValues(tickValues)
 
   return chart.append('g')
     .attr('class', 'y axis')
