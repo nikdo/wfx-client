@@ -41,11 +41,15 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     .attr('class', 'time')
     .attr('transform', `translate(0, ${dimensions.h})`)
 
-  time.append('circle')
-    .attr('r', 3)
+  const lineHeight = 16
+
+  time.append('path')
+    .attr('fill', 'none')
+    .attr('d', `M 0 0 V ${lineHeight} H ${lineHeight / 4}`)
 
   time.append('text')
-    .attr('x', 9)
+    .attr('x', lineHeight / 2)
+    .attr('y', lineHeight)
     .attr('alignment-baseline', 'middle')
 
   subscribeToHoverEvents({

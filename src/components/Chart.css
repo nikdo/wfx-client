@@ -34,11 +34,20 @@ svg .chart-hover {
 
 svg .hover line {
   stroke: #343838;
-  stroke-width: 2px;
+  stroke-width: 1px;
 }
 
 svg .hover circle {
   fill: #fcfcfa;
   stroke: #343838;
   stroke-width: 2px;
+}
+
+svg .hover .time text {
+  font-size: 12px;
+}
+
+svg .hover .time path {
+  stroke: #343838;
+  stroke-width: 1px;
 }
