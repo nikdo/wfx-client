@@ -4,7 +4,7 @@ import Chart from './components/Chart'
 import Spinner from './components/Spinner'
 import './App.css'
 
-const deserializeTime = spot => ({
+const deserialize = spot => ({
   ...spot,
   forecast: spot.forecast.map(frame => ({
     ...frame,
@@ -18,7 +18,7 @@ export default class App extends Component {
   componentDidMount () {
     fetch('/api/forecast/0')
       .then(res => res.json())
-      .then(deserializeTime)
+      .then(deserialize)
       .then(spot => {
         document.title = spot.name
         this.setState(spot)
