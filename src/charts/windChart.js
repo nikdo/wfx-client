@@ -10,13 +10,14 @@ import hoverGuide from './hoverGuide'
 import hoverTarget from './hoverTarget'
 
 export default (svg, data) => {
-  const dimensions = { w: 1200, h: 200 }
-  const margin = { top: 20, right: 30, bottom: 60, left: 20 }
-
   const yMax = ceilToEven(max([
     ...data.map(d => d.windSpeed),
-    16
-  ]))
+    14
+  ])) + 2
+
+  const swimlineHeight = 25
+  const dimensions = { w: 1200, h: yMax / 2 * swimlineHeight }
+  const margin = { top: 20, right: 30, bottom: 60, left: 20 }
 
   const windTickValues = evenNumbers(yMax)
 
