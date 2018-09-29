@@ -24,8 +24,8 @@ export default class App extends Component {
     }
   }
 
-  componentDidMount () {
-    fetch('/api/forecast/0')
+  fetchSpot (id) {
+    fetch(`/api/forecast/${id}`)
       .then(res => res.json())
       .then(deserialize)
       .then(spot => {
@@ -34,15 +34,15 @@ export default class App extends Component {
       })
   }
 
-  handleSpotChange (e) {
-    console.log('fetch spot', e.target.value)
+  componentDidMount () {
+    this.fetchSpot(0)
   }
 
   render () {
     return <main>
       {this.state.spot
         ? <div>
-          <Selector options={this.state.options} onChange={this.handleSpotChange} />
+          <Selector options={this.state.options} onChange={e => this.fetchSpot(e.target.value)} />
           <h1>{this.state.spot.name}</h1>
           <Chart forecast={this.state.spot.forecast} />
         </div>
