@@ -20,16 +20,21 @@ export default class App extends Component {
     super()
     this.state = {
       spot: null,
+      selected: null,
       options: []
     }
+    this.handleSpotChange = this.handleSpotChange.bind(this)
   }
 
   fetchData () {
     fetch('/api/spots')
       .then(res => res.json())
       .then(options => {
-        this.setState({ options })
         this.fetchSpot(options[0]._id)
+        this.setState({
+          options,
+          selected: options[0]._id
+        })
       })
   }
 
@@ -47,11 +52,20 @@ export default class App extends Component {
     this.fetchData()
   }
 
+  handleSpotChange (e) {
+    this.fetchSpot(e.target.value)
+    this.setState({ selected: e.target.value })
+  }
+
   render () {
     return <main>
       {this.state.spot && this.state.options.length
         ? <div>
-          <Selector spots={this.state.options} onChange={e => this.fetchSpot(e.target.value)} />
+          <Selector
+            value={this.state.selected}
+            spots={this.state.options}
+            onChange={this.handleSpotChange}
+          />
           <h1>{this.state.spot.name}</h1>
           <Chart forecast={this.state.spot.forecast} />
         </div>
