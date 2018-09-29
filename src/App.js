@@ -15,22 +15,29 @@ const deserialize = spot => ({
 })
 
 export default class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      spot: null
+    }
+  }
+
   componentDidMount () {
     fetch('/api/forecast/0')
       .then(res => res.json())
       .then(deserialize)
       .then(spot => {
         document.title = spot.name
-        this.setState(spot)
+        this.setState({ spot: spot })
       })
   }
 
   render () {
     return <main>
-      {this.state
+      {this.state.spot
         ? <div>
-          <h1>{this.state.name}</h1>
-          <Chart forecast={this.state.forecast} />
+          <h1>{this.state.spot.name}</h1>
+          <Chart forecast={this.state.spot.forecast} />
         </div>
         : <Spinner />
       }
