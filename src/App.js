@@ -18,7 +18,8 @@ export default class App extends Component {
   constructor () {
     super()
     this.state = {
-      spot: null
+      spot: null,
+      options: ['Podersdorf', 'Medulin', 'Tarifa']
     }
   }
 
@@ -41,9 +42,9 @@ export default class App extends Component {
       {this.state.spot
         ? <div>
           <select defaultValue='0' onChange={this.handleSpotChange}>
-            <option value='0'>Podersdorf</option>
-            <option value='1'>Medulin</option>
-            <option value='2'>Tarifa</option>
+            {this.state.options.map((option, i) =>
+              <option value={i} key={i}>{option}</option>
+            )}
           </select>
           <h1>{this.state.spot.name}</h1>
           <Chart forecast={this.state.spot.forecast} />
