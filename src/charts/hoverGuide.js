@@ -21,6 +21,7 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     .attr('x', lineHeight / 2)
     .attr('dy', lineHeight / 4)
     .attr('paint-order', 'stroke')
+    .style('paint-order', 'stroke') // Safari needs to set style when stroke is set in CSS
     .attr('stroke-linejoin', 'round')
 
   value.append('g')
