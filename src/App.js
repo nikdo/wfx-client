@@ -24,10 +24,13 @@ export default class App extends Component {
     }
   }
 
-  fetchOptions () {
+  fetchData () {
     fetch('/api/spots')
       .then(res => res.json())
-      .then(options => this.setState({ options }))
+      .then(options => {
+        this.setState({ options })
+        this.fetchSpot(options[0]._id)
+      })
   }
 
   fetchSpot (id) {
@@ -41,8 +44,7 @@ export default class App extends Component {
   }
 
   componentDidMount () {
-    this.fetchOptions()
-    this.fetchSpot('5616a1ca0ef5750a55ee0893')
+    this.fetchData()
   }
 
   render () {
