@@ -20,8 +20,14 @@ export default class App extends Component {
     super()
     this.state = {
       spot: null,
-      options: ['Podersdorf', 'Medulin', 'Tarifa']
+      options: []
     }
+  }
+
+  fetchOptions () {
+    fetch('/api/spots')
+      .then(res => res.json())
+      .then(options => this.setState({ options }))
   }
 
   fetchSpot (id) {
@@ -35,12 +41,13 @@ export default class App extends Component {
   }
 
   componentDidMount () {
+    this.fetchOptions()
     this.fetchSpot(0)
   }
 
   render () {
     return <main>
-      {this.state.spot
+      {this.state.spot && this.state.options.length
         ? <div>
           <Selector options={this.state.options} onChange={e => this.fetchSpot(e.target.value)} />
           <h1>{this.state.spot.name}</h1>
