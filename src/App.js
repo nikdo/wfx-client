@@ -51,7 +51,7 @@ export default class App extends Component {
     return <main>
       {this.state.spot && this.state.options.length
         ? <div>
-          <Selector options={this.state.options} onChange={e => this.fetchSpot(e.target.value)} />
+          <Selector spots={this.state.options} onChange={e => this.fetchSpot(e.target.value)} />
           <h1>{this.state.spot.name}</h1>
           <Chart forecast={this.state.spot.forecast} />
         </div>
