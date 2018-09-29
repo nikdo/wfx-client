@@ -62,6 +62,12 @@ svg .hover-guide .value text tspan {
   font-size: 12px;
 }
 
+svg .hover-guide .value .wind-direction {
+  fill: none;
+  stroke: #343838;
+  stroke-width: 2px;
+}
+
 svg .hover-guide .time text {
   font-size: 12px;
 }

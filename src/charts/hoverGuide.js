@@ -23,6 +23,12 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     .attr('paint-order', 'stroke')
     .attr('stroke-linejoin', 'round')
 
+  value.append('g')
+    .attr('class', 'wind-direction')
+    .attr('transform', `translate(${lineHeight}, ${-lineHeight * 1.5})`)
+    .append('path')
+    .attr('d', 'M-2.5,1 L0,5 L2.5,1 M0,4 V -10')
+
   const time = hoverGuide.append('g')
     .attr('class', 'time')
     .attr('transform', `translate(0, ${dimensions.h})`)
@@ -48,6 +54,7 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
       value.select('text')
         .text(windSpeed.toFixed(1))
         .append('tspan').text(' ↑' + data[i].windGust.toFixed(1))
+      value.select('.wind-direction path').attr('transform', `rotate(${data[i].windBearing})`)
       time.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
     }
   })
