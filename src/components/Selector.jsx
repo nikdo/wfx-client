@@ -15,6 +15,7 @@ export default ({ value, spots, onChange }) => (
     value={options(spots).find(option => option.value === value)}
     onChange={option => onChange(option.value)}
     options={options(spots)}
+    blurInputOnSelect
     className='select'
     classNamePrefix='select'
   />
