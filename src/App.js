@@ -32,10 +32,19 @@ export default class App extends Component {
       })
   }
 
+  handleSpotChange (e) {
+    console.log('fetch spot', e.target.value)
+  }
+
   render () {
     return <main>
       {this.state.spot
         ? <div>
+          <select defaultValue='0' onChange={this.handleSpotChange}>
+            <option value='0'>Podersdorf</option>
+            <option value='1'>Medulin</option>
+            <option value='2'>Tarifa</option>
+          </select>
           <h1>{this.state.spot.name}</h1>
           <Chart forecast={this.state.spot.forecast} />
         </div>
