@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment-timezone'
+import Selector from './components/Selector'
 import Chart from './components/Chart'
 import Spinner from './components/Spinner'
 import './App.css'
@@ -41,11 +42,7 @@ export default class App extends Component {
     return <main>
       {this.state.spot
         ? <div>
-          <select defaultValue='0' onChange={this.handleSpotChange}>
-            {this.state.options.map((option, i) =>
-              <option value={i} key={i}>{option}</option>
-            )}
-          </select>
+          <Selector options={this.state.options} onChange={this.handleSpotChange} />
           <h1>{this.state.spot.name}</h1>
           <Chart forecast={this.state.spot.forecast} />
         </div>
