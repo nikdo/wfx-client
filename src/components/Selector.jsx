@@ -16,5 +16,6 @@ export default ({ value, spots, onChange }) => (
     onChange={option => onChange(option.value)}
     options={options(spots)}
     className='select'
+    classNamePrefix='select'
   />
 )
