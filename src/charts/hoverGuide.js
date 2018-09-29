@@ -47,13 +47,14 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     onMouseOut: () => hoverGuide.style('display', 'none'),
     onValueHover: (x, i) => {
       const windSpeed = data[i].windSpeed
+      const windGustDiff = data[i].windGust - windSpeed
       const y = scales.y(windSpeed)
       hoverGuide.attr('transform', `translate(${x}, 0)`)
       line.attr('y1', y)
       value.attr('transform', `translate(0, ${y})`)
       value.select('text')
         .text(windSpeed.toFixed(1))
-        .append('tspan').text(' ↑' + data[i].windGust.toFixed(1))
+        .append('tspan').text(' +' + windGustDiff.toFixed(1))
       value.select('.wind-direction path').attr('transform', `rotate(${data[i].windBearing})`)
       time.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
     }
