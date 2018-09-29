@@ -56,7 +56,7 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
         .text(windSpeed.toFixed(1))
         .append('tspan').text(' +' + windGustDiff.toFixed(1))
       value.select('.wind-direction path').attr('transform', `rotate(${data[i].windBearing})`)
-      time.select('.time text').text(scales.x.domain()[i].format('dd HH:mm'))
+      time.select('.time text').text(scales.x.domain()[i].format('HH:mm'))
     }
   })
 }

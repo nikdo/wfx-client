@@ -6,7 +6,7 @@ export default (chart, dimensions, scales, subscribeToHoverEvents) => {
     .scale(scales.x)
     .tickValues(scales.x.domain().filter(d => d.format('HH').match(/(00|06|12|18)/)))
     .tickSize(0)
-    .tickFormat(d => d.format('dd HH:mm'))
+    .tickFormat(d => d.format('HH:mm'))
 
   const element = chart.append('g')
     .attr('class', 'x axis')
