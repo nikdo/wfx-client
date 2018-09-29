@@ -3,6 +3,10 @@
   margin-bottom: 1rem;
 }
 
+.select__control {
+  background-color: transparent !important;
+}
+
 .select__indicator-separator {
   display: none;
 }
