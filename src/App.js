@@ -42,7 +42,7 @@ export default class App extends Component {
 
   componentDidMount () {
     this.fetchOptions()
-    this.fetchSpot(0)
+    this.fetchSpot('5616a1ca0ef5750a55ee0893')
   }
 
   render () {
