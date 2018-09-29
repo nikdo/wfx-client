@@ -17,4 +17,11 @@ export default (chart, dimensions, scales, tickValues) => {
     .attr('x', -lineHeight / 2)
     .attr('dy', 0)
     .attr('alignment-baseline', 'middle')
+
+  chart.append('g')
+    .attr('class', 'y axis')
+    .append('path')
+    .attr('class', 'domain')
+    .attr('stroke', 'currentColor')
+    .attr('d', `M${dimensions.w},${dimensions.h}V0`)
 }
