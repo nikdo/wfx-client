@@ -8,7 +8,19 @@ export default class Chart extends Component {
     this.node = React.createRef()
   }
 
+  removeChart () {
+    const chart = this.node.current
+    while (chart.hasChildNodes()) {
+      chart.removeChild(chart.lastChild)
+    }
+  }
+
   componentDidMount () {
+    windChart(this.node.current, this.props.forecast)
+  }
+
+  componentDidUpdate () {
+    this.removeChart()
     windChart(this.node.current, this.props.forecast)
   }
 
