@@ -1,12 +1,18 @@
 import React from 'react'
+import Select from 'react-select'
 
 const label = ({ country, region, name }) =>
   `${country} ${region ? region + ': ' : ''} ${name}`
 
+const options = spots => spots.map(spot => ({
+  label: label(spot),
+  value: spot._id
+}))
+
 export default ({ value, spots, onChange }) => (
-  <select value={value} onChange={onChange}>
-    {spots.map(spot =>
-      <option value={spot._id} key={spot._id}>{label(spot)}</option>
-    )}
-  </select>
+  <Select
+    value={options(spots).find(option => option.value === value)}
+    onChange={option => onChange(option.value)}
+    options={options(spots)}
+  />
 )

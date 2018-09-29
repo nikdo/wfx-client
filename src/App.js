@@ -52,9 +52,9 @@ export default class App extends Component {
     this.fetchData()
   }
 
-  handleSpotChange (e) {
-    this.fetchSpot(e.target.value)
-    this.setState({ selected: e.target.value })
+  handleSpotChange (id) {
+    this.fetchSpot(id)
+    this.setState({ selected: id })
   }
 
   render () {
@@ -66,7 +66,6 @@ export default class App extends Component {
             spots={this.state.options}
             onChange={this.handleSpotChange}
           />
-          <h1>{this.state.spot.name}</h1>
           <Chart forecast={this.state.spot.forecast} />
         </div>
         : <Spinner />
