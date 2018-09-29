@@ -43,13 +43,14 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     .attr('alignment-baseline', 'middle')
 
   subscribeToHoverEvents({
-    onMouseOver: () => hoverGuide.style('display', null),
     onMouseOut: () => hoverGuide.style('display', 'none'),
     onValueHover: (x, i) => {
       const windSpeed = data[i].windSpeed
       const windGustDiff = data[i].windGust - windSpeed
       const y = scales.y(windSpeed)
-      hoverGuide.attr('transform', `translate(${x}, 0)`)
+      hoverGuide
+        .style('display', null)
+        .attr('transform', `translate(${x}, 0)`)
       line.attr('y1', y)
       value.attr('transform', `translate(0, ${y})`)
       value.select('text')

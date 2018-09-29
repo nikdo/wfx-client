@@ -24,8 +24,10 @@ export default (chart, dimensions, scales, eventHandlers) => {
     .attr('class', 'hover-target')
     .attr('width', dimensions.w)
     .attr('height', dimensions.h)
-    .on('mouseover', () => eventHandlers.forEach(handler => handler.onMouseOver && handler.onMouseOver()))
-    .on('mouseout', () => eventHandlers.forEach(handler => handler.onMouseOut && handler.onMouseOut()))
+    .on('mouseout', () => {
+      selectedIndex = null
+      eventHandlers.forEach(handler => handler.onMouseOut && handler.onMouseOut())
+    })
     .on('mousemove', function () {
       const newIndex = getClosestValueIndex(hourTickPositions, mouse(this)[0])
       if (newIndex !== selectedIndex) {

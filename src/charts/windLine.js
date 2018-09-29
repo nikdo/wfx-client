@@ -54,9 +54,9 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     .style('fill', '#222')
 
   subscribeToHoverEvents({
-    onMouseOver: () => root.attr('mask', 'url(#hover-overlay)'),
     onMouseOut: () => root.attr('mask', null),
     onValueHover: x => {
+      root.attr('mask', 'url(#hover-overlay)')
       visible.attr('width', x)
       hidden.attr('x', x)
     }

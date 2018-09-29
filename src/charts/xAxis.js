@@ -22,7 +22,7 @@ export default (chart, dimensions, scales, subscribeToHoverEvents) => {
     .attr('alignment-baseline', 'middle')
 
   subscribeToHoverEvents({
-    onMouseOver: () => labels.attr('display', 'none'),
+    onValueHover: () => labels.attr('display', 'none'),
     onMouseOut: () => labels.attr('display', null)
   })
 
