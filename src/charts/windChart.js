@@ -1,5 +1,6 @@
 import { scalePoint, scaleLinear, max, select } from 'd3'
 import evenNumbers from './util/evenNumbers'
+import ceilToEven from './util/ceilToEven'
 import xAxis from './xAxis'
 import yAxis from './yAxis'
 import xGrid from './xGrid'
@@ -12,19 +13,19 @@ export default (svg, data) => {
   const dimensions = { w: 1200, h: 200 }
   const margin = { top: 20, right: 30, bottom: 60, left: 20 }
 
-  const maxWindSpeed = max([
+  const yMax = ceilToEven(max([
     ...data.map(d => d.windSpeed),
     16
-  ])
+  ]))
 
-  const windTickValues = evenNumbers(maxWindSpeed)
+  const windTickValues = evenNumbers(yMax)
 
   const scales = {
     x: scalePoint()
       .domain(data.map(d => d.time))
       .range([0, dimensions.w]),
     y: scaleLinear()
-      .domain([0, maxWindSpeed])
+      .domain([0, yMax])
       .rangeRound([dimensions.h, 0])
   }
 
