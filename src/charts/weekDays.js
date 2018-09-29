@@ -1,4 +1,5 @@
 import { axisTop } from 'd3'
+import { lineHeight, d3AxisOffset } from './util/constants'
 
 export default (chart, dimensions, scales, swimlineHeight) => {
   const axis = axisTop()
@@ -7,9 +8,12 @@ export default (chart, dimensions, scales, swimlineHeight) => {
     .tickSize(0)
     .tickFormat(d => d.format('dddd'))
 
+  const lineStrokeWidth = 1
+  const xOffset = lineHeight / 2
+  const yOffset = lineStrokeWidth + d3AxisOffset + swimlineHeight / 2
   chart.append('g')
     .attr('class', 'week-days')
-    .attr('transform', `translate(8, ${1.5 + swimlineHeight / 2})`)
+    .attr('transform', `translate(${xOffset}, ${yOffset})`)
     .call(axis)
     .attr('text-anchor', null)
     .attr('font-size', null)
