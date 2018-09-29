@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment-timezone'
 import Chart from './components/Chart'
-import ForecastTable from './components/ForecastTable'
 import Spinner from './components/Spinner'
 import './App.css'
 
@@ -32,7 +31,6 @@ export default class App extends Component {
         ? <div>
           <h1>{this.state.name}</h1>
           <Chart forecast={this.state.forecast} />
-          <ForecastTable forecast={this.state.forecast} />
         </div>
         : <Spinner />
       }
