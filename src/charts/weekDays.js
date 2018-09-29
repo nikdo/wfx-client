@@ -2,9 +2,13 @@ import { axisTop } from 'd3'
 import { lineHeight, d3AxisOffset } from './util/constants'
 
 export default (chart, dimensions, scales, swimlineHeight) => {
+  const tickValues = scales.x.domain()
+    .filter(d => d.format('HH').match(/(00)/))
+    .slice(0, -1)
+
   const axis = axisTop()
     .scale(scales.x)
-    .tickValues(scales.x.domain().filter(d => d.format('HH').match(/(00)/)))
+    .tickValues(tickValues)
     .tickSize(0)
     .tickFormat(d => d.format('dddd'))
 
