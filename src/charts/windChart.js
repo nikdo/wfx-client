@@ -18,7 +18,7 @@ export default (svg, data) => {
 
   const swimlineHeight = 25
   const dimensions = { w: 1200, h: yMax / 2 * swimlineHeight }
-  const margin = { top: 20, right: 30, bottom: 60, left: 20 }
+  const margin = { top: 20, right: 80, bottom: 60, left: 20 }
 
   const windTickValues = evenNumbers(yMax)
 
