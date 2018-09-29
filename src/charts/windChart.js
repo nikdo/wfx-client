@@ -1,6 +1,7 @@
 import { scalePoint, scaleLinear, max, select } from 'd3'
 import evenNumbers from './util/evenNumbers'
 import ceilToEven from './util/ceilToEven'
+import weekDays from './weekDays'
 import xAxis from './xAxis'
 import yAxis from './yAxis'
 import xGrid from './xGrid'
@@ -47,6 +48,7 @@ export default (svg, data) => {
 
   windLine(chart, dimensions, scales, data, subscribeToHoverEvents)
 
+  weekDays(chart, dimensions, scales, swimlineHeight)
   xAxis(chart, dimensions, scales, subscribeToHoverEvents)
   yAxis(chart, dimensions, scales, windTickValues)
 

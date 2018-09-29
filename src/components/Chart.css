@@ -18,6 +18,14 @@ svg path.wind-fill.level-1 {
   fill: #008c9e;
 }
 
+svg .week-days {
+  color: #909090;
+}
+
+svg .week-days .domain {
+  display: none;
+}
+
 svg .axis {
   color: #909090;
   font-size: 12px;
