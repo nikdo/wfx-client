@@ -16,7 +16,7 @@ const deserializeTime = spot => ({
 
 export default class App extends Component {
   componentDidMount () {
-    fetch('/data')
+    fetch('/api/forecast/0')
       .then(res => res.json())
       .then(deserializeTime)
       .then(spot => {
