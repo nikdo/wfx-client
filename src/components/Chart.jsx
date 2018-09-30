@@ -1,6 +1,30 @@
 import React, { Component } from 'react'
+import { scalePoint, scaleLinear, max } from 'd3'
+import evenNumbers from '../charts/util/evenNumbers'
+import ceilToEven from '../charts/util/ceilToEven'
 import './Chart.css'
 import windChart from '../charts/windChart'
+
+const getVisualisations = data => {
+  const yMax = ceilToEven(max([
+    ...data.map(d => d.windSpeed),
+    14
+  ])) + 2
+
+  const swimlineHeight = 25
+  const dimensions = { w: 1200, h: yMax / 2 * swimlineHeight }
+  const scales = {
+    x: scalePoint()
+      .domain(data.map(d => d.time))
+      .range([0, dimensions.w]),
+    y: scaleLinear()
+      .domain([0, yMax])
+      .rangeRound([dimensions.h, 0])
+  }
+  const windTickValues = evenNumbers(yMax)
+
+  return { dimensions, scales, windTickValues, swimlineHeight }
+}
 
 export default class Chart extends Component {
   constructor (props) {
@@ -16,12 +40,12 @@ export default class Chart extends Component {
   }
 
   componentDidMount () {
-    windChart(this.node.current, this.props.forecast)
+    windChart(this.node.current, this.props.forecast, getVisualisations(this.props.forecast))
   }
 
   componentDidUpdate () {
     this.removeChart()
-    windChart(this.node.current, this.props.forecast)
+    windChart(this.node.current, this.props.forecast, getVisualisations(this.props.forecast))
   }
 
   render () {
