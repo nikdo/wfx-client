@@ -16,7 +16,10 @@ const getVisualisations = data => {
   ])) + 2
 
   const swimlineHeight = 25
-  const dimensions = { w: 1200, h: yMax / 2 * swimlineHeight }
+  const dimensions = {
+    w: 1200,
+    h: yMax / 2 * swimlineHeight
+  }
   const scales = {
     x: scalePoint()
       .domain(data.map(d => d.time))
@@ -27,7 +30,7 @@ const getVisualisations = data => {
   }
   const windTickValues = evenNumbers(yMax)
 
-  return { dimensions, scales, windTickValues, swimlineHeight }
+  return { dimensions, scales, windTickValues }
 }
 
 export default class Chart extends Component {
@@ -63,7 +66,7 @@ export default class Chart extends Component {
 
   render () {
     const { dimensions } = this.state.visualisations
-    const margin = { top: 20, right: 80, bottom: 40, left: 20 }
+    const margin = { top: 30, right: 80, bottom: 40, left: 20 }
     return (
       <svg
         width={dimensions.w + margin.left + margin.right}

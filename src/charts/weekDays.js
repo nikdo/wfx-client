@@ -1,7 +1,7 @@
 import { axisTop } from 'd3'
-import { lineHeight, d3AxisOffset } from './constants'
+import { lineHeight } from './constants'
 
-export default (canvas, dimensions, scales, swimlineHeight) => {
+export default (canvas, dimensions, scales) => {
   const tickValues = scales.x.domain()
     .filter(d => d.format('HH').match(/(00)/))
     .slice(0, -1)
@@ -12,17 +12,13 @@ export default (canvas, dimensions, scales, swimlineHeight) => {
     .tickSize(0)
     .tickFormat(d => d.format('dddd'))
 
-  const lineStrokeWidth = 1
-  const xOffset = lineHeight / 2
-  const yOffset = lineStrokeWidth + d3AxisOffset + swimlineHeight / 2
   canvas.append('g')
     .attr('class', 'week-days')
-    .attr('transform', `translate(${xOffset}, ${yOffset})`)
+    .attr('transform', `translate(${lineHeight / 2}, ${-lineHeight / 2})`)
     .call(axis)
     .attr('text-anchor', null)
     .attr('font-size', null)
     .attr('font-family', null)
     .selectAll('text')
-    .attr('alignment-baseline', 'middle')
     .attr('y', 0)
 }

@@ -9,7 +9,7 @@ import hoverGuide from './hoverGuide'
 import hoverTarget from './hoverTarget'
 
 export default (canvasNode, data, visualisations) => {
-  const { dimensions, scales, windTickValues, swimlineHeight } = visualisations
+  const { dimensions, scales, windTickValues } = visualisations
   const canvas = select(canvasNode)
 
   const hoverEventHandlers = []
@@ -20,7 +20,7 @@ export default (canvasNode, data, visualisations) => {
 
   windLine(canvas, dimensions, scales, data, subscribeToHoverEvents)
 
-  weekDays(canvas, dimensions, scales, swimlineHeight)
+  weekDays(canvas, dimensions, scales)
   xAxis(canvas, dimensions, scales, subscribeToHoverEvents)
   yAxis(canvas, dimensions, scales, windTickValues)
 
