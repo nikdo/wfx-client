@@ -31,11 +31,9 @@ const getVisualisations = data => {
   return { dimensions, scales, windTickValues, swimlineHeight }
 }
 
-export default (svg, data) => {
-  const { dimensions, scales, windTickValues, swimlineHeight } = getVisualisations(data)
-
+const drawChart = (svg, dimensions) => {
   const margin = { top: 20, right: 80, bottom: 40, left: 20 }
-  const chart = select(svg)
+  return select(svg)
     .attr('width', dimensions.w + margin.left + margin.right)
     .attr('height', dimensions.h + margin.top + margin.bottom)
     .style('margin-left', -margin.left + 'px')
@@ -43,6 +41,12 @@ export default (svg, data) => {
     .attr('width', dimensions.w)
     .attr('height', dimensions.h)
     .attr('transform', `translate(${margin.left}, ${margin.top})`)
+}
+
+export default (svg, data) => {
+  const { dimensions, scales, windTickValues, swimlineHeight } = getVisualisations(data)
+
+  const chart = drawChart(svg, dimensions)
 
   const hoverEventHandlers = []
   const subscribeToHoverEvents = handler => hoverEventHandlers.push(handler)
