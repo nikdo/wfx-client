@@ -34,6 +34,7 @@ export default class Chart extends Component {
   constructor (props) {
     super(props)
     this.node = React.createRef()
+    this.state = { visualisations: null }
   }
 
   removeChart () {
@@ -47,13 +48,17 @@ export default class Chart extends Component {
     return nextProps.spotId !== this.props.spotId
   }
 
+  static getDerivedStateFromProps (props) {
+    return { visualisations: getVisualisations(props.forecast) }
+  }
+
   componentDidMount () {
-    windChart(this.node.current, this.props.forecast, getVisualisations(this.props.forecast))
+    windChart(this.node.current, this.props.forecast, this.state.visualisations)
   }
 
   componentDidUpdate () {
     this.removeChart()
-    windChart(this.node.current, this.props.forecast, getVisualisations(this.props.forecast))
+    windChart(this.node.current, this.props.forecast, this.state.visualisations)
   }
 
   render () {
