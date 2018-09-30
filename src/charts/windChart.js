@@ -10,7 +10,7 @@ import windLine from './windLine'
 import hoverGuide from './hoverGuide'
 import hoverTarget from './hoverTarget'
 
-export default (svg, data) => {
+const getVisualisations = data => {
   const yMax = ceilToEven(max([
     ...data.map(d => d.windSpeed),
     14
@@ -18,10 +18,6 @@ export default (svg, data) => {
 
   const swimlineHeight = 25
   const dimensions = { w: 1200, h: yMax / 2 * swimlineHeight }
-  const margin = { top: 20, right: 80, bottom: 40, left: 20 }
-
-  const windTickValues = evenNumbers(yMax)
-
   const scales = {
     x: scalePoint()
       .domain(data.map(d => d.time))
@@ -30,7 +26,15 @@ export default (svg, data) => {
       .domain([0, yMax])
       .rangeRound([dimensions.h, 0])
   }
+  const windTickValues = evenNumbers(yMax)
 
+  return { dimensions, scales, windTickValues, swimlineHeight }
+}
+
+export default (svg, data) => {
+  const { dimensions, scales, windTickValues, swimlineHeight } = getVisualisations(data)
+
+  const margin = { top: 20, right: 80, bottom: 40, left: 20 }
   const chart = select(svg)
     .attr('width', dimensions.w + margin.left + margin.right)
     .attr('height', dimensions.h + margin.top + margin.bottom)
