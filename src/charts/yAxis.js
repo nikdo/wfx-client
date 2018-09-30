@@ -1,13 +1,13 @@
 import { axisLeft } from 'd3'
 import { lineHeight } from './constants'
 
-export default (chart, dimensions, scales, tickValues) => {
+export default (canvas, dimensions, scales, tickValues) => {
   const yAxis = axisLeft()
     .scale(scales.y)
     .tickSize(0)
     .tickValues(tickValues)
 
-  chart.append('g')
+  canvas.append('g')
     .attr('class', 'y axis')
     .call(yAxis)
     .attr('font-size', null)
@@ -18,7 +18,7 @@ export default (chart, dimensions, scales, tickValues) => {
     .attr('dy', 0)
     .attr('alignment-baseline', 'middle')
 
-  chart.append('g')
+  canvas.append('g')
     .attr('class', 'y axis')
     .append('path')
     .attr('class', 'domain')

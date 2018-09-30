@@ -1,6 +1,6 @@
 import { line, area, curveNatural } from 'd3'
 
-export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
+export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
   const breakpoint = scales.y(4)
   const path = line()
     .x(d => scales.x(d.time))
@@ -13,7 +13,7 @@ export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
     .y0(() => dimensions.h)
     .curve(curveNatural)
 
-  const root = chart.append('g')
+  const root = canvas.append('g')
 
   root.append('clipPath')
     .attr('id', 'level-0')

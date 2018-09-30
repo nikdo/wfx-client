@@ -1,14 +1,14 @@
 import { axisBottom } from 'd3'
 import { lineHeight } from './constants'
 
-export default (chart, dimensions, scales, subscribeToHoverEvents) => {
+export default (canvas, dimensions, scales, subscribeToHoverEvents) => {
   const axis = axisBottom()
     .scale(scales.x)
     .tickValues(scales.x.domain().filter(d => d.format('HH').match(/(00|06|12|18)/)))
     .tickSize(0)
     .tickFormat(d => d.format('HH'))
 
-  const element = chart.append('g')
+  const element = canvas.append('g')
     .attr('class', 'x axis')
     .attr('transform', `translate(0, ${dimensions.h})`)
     .call(axis)
@@ -25,6 +25,4 @@ export default (chart, dimensions, scales, subscribeToHoverEvents) => {
     onValueHover: () => labels.attr('display', 'none'),
     onMouseOut: () => labels.attr('display', null)
   })
-
-  return element
 }

@@ -33,12 +33,12 @@ const getVisualisations = data => {
 export default class Chart extends Component {
   constructor (props) {
     super(props)
-    this.node = React.createRef()
+    this.canvasNode = React.createRef()
     this.state = { visualisations: null }
   }
 
   removeChart () {
-    const chart = this.node.current
+    const chart = this.canvasNode.current
     while (chart.hasChildNodes()) {
       chart.removeChild(chart.lastChild)
     }
@@ -53,12 +53,12 @@ export default class Chart extends Component {
   }
 
   componentDidMount () {
-    windChart(this.node.current, this.props.forecast, this.state.visualisations)
+    windChart(this.canvasNode.current, this.props.forecast, this.state.visualisations)
   }
 
   componentDidUpdate () {
     this.removeChart()
-    windChart(this.node.current, this.props.forecast, this.state.visualisations)
+    windChart(this.canvasNode.current, this.props.forecast, this.state.visualisations)
   }
 
   render () {
@@ -71,7 +71,7 @@ export default class Chart extends Component {
         style={{ marginLeft: -margin.left }}
       >
         <g
-          ref={this.node}
+          ref={this.canvasNode}
           width={dimensions.w}
           height={dimensions.h}
           transform={`translate(${margin.left}, ${margin.top})`}

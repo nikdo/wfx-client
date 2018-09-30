@@ -1,7 +1,7 @@
 import { lineHeight } from './constants'
 
-export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
-  const hoverGuide = chart.append('g')
+export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
+  const hoverGuide = canvas.append('g')
     .attr('class', 'hover-guide')
     .style('display', 'none')
 

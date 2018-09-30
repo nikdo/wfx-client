@@ -17,10 +17,10 @@ const getClosestValueIndex = (array, value) => {
   return value - array[l] < array[r] - value ? l : r
 }
 
-export default (chart, dimensions, scales, eventHandlers) => {
+export default (canvas, dimensions, scales, eventHandlers) => {
   const hourTickPositions = getPointScaleTickPositions(scales.x)
   let selectedIndex = null
-  chart.append('rect')
+  canvas.append('rect')
     .attr('class', 'hover-target')
     .attr('width', dimensions.w)
     .attr('height', dimensions.h)

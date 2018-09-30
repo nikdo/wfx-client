@@ -1,7 +1,7 @@
 import { axisTop } from 'd3'
 import { lineHeight, d3AxisOffset } from './constants'
 
-export default (chart, dimensions, scales, swimlineHeight) => {
+export default (canvas, dimensions, scales, swimlineHeight) => {
   const tickValues = scales.x.domain()
     .filter(d => d.format('HH').match(/(00)/))
     .slice(0, -1)
@@ -15,7 +15,7 @@ export default (chart, dimensions, scales, swimlineHeight) => {
   const lineStrokeWidth = 1
   const xOffset = lineHeight / 2
   const yOffset = lineStrokeWidth + d3AxisOffset + swimlineHeight / 2
-  chart.append('g')
+  canvas.append('g')
     .attr('class', 'week-days')
     .attr('transform', `translate(${xOffset}, ${yOffset})`)
     .call(axis)
