@@ -66,7 +66,7 @@ export default class App extends Component {
             spots={this.state.options}
             onChange={this.handleSpotChange}
           />
-          <Chart forecast={this.state.spot.forecast} />
+          <Chart spotId={this.state.spot._id} forecast={this.state.spot.forecast} />
         </div>
         : <Spinner />
       }

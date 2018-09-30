@@ -43,6 +43,10 @@ export default class Chart extends Component {
     }
   }
 
+  shouldComponentUpdate (nextProps) {
+    return nextProps.spotId !== this.props.spotId
+  }
+
   componentDidMount () {
     windChart(this.node.current, this.props.forecast, getVisualisations(this.props.forecast))
   }
