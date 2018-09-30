@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { scalePoint, scaleLinear, max } from 'd3'
-import evenNumbers from '../charts/util/evenNumbers'
-import ceilToEven from '../charts/util/ceilToEven'
 import './Chart.css'
 import windChart from '../charts/windChart'
+
+const ceilToEven = num => 2 * Math.ceil(num / 2)
+
+const evenNumbers = max => [...Array(max).keys()]
+  .map(i => ++i)
+  .filter(i => !(i % 2))
 
 const getVisualisations = data => {
   const yMax = ceilToEven(max([

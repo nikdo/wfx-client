@@ -1,4 +1,4 @@
-import { lineHeight } from './util/constants'
+import { lineHeight } from './constants'
 
 export default (chart, dimensions, scales, data, subscribeToHoverEvents) => {
   const hoverGuide = chart.append('g')

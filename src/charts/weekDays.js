@@ -1,5 +1,5 @@
 import { axisTop } from 'd3'
-import { lineHeight, d3AxisOffset } from './util/constants'
+import { lineHeight, d3AxisOffset } from './constants'
 
 export default (chart, dimensions, scales, swimlineHeight) => {
   const tickValues = scales.x.domain()

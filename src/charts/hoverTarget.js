@@ -1,5 +1,5 @@
 import { mouse, range, bisect } from 'd3'
-import { d3AxisOffset } from './util/constants'
+import { d3AxisOffset } from './constants'
 
 // Based on https://stackoverflow.com/a/40574104/5763764
 // Haven't found any other way how to get tick positions from a point scale.

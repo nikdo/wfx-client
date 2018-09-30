@@ -1,5 +1,5 @@
 import { axisBottom } from 'd3'
-import { lineHeight } from './util/constants'
+import { lineHeight } from './constants'
 
 export default (chart, dimensions, scales, subscribeToHoverEvents) => {
   const axis = axisBottom()
