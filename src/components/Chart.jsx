@@ -62,6 +62,21 @@ export default class Chart extends Component {
   }
 
   render () {
-    return <svg ref={this.node} />
+    const { dimensions } = this.state.visualisations
+    const margin = { top: 20, right: 80, bottom: 40, left: 20 }
+    return (
+      <svg
+        width={dimensions.w + margin.left + margin.right}
+        height={dimensions.h + margin.top + margin.bottom}
+        style={{ marginLeft: -margin.left }}
+      >
+        <g
+          ref={this.node}
+          width={dimensions.w}
+          height={dimensions.h}
+          transform={`translate(${margin.left}, ${margin.top})`}
+        />
+      </svg>
+    )
   }
 }
