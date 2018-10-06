@@ -1,7 +1,7 @@
 import { scalePoint, scaleLinear, max } from 'd3'
 import tickValues from './tickValues'
 
-const bftCeilings = [0, 1.5, 3.3, 5.5, 8, 10.8, 13.9, 17.2, 20.7, 24.5, 28.4, 32.6]
+const bftCeilings = [0.3, 1.5, 3.3, 5.5, 8, 10.8, 13.9, 17.2, 20.7, 24.5, 28.4, 32.6]
 const minEndValue = bftCeilings[7]
 const unitHeigth = 12
 const hoverTooltipHeight = 30
