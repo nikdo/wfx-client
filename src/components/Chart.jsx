@@ -10,10 +10,12 @@ const evenNumbers = max => [...Array(max).keys()]
   .filter(i => !(i % 2))
 
 const getVisualisations = data => {
+  const hoverTooltipHeight = 2
+  const minEndValue = 16
   const yMax = ceilToEven(max([
-    ...data.map(d => d.windSpeed),
-    14
-  ])) + 2
+    ...data.map(d => d.windSpeed + hoverTooltipHeight),
+    minEndValue
+  ]))
 
   const unitHeigth = 12
   const dimensions = {
