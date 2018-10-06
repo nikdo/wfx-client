@@ -6,6 +6,7 @@ export default (canvas, dimensions, scales, tickValues) => {
     .scale(scales.y)
     .tickSize(0)
     .tickValues(tickValues)
+    .tickFormat(v => v.toFixed(1))
 
   canvas.append('g')
     .attr('class', 'y axis')

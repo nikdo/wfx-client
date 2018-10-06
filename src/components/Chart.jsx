@@ -36,7 +36,7 @@ export default class Chart extends Component {
 
   render () {
     const { dimensions } = this.state.visualisations
-    const margin = { top: 30, right: 80, bottom: 40, left: 20 }
+    const margin = { top: 30, right: 80, bottom: 40, left: 30 }
     return (
       <svg
         width={dimensions.w + margin.left + margin.right}
