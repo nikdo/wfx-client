@@ -1,22 +1,20 @@
 svg path.wind {
-  stroke: #909090;
   stroke-width: 2;
   fill: none;
 }
 
-svg path.wind.level-1 {
-  stroke: #343838;
-}
+svg path.wind.level-0 { stroke: #909090; }
+svg path.wind.level-1,
+svg path.wind.level-2 { stroke: #343838; }
 
 svg path.wind-fill {
   stroke: none;
-  fill: #e6e6e6;
   opacity: 0.5;
 }
 
-svg path.wind-fill.level-1 {
-  fill: #008c9e;
-}
+svg path.wind-fill.level-0 { fill: #e6e6e6; }
+svg path.wind-fill.level-1 { fill: #4177bc; }
+svg path.wind-fill.level-2 { fill: #6abd45; }
 
 svg .week-days {
   color: #909090;

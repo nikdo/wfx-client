@@ -1,7 +1,16 @@
 import { line, area, curveNatural } from 'd3'
 
+const levelsCeilings = [3.3, 5.5, undefined]
+
 export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
-  const breakpoint = scales.y(4)
+  const levels = levelsCeilings.reduce((levels, breakpoint, i, levelsCeilings) => [
+    ...levels,
+    {
+      start: scales.y(levelsCeilings[i - 1] || 0),
+      end: levelsCeilings[i] ? scales.y(levelsCeilings[i]) : 0
+    }
+  ], [])
+
   const path = line()
     .x(d => scales.x(d.time))
     .y(d => scales.y(d.windSpeed))
@@ -15,20 +24,13 @@ export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
 
   const root = canvas.append('g')
 
-  root.append('clipPath')
-    .attr('id', 'level-0')
-    .append('rect')
-    .attr('y', breakpoint)
-    .attr('width', dimensions.w)
-    .attr('height', dimensions.h - breakpoint)
-
-  root.append('clipPath')
-    .attr('id', 'level-1')
-    .append('rect')
-    .attr('width', dimensions.w)
-    .attr('height', breakpoint)
-
-  ;[0, 1].forEach(level => {
+  levels.forEach(({ start, end }, level) => {
+    root.append('clipPath')
+      .attr('id', `level-${level}`)
+      .append('rect')
+      .attr('y', end)
+      .attr('width', dimensions.w)
+      .attr('height', start - end)
     root.append('path')
       .attr('class', `wind-fill level-${level}`)
       .datum(data)
