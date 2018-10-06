@@ -15,10 +15,10 @@ const getVisualisations = data => {
     14
   ])) + 2
 
-  const swimlineHeight = 25
+  const unitHeigth = 12
   const dimensions = {
     w: 1200,
-    h: yMax / 2 * swimlineHeight
+    h: yMax * unitHeigth
   }
   const scales = {
     x: scalePoint()
