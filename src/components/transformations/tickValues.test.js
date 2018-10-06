@@ -20,4 +20,9 @@ describe('tickValues', () => {
     const result = tickValues([1, 2, 3, 20, 21], 20)
     expect(result.filter(ceiling => ceiling < 20)).toEqual([1, 2, 3])
   })
+
+  it('adds rounded ceiling for max value larger than max ceiling', () => {
+    const result = tickValues([0, 1, 2, 3], 7.3)
+    expect(result).toEqual([0, 1, 2, 3, 8])
+  })
 })
