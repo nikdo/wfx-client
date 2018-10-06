@@ -1,6 +1,7 @@
 import { line, area, curveNatural } from 'd3'
 
-const levelsCeilings = [3.3, 5.5, undefined]
+const skippedLevels = 2
+const levelsCeilings = [0.3, 1.5, 3.3, 5.5, undefined].slice(skippedLevels)
 
 export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
   const levels = levelsCeilings.reduce((levels, breakpoint, i, levelsCeilings) => [
@@ -25,6 +26,7 @@ export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
   const root = canvas.append('g')
 
   levels.forEach(({ start, end }, level) => {
+    level += skippedLevels
     root.append('clipPath')
       .attr('id', `level-${level}`)
       .append('rect')
