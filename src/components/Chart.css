@@ -5,7 +5,15 @@ svg path.wind {
 
 svg path.wind.level-2 { stroke: #909090; }
 svg path.wind.level-3,
-svg path.wind.level-4 { stroke: #343838; }
+svg path.wind.level-4,
+svg path.wind.level-5,
+svg path.wind.level-6,
+svg path.wind.level-7,
+svg path.wind.level-8,
+svg path.wind.level-9,
+svg path.wind.level-10,
+svg path.wind.level-11,
+svg path.wind.level-12 { stroke: #343838; }
 
 svg path.wind-fill {
   stroke: none;
@@ -15,6 +23,14 @@ svg path.wind-fill {
 svg path.wind-fill.level-2 { fill: #e6e6e6; }
 svg path.wind-fill.level-3 { fill: #4177bc; }
 svg path.wind-fill.level-4 { fill: #6abd45; }
+svg path.wind-fill.level-5 { fill: #F4A440; }
+svg path.wind-fill.level-6 { fill: #ED3833; }
+svg path.wind-fill.level-7 { fill: #AF4E96; }
+svg path.wind-fill.level-8 { fill: #823785; }
+svg path.wind-fill.level-9,
+svg path.wind-fill.level-10,
+svg path.wind-fill.level-11,
+svg path.wind-fill.level-12 { fill: #3751A0; }
 
 svg .week-days {
   color: #909090;

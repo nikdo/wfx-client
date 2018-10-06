@@ -8,6 +8,8 @@ import windLine from './windLine'
 import hoverGuide from './hoverGuide'
 import hoverTarget from './hoverTarget'
 
+const skippedLevels = 2
+
 export default (canvasNode, data, visualisations) => {
   const { dimensions, scales, bftCeilings } = visualisations
   const canvas = select(canvasNode)
@@ -18,7 +20,7 @@ export default (canvasNode, data, visualisations) => {
   xGrid(canvas, dimensions, scales)
   yGrid(canvas, dimensions, scales, bftCeilings)
 
-  windLine(canvas, dimensions, scales, data, subscribeToHoverEvents)
+  windLine(canvas, dimensions, scales, data, bftCeilings, skippedLevels, subscribeToHoverEvents)
 
   weekDays(canvas, dimensions, scales)
   xAxis(canvas, dimensions, scales, subscribeToHoverEvents)

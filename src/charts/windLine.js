@@ -1,14 +1,12 @@
 import { line, area, curveNatural } from 'd3'
 
-const skippedLevels = 2
-const levelsCeilings = [0.3, 1.5, 3.3, 5.5, undefined].slice(skippedLevels)
-
-export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
+export default (canvas, dimensions, scales, data, bftCeilings, skippedLevels, subscribeToHoverEvents) => {
+  const levelsCeilings = bftCeilings.slice(skippedLevels)
   const levels = levelsCeilings.reduce((levels, breakpoint, i, levelsCeilings) => [
     ...levels,
     {
       start: scales.y(levelsCeilings[i - 1] || 0),
-      end: levelsCeilings[i] ? scales.y(levelsCeilings[i]) : 0
+      end: scales.y(levelsCeilings[i])
     }
   ], [])
 
