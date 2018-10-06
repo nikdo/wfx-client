@@ -1,19 +1,16 @@
 import { scalePoint, scaleLinear, max } from 'd3'
 import tickValues from './tickValues'
 
-const evenNumbers = max => [...Array(max).keys()]
-  .map(i => ++i)
-  .filter(i => !(i % 2))
+const bftCeilings = [0, 1.5, 3.3, 5.5, 8, 10.8, 13.9, 17.2, 20.7, 24.5, 28.4, 32.6]
+const minEndValue = 16
+const unitHeigth = 12
+const hoverTooltipHeight = 2
 
 export default data => {
-  const hoverTooltipHeight = 2
-  const minEndValue = 16
   const yMaxValue = max(data.map(d => d.windSpeed)) + hoverTooltipHeight
-  const levelsCeilings = evenNumbers(6)
-  const windTickValues = tickValues(levelsCeilings, Math.max(yMaxValue, minEndValue))
+  const windTickValues = tickValues(bftCeilings, Math.max(yMaxValue, minEndValue))
   const yEndValue = windTickValues[windTickValues.length - 1]
 
-  const unitHeigth = 12
   const dimensions = {
     w: 1200,
     h: yEndValue * unitHeigth
