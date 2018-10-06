@@ -18,13 +18,13 @@ export default (canvasNode, data, visualisations) => {
   const subscribeToHoverEvents = handler => hoverEventHandlers.push(handler)
 
   xGrid(canvas, dimensions, scales)
-  yGrid(canvas, dimensions, scales, bftCeilings)
+  yGrid(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
 
   windLine(canvas, dimensions, scales, data, bftCeilings, skippedLevels, subscribeToHoverEvents)
 
   weekDays(canvas, dimensions, scales)
   xAxis(canvas, dimensions, scales, subscribeToHoverEvents)
-  yAxis(canvas, dimensions, scales, bftCeilings)
+  yAxis(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
 
   hoverGuide(canvas, dimensions, scales, data, subscribeToHoverEvents)
 
