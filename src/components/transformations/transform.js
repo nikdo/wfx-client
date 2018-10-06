@@ -1,15 +1,15 @@
 import { scalePoint, scaleLinear, max } from 'd3'
-import tickValues from './tickValues'
+import trimLevelsCeilings from './trimLevelsCeilings'
 
-const bftCeilings = [0.3, 1.5, 3.3, 5.5, 8, 10.8, 13.9, 17.2, 20.7, 24.5, 28.4, 32.6]
+const bftCeilings = [0.3, 1.5, 3.3, 5.5, 8, 10.8, 13.9, 17.2, 20.7, 24.5, 28.4, 32.6, undefined]
 const minEndValue = bftCeilings[7]
 const unitHeigth = 12
 const hoverTooltipHeight = 30
 
 export default data => {
   const yMaxValue = max(data.map(d => d.windSpeed)) + hoverTooltipHeight / unitHeigth
-  const windTickValues = tickValues(bftCeilings, Math.max(yMaxValue, minEndValue))
-  const yEndValue = windTickValues[windTickValues.length - 1]
+  const trimmedBftCeilings = trimLevelsCeilings(bftCeilings, Math.max(yMaxValue, minEndValue))
+  const yEndValue = trimmedBftCeilings[trimmedBftCeilings.length - 1]
 
   const dimensions = {
     w: 1200,
@@ -24,5 +24,5 @@ export default data => {
       .rangeRound([dimensions.h, 0])
   }
 
-  return { dimensions, scales, windTickValues }
+  return { dimensions, scales, bftCeilings: trimmedBftCeilings }
 }
