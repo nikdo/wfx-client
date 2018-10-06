@@ -7,8 +7,8 @@ describe('tickValues', () => {
   })
 
   it('has a max ceiling equal to max value', () => {
-    const result = tickValues([19, 20], 20)
-    expect(Math.max(...result)).toBeGreaterThanOrEqual(20)
+    const result = tickValues([19, 20, 21], 20)
+    expect(Math.max(...result)).toEqual(20)
   })
 
   it('has only single celing larger than max value', () => {
