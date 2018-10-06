@@ -1,4 +1,5 @@
 import { scalePoint, scaleLinear, max } from 'd3'
+import tickValues from './tickValues'
 
 const ceilToEven = num => 2 * Math.ceil(num / 2)
 
@@ -27,7 +28,7 @@ export default data => {
       .domain([0, yMax])
       .rangeRound([dimensions.h, 0])
   }
-  const windTickValues = evenNumbers(yMax)
+  const windTickValues = tickValues(evenNumbers(yMax), yMax)
 
   return { dimensions, scales, windTickValues }
 }

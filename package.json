@@ -19,8 +19,10 @@
   "proxy": "http://localhost:3030/",
   "standard": {
     "globals": [
-      "it",
-      "fetch"
+      "describe",
+      "expect",
+      "fetch",
+      "it"
     ]
   }
 }
