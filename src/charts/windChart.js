@@ -5,7 +5,10 @@ import xAxis from './xAxis'
 import yAxis from './yAxis'
 import xGrid from './xGrid'
 import yGrid from './yGrid'
-import windLine from './windLine'
+import hoverOverlay from './hoverOverlay'
+import levelPath from './levelPath'
+import levelFill from './levelFill'
+import levelClip from './levelClip'
 import hoverGuide from './hoverGuide'
 import hoverTarget from './hoverTarget'
 
@@ -23,7 +26,11 @@ export default (canvasNode, data, visualisations) => {
   xGrid(canvas, dimensions, scales)
   yGrid(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
 
-  windLine(canvas, dimensions, scales, data, forEachLevel, subscribeToHoverEvents)
+  forEachLevel(levelClip(canvas, dimensions))
+  forEachLevel(levelFill(canvas, dimensions, scales, data, subscribeToHoverEvents))
+  forEachLevel(levelPath(canvas, dimensions, scales, data, subscribeToHoverEvents))
+
+  hoverOverlay(canvas, dimensions, subscribeToHoverEvents)
 
   weekDays(canvas, dimensions, scales)
   xAxis(canvas, dimensions, scales, subscribeToHoverEvents)
