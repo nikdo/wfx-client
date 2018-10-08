@@ -1,19 +1,19 @@
 import { line, area, curveNatural } from 'd3'
 
-const levelClip = (root, level, width, start, end) => root.append('clipPath')
+const levelClip = (root, width) => ({ start, end }, level) => root.append('clipPath')
   .attr('id', `level-${level}`)
   .append('rect')
   .attr('y', end)
   .attr('width', width)
   .attr('height', start - end)
 
-const levelFill = (root, level, data, area) => root.append('path')
+const levelFill = (root, data, area) => ({ start, end }, level) => root.append('path')
   .attr('class', `wind-fill level-${level}`)
   .datum(data)
   .attr('d', area)
   .attr('clip-path', `url(#level-${level})`)
 
-const levelPath = (root, level, data, line) => root.append('path')
+const levelPath = (root, data, line) => ({ start, end }, level) => root.append('path')
   .attr('class', `wind level-${level}`)
   .datum(data)
   .attr('d', line)
@@ -42,13 +42,10 @@ export default (canvas, dimensions, scales, data, bftCeilings, skippedLevels, su
 
   const root = canvas.append('g')
 
-  levels.forEach(({ start, end }, level) => {
-    level += skippedLevels
-
-    levelClip(root, level, dimensions.w, start, end)
-    levelFill(root, level, data, fill)
-    levelPath(root, level, data, path)
-  })
+  const skipLevels = iterator => ({ start, end }, level) => iterator({ start, end }, level + skippedLevels)
+  levels.forEach(skipLevels(levelClip(root, dimensions.w)))
+  levels.forEach(skipLevels(levelFill(root, data, fill)))
+  levels.forEach(skipLevels(levelPath(root, data, path)))
 
   const mask = root.append('mask')
     .attr('id', 'hover-overlay')
