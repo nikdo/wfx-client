@@ -1,4 +1,5 @@
 import { line, area, curveNatural } from 'd3'
+import { levelIterator } from './levelIterator'
 
 const levelClip = (root, dimensions) => (level, start, end) => root.append('clipPath')
   .attr('id', `level-${level}`)
@@ -28,19 +29,6 @@ const levelPath = (root, dimensions, scales, data) => (level, start, end) => {
     .datum(data)
     .attr('d', path)
     .attr('clip-path', `url(#level-${level})`)
-}
-
-const levelIterator = (bftCeilings, scales, skippedLevels) => iterator => {
-  const levelsCeilings = bftCeilings.slice(skippedLevels)
-  const levels = levelsCeilings.reduce((levels, breakpoint, i, levelsCeilings) => [
-    ...levels,
-    {
-      start: scales.y(levelsCeilings[i - 1] || 0),
-      end: scales.y(levelsCeilings[i])
-    }
-  ], [])
-
-  levels.forEach(({ start, end }, level) => iterator(level + skippedLevels, start, end))
 }
 
 export default (canvas, dimensions, scales, data, bftCeilings, skippedLevels, subscribeToHoverEvents) => {
