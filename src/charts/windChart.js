@@ -1,4 +1,5 @@
 import { select } from 'd3'
+import levelIterator from './levelIterator'
 import weekDays from './weekDays'
 import xAxis from './xAxis'
 import yAxis from './yAxis'
@@ -17,10 +18,12 @@ export default (canvasNode, data, visualisations) => {
   const hoverEventHandlers = []
   const subscribeToHoverEvents = handler => hoverEventHandlers.push(handler)
 
+  const forEachLevel = levelIterator(bftCeilings, scales, skippedLevels)
+
   xGrid(canvas, dimensions, scales)
   yGrid(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
 
-  windLine(canvas, dimensions, scales, data, bftCeilings, skippedLevels, subscribeToHoverEvents)
+  windLine(canvas, dimensions, scales, data, forEachLevel, subscribeToHoverEvents)
 
   weekDays(canvas, dimensions, scales)
   xAxis(canvas, dimensions, scales, subscribeToHoverEvents)
