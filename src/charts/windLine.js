@@ -42,14 +42,8 @@ const levelPath = (root, dimensions, scales, data, subscribeToHoverEvents) => (l
   })
 }
 
-export default (canvas, dimensions, scales, data, forEachLevel, subscribeToHoverEvents) => {
-  const root = canvas.append('g')
-
-  forEachLevel(levelClip(root, dimensions))
-  forEachLevel(levelFill(root, dimensions, scales, data, subscribeToHoverEvents))
-  forEachLevel(levelPath(root, dimensions, scales, data, subscribeToHoverEvents))
-
-  const mask = root.append('mask')
+const hoverOverlay = (canvas, dimensions, subscribeToHoverEvents) => {
+  const mask = canvas.append('mask')
     .attr('id', 'hover-overlay')
 
   const visible = mask.append('rect')
@@ -67,4 +61,12 @@ export default (canvas, dimensions, scales, data, forEachLevel, subscribeToHover
       hidden.attr('x', x)
     }
   })
+}
+
+export default (canvas, dimensions, scales, data, forEachLevel, subscribeToHoverEvents) => {
+  forEachLevel(levelClip(canvas, dimensions))
+  forEachLevel(levelFill(canvas, dimensions, scales, data, subscribeToHoverEvents))
+  forEachLevel(levelPath(canvas, dimensions, scales, data, subscribeToHoverEvents))
+
+  hoverOverlay(canvas, dimensions, subscribeToHoverEvents)
 }
