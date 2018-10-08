@@ -1,5 +1,24 @@
 import { line, area, curveNatural } from 'd3'
 
+const levelClip = (root, level, width, start, end) => root.append('clipPath')
+  .attr('id', `level-${level}`)
+  .append('rect')
+  .attr('y', end)
+  .attr('width', width)
+  .attr('height', start - end)
+
+const levelFill = (root, level, data, area) => root.append('path')
+  .attr('class', `wind-fill level-${level}`)
+  .datum(data)
+  .attr('d', area)
+  .attr('clip-path', `url(#level-${level})`)
+
+const levelPath = (root, level, data, line) => root.append('path')
+  .attr('class', `wind level-${level}`)
+  .datum(data)
+  .attr('d', line)
+  .attr('clip-path', `url(#level-${level})`)
+
 export default (canvas, dimensions, scales, data, bftCeilings, skippedLevels, subscribeToHoverEvents) => {
   const levelsCeilings = bftCeilings.slice(skippedLevels)
   const levels = levelsCeilings.reduce((levels, breakpoint, i, levelsCeilings) => [
@@ -25,22 +44,10 @@ export default (canvas, dimensions, scales, data, bftCeilings, skippedLevels, su
 
   levels.forEach(({ start, end }, level) => {
     level += skippedLevels
-    root.append('clipPath')
-      .attr('id', `level-${level}`)
-      .append('rect')
-      .attr('y', end)
-      .attr('width', dimensions.w)
-      .attr('height', start - end)
-    root.append('path')
-      .attr('class', `wind-fill level-${level}`)
-      .datum(data)
-      .attr('d', fill)
-      .attr('clip-path', `url(#level-${level})`)
-    root.append('path')
-      .attr('class', `wind level-${level}`)
-      .datum(data)
-      .attr('d', path)
-      .attr('clip-path', `url(#level-${level})`)
+
+    levelClip(root, level, dimensions.w, start, end)
+    levelFill(root, level, data, fill)
+    levelPath(root, level, data, path)
   })
 
   const mask = root.append('mask')
