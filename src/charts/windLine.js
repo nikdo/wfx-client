@@ -1,25 +1,36 @@
 import { line, area, curveNatural } from 'd3'
 
-const levelClip = (root, width) => ({ start, end }, level) => root.append('clipPath')
+const levelClip = (root, dimensions) => (level, start, end) => root.append('clipPath')
   .attr('id', `level-${level}`)
   .append('rect')
   .attr('y', end)
-  .attr('width', width)
+  .attr('width', dimensions.w)
   .attr('height', start - end)
 
-const levelFill = (root, data, area) => ({ start, end }, level) => root.append('path')
+const levelFill = (root, dimensions, scales, data) => (level, start, end) => root.append('path')
   .attr('class', `wind-fill level-${level}`)
   .datum(data)
-  .attr('d', area)
+  .attr('d', area()
+    .x(d => scales.x(d.time))
+    .y1(d => scales.y(d.windSpeed))
+    .y0(() => dimensions.h)
+    .curve(curveNatural)
+  )
   .attr('clip-path', `url(#level-${level})`)
 
-const levelPath = (root, data, line) => ({ start, end }, level) => root.append('path')
-  .attr('class', `wind level-${level}`)
-  .datum(data)
-  .attr('d', line)
-  .attr('clip-path', `url(#level-${level})`)
+const levelPath = (root, dimensions, scales, data) => (level, start, end) => {
+  const path = line()
+    .x(d => scales.x(d.time))
+    .y(d => scales.y(d.windSpeed))
+    .curve(curveNatural)
+  root.append('path')
+    .attr('class', `wind level-${level}`)
+    .datum(data)
+    .attr('d', path)
+    .attr('clip-path', `url(#level-${level})`)
+}
 
-export default (canvas, dimensions, scales, data, bftCeilings, skippedLevels, subscribeToHoverEvents) => {
+const levelIterator = (bftCeilings, scales, skippedLevels) => iterator => {
   const levelsCeilings = bftCeilings.slice(skippedLevels)
   const levels = levelsCeilings.reduce((levels, breakpoint, i, levelsCeilings) => [
     ...levels,
@@ -29,23 +40,17 @@ export default (canvas, dimensions, scales, data, bftCeilings, skippedLevels, su
     }
   ], [])
 
-  const path = line()
-    .x(d => scales.x(d.time))
-    .y(d => scales.y(d.windSpeed))
-    .curve(curveNatural)
+  levels.forEach(({ start, end }, level) => iterator(level + skippedLevels, start, end))
+}
 
-  const fill = area()
-    .x(d => scales.x(d.time))
-    .y1(d => scales.y(d.windSpeed))
-    .y0(() => dimensions.h)
-    .curve(curveNatural)
-
+export default (canvas, dimensions, scales, data, bftCeilings, skippedLevels, subscribeToHoverEvents) => {
   const root = canvas.append('g')
 
-  const skipLevels = iterator => ({ start, end }, level) => iterator({ start, end }, level + skippedLevels)
-  levels.forEach(skipLevels(levelClip(root, dimensions.w)))
-  levels.forEach(skipLevels(levelFill(root, data, fill)))
-  levels.forEach(skipLevels(levelPath(root, data, path)))
+  const forEachLevel = levelIterator(bftCeilings, scales, skippedLevels)
+
+  forEachLevel(levelClip(root, dimensions))
+  forEachLevel(levelFill(root, dimensions, scales, data))
+  forEachLevel(levelPath(root, dimensions, scales, data))
 
   const mask = root.append('mask')
     .attr('id', 'hover-overlay')
