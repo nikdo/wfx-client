@@ -23,11 +23,10 @@ export default (canvasNode, data, visualisations) => {
 
   const forEachLevel = levelIterator(bftCeilings, scales, skippedLevels)
 
-  xGrid(canvas, dimensions, scales)
-  yGrid(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
-
   forEachLevel(levelClip(canvas, dimensions))
   forEachLevel(levelFill(canvas, dimensions, scales, data, subscribeToHoverEvents))
+  xGrid(canvas, dimensions, scales)
+  yGrid(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
   forEachLevel(levelPath(canvas, dimensions, scales, data, subscribeToHoverEvents))
 
   hoverOverlay(canvas, dimensions, subscribeToHoverEvents)
