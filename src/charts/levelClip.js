@@ -1,6 +1,0 @@
-export default (root, dimensions) => (level, start, end) => root.append('clipPath')
-  .attr('id', `level-${level}`)
-  .append('rect')
-  .attr('y', end)
-  .attr('width', dimensions.w)
-  .attr('height', start - end)

@@ -1,23 +1,9 @@
-svg path.wind {
+svg .wind-line path {
   stroke-width: 2;
   fill: none;
 }
-
-svg path.wind.level-2 { stroke: #909090; }
-svg path.wind.level-3,
-svg path.wind.level-4,
-svg path.wind.level-5,
-svg path.wind.level-6,
-svg path.wind.level-7,
-svg path.wind.level-8,
-svg path.wind.level-9,
-svg path.wind.level-10,
-svg path.wind.level-11,
-svg path.wind.level-12 { stroke: #343838; }
-
-svg path.wind-fill {
-  stroke: none;
-}
+svg .wind-line path.skipped-levels { stroke: #909090; }
+svg .wind-line path.relevant-levels { stroke: #343838;; }
 
 svg .wind-fill.level-2 { fill: hsl(60, 0%, 95%); }
 svg .wind-fill.level-3 { fill: hsl(230, 29%, 79%); }
