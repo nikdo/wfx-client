@@ -1,7 +1,7 @@
 import { select } from 'd3'
-import levelIterator from './levelIterator'
 import fillClip from './defs/fillClip'
 import lineClips from './defs/lineClips'
+import fill from './fill'
 import weekDays from './weekDays'
 import xAxis from './xAxis'
 import yAxis from './yAxis'
@@ -9,7 +9,7 @@ import xGrid from './xGrid'
 import yGrid from './yGrid'
 import hoverOverlay from './hoverOverlay'
 import line from './line'
-import levelFill from './levelFill'
+
 import hoverGuide from './hoverGuide'
 import hoverTarget from './hoverTarget'
 
@@ -22,18 +22,10 @@ export default (canvasNode, data, visualisations) => {
   const hoverEventHandlers = []
   const subscribeToHoverEvents = handler => hoverEventHandlers.push(handler)
 
-  const forEachLevel = levelIterator(bftCeilings, scales, skippedLevels)
-
   fillClip(canvas, dimensions, scales, data)
   lineClips(canvas, dimensions, scales.y(bftCeilings[skippedLevels]))
 
-  const fill = canvas.append('g')
-    .attr('clip-path', 'url(#fill-clip)')
-  subscribeToHoverEvents({
-    onMouseOut: () => fill.attr('mask', null),
-    onValueHover: () => fill.attr('mask', 'url(#hover-overlay)')
-  })
-  forEachLevel(levelFill(fill, dimensions))
+  fill(canvas, dimensions, scales, bftCeilings, skippedLevels, subscribeToHoverEvents)
 
   xGrid(canvas, dimensions, scales)
   yGrid(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
