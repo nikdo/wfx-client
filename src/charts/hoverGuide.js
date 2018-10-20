@@ -19,8 +19,14 @@ export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
 
   value.append('text')
     .attr('class', 'ms')
-    .attr('x', lineHeight / 2)
     .attr('dy', lineHeight / 4)
+
+  value.append('text')
+    .attr('class', 'bft')
+    .attr('dy', lineHeight * 1.5)
+
+  value.selectAll('text')
+    .attr('x', lineHeight / 2)
     .attr('paint-order', 'stroke')
     .style('paint-order', 'stroke') // Safari needs to set style when stroke is set in CSS
     .attr('stroke-linejoin', 'round')
@@ -58,6 +64,8 @@ export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
       value.select('text.ms')
         .text(windSpeed.toFixed(1) + '\u2009m/s')
         .append('tspan').text(' +' + windGustDiff.toFixed(1))
+      value.select('text.bft')
+        .text('3\u2009bft')
       value.select('.wind-direction path').attr('transform', `rotate(${data[i].windBearing})`)
       time.select('.time text').text(scales.x.domain()[i].format('HH:mm'))
     }
