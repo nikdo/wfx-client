@@ -18,6 +18,7 @@ export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
     .attr('r', 3)
 
   value.append('text')
+    .attr('class', 'ms')
     .attr('x', lineHeight / 2)
     .attr('dy', lineHeight / 4)
     .attr('paint-order', 'stroke')
@@ -54,8 +55,8 @@ export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
         .attr('transform', `translate(${x}, 0)`)
       line.attr('y1', y)
       value.attr('transform', `translate(0, ${y})`)
-      value.select('text')
-        .text(windSpeed.toFixed(1))
+      value.select('text.ms')
+        .text(windSpeed.toFixed(1) + '\u2009m/s')
         .append('tspan').text(' +' + windGustDiff.toFixed(1))
       value.select('.wind-direction path').attr('transform', `rotate(${data[i].windBearing})`)
       time.select('.time text').text(scales.x.domain()[i].format('HH:mm'))
