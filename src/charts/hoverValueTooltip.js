@@ -1,21 +1,5 @@
 import { bisect } from 'd3'
-import { lineHeight } from './constants'
-
-const bftNames = [
-  'Calm',
-  'Light Air',
-  'Light Breeze',
-  'Gentle Breeze',
-  'Moderate Breeze',
-  'Fresh Breeze',
-  'Strong Breeze',
-  'Near Gale',
-  'Gale',
-  'Strong Gale',
-  'Storm',
-  'Violent Storm',
-  'Hurricane Force'
-]
+import { lineHeight, bftNames } from './constants'
 
 const toBft = (value, bftCeilings) => bisect(bftCeilings, value)
 
