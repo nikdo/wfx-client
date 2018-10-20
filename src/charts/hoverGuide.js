@@ -1,6 +1,22 @@
 import { bisect } from 'd3'
 import { lineHeight } from './constants'
 
+const bftNames = [
+  'Calm',
+  'Light Air',
+  'Light Breeze',
+  'Gentle Breeze',
+  'Moderate Breeze',
+  'Fresh Breeze',
+  'Strong Breeze',
+  'Near Gale',
+  'Gale',
+  'Strong Gale',
+  'Storm',
+  'Violent Storm',
+  'Hurricane Force'
+]
+
 const toBft = (value, bftCeilings) => bisect(bftCeilings, value)
 
 export default (canvas, dimensions, scales, data, bftCeilings, subscribeToHoverEvents) => {
@@ -67,11 +83,12 @@ export default (canvas, dimensions, scales, data, bftCeilings, subscribeToHoverE
       value.attr('transform', `translate(0, ${y})`)
       value.select('text.ms')
         .text(windSpeed.toFixed(1) + '\u2009m/s')
-        .append('tspan').text(' +' + windGustDiff.toFixed(1))
+        .append('tspan').attr('class', 'gusts').text(' +' + windGustDiff.toFixed(1))
       value.select('text.bft')
         .text(bft + '\u2009bft')
         .attr('class', `bft level-${bft}`)
         .attr('display', bft > 1 ? null : 'none')
+        .append('tspan').text(' ' + bftNames[bft])
       value.select('.wind-direction path').attr('transform', `rotate(${data[i].windBearing})`)
       time.select('.time text').text(scales.x.domain()[i].format('HH:mm'))
     }
