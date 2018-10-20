@@ -59,6 +59,7 @@ export default (canvas, dimensions, scales, data, bftCeilings, subscribeToHoverE
       const windSpeed = data[i].windSpeed
       const windGustDiff = data[i].windGust - windSpeed
       const y = scales.y(windSpeed)
+      const bft = toBft(windSpeed, bftCeilings)
       hoverGuide
         .style('display', null)
         .attr('transform', `translate(${x}, 0)`)
@@ -68,7 +69,8 @@ export default (canvas, dimensions, scales, data, bftCeilings, subscribeToHoverE
         .text(windSpeed.toFixed(1) + '\u2009m/s')
         .append('tspan').text(' +' + windGustDiff.toFixed(1))
       value.select('text.bft')
-        .text(toBft(windSpeed, bftCeilings) + '\u2009bft')
+        .text(bft + '\u2009bft')
+        .attr('display', bft > 1 ? null : 'none')
       value.select('.wind-direction path').attr('transform', `rotate(${data[i].windBearing})`)
       time.select('.time text').text(scales.x.domain()[i].format('HH:mm'))
     }
