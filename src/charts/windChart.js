@@ -37,7 +37,7 @@ export default (canvasNode, data, visualisations) => {
   xAxis(canvas, dimensions, scales, subscribeToHoverEvents)
   yAxis(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
 
-  hoverGuide(canvas, dimensions, scales, data, subscribeToHoverEvents)
+  hoverGuide(canvas, dimensions, scales, data, bftCeilings, subscribeToHoverEvents)
 
   hoverTarget(canvas, dimensions, scales, hoverEventHandlers)
 }

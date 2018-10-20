@@ -1,6 +1,9 @@
+import { bisect } from 'd3'
 import { lineHeight } from './constants'
 
-export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
+const toBft = (value, bftCeilings) => bisect(bftCeilings, value)
+
+export default (canvas, dimensions, scales, data, bftCeilings, subscribeToHoverEvents) => {
   const hoverGuide = canvas.append('g')
     .attr('class', 'hover-guide')
     .style('display', 'none')
@@ -65,7 +68,7 @@ export default (canvas, dimensions, scales, data, subscribeToHoverEvents) => {
         .text(windSpeed.toFixed(1) + '\u2009m/s')
         .append('tspan').text(' +' + windGustDiff.toFixed(1))
       value.select('text.bft')
-        .text('3\u2009bft')
+        .text(toBft(windSpeed, bftCeilings) + '\u2009bft')
       value.select('.wind-direction path').attr('transform', `rotate(${data[i].windBearing})`)
       time.select('.time text').text(scales.x.domain()[i].format('HH:mm'))
     }
