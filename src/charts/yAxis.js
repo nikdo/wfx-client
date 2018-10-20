@@ -19,6 +19,9 @@ export default (canvas, dimensions, scales, tickValues) => {
     .attr('dy', 0)
     .attr('alignment-baseline', 'middle')
 
+  canvas.selectAll('.y.axis .tick:last-child text')
+    .text('m/s')
+
   canvas.append('g')
     .attr('class', 'y axis')
     .append('path')
