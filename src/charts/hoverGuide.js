@@ -70,6 +70,7 @@ export default (canvas, dimensions, scales, data, bftCeilings, subscribeToHoverE
         .append('tspan').text(' +' + windGustDiff.toFixed(1))
       value.select('text.bft')
         .text(bft + '\u2009bft')
+        .attr('class', `bft level-${bft}`)
         .attr('display', bft > 1 ? null : 'none')
       value.select('.wind-direction path').attr('transform', `rotate(${data[i].windBearing})`)
       time.select('.time text').text(scales.x.domain()[i].format('HH:mm'))
