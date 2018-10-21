@@ -16,6 +16,8 @@ export default ({ value, spots, onChange }) => (
     onChange={option => onChange(option.value)}
     options={options(spots)}
     blurInputOnSelect
+    isClearable={false}
+    backspaceRemovesValue={false}
     className='select'
     classNamePrefix='select'
   />
