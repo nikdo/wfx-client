@@ -10,11 +10,15 @@ Install dependencies:
 yarn install
 ```
 
-Set API URL:
-
-*TBD*
-
 ## Running Locally
+
+*(optional)* Use `.env.development.local` file to point API URL to the API running locally:
+
+```
+REACT_APP_API_URL=http://localhost:3030
+```
+
+Run the application:
 
 ```bash
 yarn start
