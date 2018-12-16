@@ -1,5 +1,5 @@
 {
-  "name": "wind-alert-client",
+  "name": "wind-alert",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,7 +16,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3030/",
   "standard": {
     "globals": [
       "describe",
@@ -24,5 +23,9 @@
       "fetch",
       "it"
     ]
+  },
+  "engines": {
+    "node": "10.14.2",
+    "yarn": "1.12.3"
   }
 }
