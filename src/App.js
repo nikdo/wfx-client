@@ -39,7 +39,7 @@ export default class App extends Component {
   }
 
   fetchSpot (id) {
-    fetch(process.env.REACT_APP_API_URL + `/forecast/${id}`)
+    fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
       .then(res => res.json())
       .then(deserialize)
       .then(spot => {
