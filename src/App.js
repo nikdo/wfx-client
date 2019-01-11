@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment-timezone'
 import Selector from './components/Selector'
 import Chart from './components/Chart'
+import Attribution from './components/Attribution'
 import Spinner from './components/Spinner'
 import './App.css'
 
@@ -67,7 +68,7 @@ export default class App extends Component {
             onChange={this.handleSpotChange}
           />
           <Chart spotId={this.state.spot._id} forecast={this.state.spot.forecast} />
-          <a href='https://darksky.net/poweredby/'>Powered by Dark Sky</a>
+          <Attribution />
         </div>
         : <Spinner />
       }
