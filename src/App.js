@@ -67,6 +67,7 @@ export default class App extends Component {
             onChange={this.handleSpotChange}
           />
           <Chart spotId={this.state.spot._id} forecast={this.state.spot.forecast} />
+          <a href='https://darksky.net/poweredby/'>Powered by Dark Sky</a>
         </div>
         : <Spinner />
       }
