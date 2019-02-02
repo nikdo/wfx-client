@@ -1,3 +1,5 @@
+@import '../brand.css';
+
 svg .wind-line path {
   stroke-width: 2;
   fill: none;
@@ -27,7 +29,7 @@ svg .week-days .domain {
 
 svg .axis {
   color: #909090;
-  font-size: 13px;
+  font-size: var(--font-size-small);
 }
 
 svg .axis path.domain,
@@ -65,7 +67,7 @@ svg .hover-guide .value text {
 }
 
 svg .hover-guide .value text tspan {
-  font-size: 13px;
+  font-size: var(--font-size-small);
 }
 svg .hover-guide .value text tspan.gusts {
   fill: #909090;
@@ -90,7 +92,7 @@ svg .hover-guide .value .wind-direction {
 }
 
 svg .hover-guide .time text {
-  font-size: 13px;
+  font-size: var(--font-size-small);
 }
 
 svg .hover-guide .time path {
