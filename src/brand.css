@@ -1,4 +1,16 @@
 :root {
   --font-size-base: 16px;
   --font-size-small: 13px;
+
+  --color-mine-shaft:    #353438;
+  --color-mountain-mist: #909090;
+  --color-mercury:       #E6E6E6;
+  --color-romance:       #FCFCFA;
+
+  --color-text: var(--color-mine-shaft);
+  --color-background: var(--color-romance);
+  --color-secondary-text: var(--color-mountain-mist);
+  --color-line: var(--color-mercury);
+
+  --color-level-2: var(--color-mountain-mist);
 }
