@@ -7,17 +7,17 @@ svg .wind-line path {
 svg .wind-line path.skipped-levels { stroke: var(--color-secondary-text); }
 svg .wind-line path.relevant-levels { stroke: var(--color-text); }
 
-svg .wind-fill.level-2 { fill: hsl(60, 0%, 95%); }
-svg .wind-fill.level-3 { fill: hsl(230, 29%, 79%); }
-svg .wind-fill.level-4 { fill: hsl(78, 100%, 38%); }
-svg .wind-fill.level-5 { fill: hsl(43, 95%, 57%); }
-svg .wind-fill.level-6 { fill: hsl(32, 100%, 50%); }
-svg .wind-fill.level-7 { fill: hsl(346, 100%, 50%); }
+svg .wind-fill.level-2 { fill: var(--color-level-2); }
+svg .wind-fill.level-3 { fill: var(--color-level-3); }
+svg .wind-fill.level-4 { fill: var(--color-level-4); }
+svg .wind-fill.level-5 { fill: var(--color-level-5); }
+svg .wind-fill.level-6 { fill: var(--color-level-6); }
+svg .wind-fill.level-7 { fill: var(--color-level-7); }
 svg .wind-fill.level-8,
 svg .wind-fill.level-9,
 svg .wind-fill.level-10,
 svg .wind-fill.level-11,
-svg .wind-fill.level-12 { fill: hsl(336, 38%, 25%); }
+svg .wind-fill.level-12 { fill: var(--color-level-8); }
 
 svg .week-days {
   color: var(--color-secondary-text);
@@ -73,17 +73,17 @@ svg .hover-guide .value text tspan.gusts {
   fill: var(--color-secondary-text);
 }
 
-svg .hover-guide .value text.bft.level-2 { fill: var(--color-level-2); }
-svg .hover-guide .value text.bft.level-3 { fill: hsl(230, 29%, 50%); }
-svg .hover-guide .value text.bft.level-4 { fill: hsl(78, 100%, 25%); }
-svg .hover-guide .value text.bft.level-5 { fill: hsl(43, 95%, 45%); }
-svg .hover-guide .value text.bft.level-6 { fill: hsl(32, 100%, 35%); }
-svg .hover-guide .value text.bft.level-7 { fill: hsl(346, 100%, 40%); }
+svg .hover-guide .value text.bft.level-2 { fill: var(--color-level-2-text); }
+svg .hover-guide .value text.bft.level-3 { fill: var(--color-level-3-text); }
+svg .hover-guide .value text.bft.level-4 { fill: var(--color-level-4-text); }
+svg .hover-guide .value text.bft.level-5 { fill: var(--color-level-5-text); }
+svg .hover-guide .value text.bft.level-6 { fill: var(--color-level-6-text); }
+svg .hover-guide .value text.bft.level-7 { fill: var(--color-level-7-text); }
 svg .hover-guide .value text.bft.level-8,
 svg .hover-guide .value text.bft.level-9,
 svg .hover-guide .value text.bft.level-10,
 svg .hover-guide .value text.bft.level-11,
-svg .hover-guide .value text.bft.level-12 { fill: hsl(336, 38%, 35%); }
+svg .hover-guide .value text.bft.level-12 { fill: var(--color-level-8-text); }
 
 svg .hover-guide .value .wind-direction {
   fill: none;
