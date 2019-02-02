@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './Chart.css'
 import transform from './transformations/transform'
 import windChart from '../charts/windChart'
+import styles from './Chart.module.css'
 
 export default class Chart extends Component {
   constructor (props) {
@@ -36,9 +36,10 @@ export default class Chart extends Component {
 
   render () {
     const { dimensions } = this.state.visualisations
-    const margin = { top: 30, right: 80, bottom: 24, left: 34 }
+    const margin = { top: 25, right: 80, bottom: 24, left: 34 }
     return (
       <svg
+        className={styles.chart}
         width={dimensions.w + margin.left + margin.right}
         height={dimensions.h + margin.top + margin.bottom}
         style={{ marginLeft: -margin.left }}
