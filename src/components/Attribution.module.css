@@ -1,8 +1,8 @@
-a {
+.attribution {
   color: inherit;
   text-decoration: none;
 }
 
-a > * {
+.attribution > * {
   vertical-align: middle;
 }
