@@ -1,4 +1,4 @@
-@import '../brand.css';
+@import '~/brand.css';
 
 svg .wind-line path {
   stroke-width: 2;

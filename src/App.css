@@ -5,6 +5,11 @@ body {
   padding: 50px;
   font-family: 'Open Sans', sans-serif;
   font-size: var(--font-size-base);
+  line-height: var(--line-height);
   color: var(--color-text);
   background-color: var(--color-background);
+}
+
+p {
+  margin: var(--baseline) 0 0 0;
 }

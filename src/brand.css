@@ -2,6 +2,10 @@
   --font-size-base: 16px;
   --font-size-small: 13px;
 
+  --line-height: 1.5;
+
+  --baseline: calc(var(--line-height) * var(--font-size-base));
+
   --color-mine-shaft:    #353438;
   --color-mountain-mist: #909090;
   --color-mercury:       #E6E6E6;
