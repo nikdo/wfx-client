@@ -61,7 +61,7 @@ export default class App extends Component {
   render () {
     return <main>
       {this.state.spot && this.state.options.length
-        ? <div>
+        ? <>
           <Selector
             value={this.state.selected}
             spots={this.state.options}
@@ -69,7 +69,7 @@ export default class App extends Component {
           />
           <Chart spotId={this.state.spot._id} forecast={this.state.spot.forecast} />
           <Attribution />
-        </div>
+        </>
         : <Spinner />
       }
     </main>
