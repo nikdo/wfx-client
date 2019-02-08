@@ -2,12 +2,18 @@
 
 body {
   margin: 0;
-  padding: calc(2 * var(--baseline)) calc(3 * var(--baseline));
+  padding: var(--baseline);
   font-family: 'Open Sans', sans-serif;
   font-size: var(--font-size-base);
   line-height: var(--line-height);
   color: var(--color-text);
   background-color: var(--color-background);
+}
+
+@media (width > 700px) {
+  body {
+    padding: calc(2 * var(--baseline)) calc(3 * var(--baseline));
+  }
 }
 
 p {

@@ -42,7 +42,6 @@ export default class Chart extends Component {
         className={styles.chart}
         width={dimensions.w + margin.left + margin.right}
         height={dimensions.h + margin.top + margin.bottom}
-        style={{ marginLeft: -margin.left }}
       >
         <g
           ref={this.canvasNode}

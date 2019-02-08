@@ -32,4 +32,10 @@
   --color-level-6-text: hsl(32, 100%, 35%);
   --color-level-7-text: hsl(346, 100%, 40%);
   --color-level-8-text: hsl(336, 38%, 35%);
+
+  /*
+  @custom-media --phone (width <= 700px);
+  @custom-media --tablet (700px < width <= 1200px); // tablet portrait or large phone
+  @custom-media --desktop (1200px < width); // desktop or tablet landscape
+  */
 }

@@ -4,6 +4,12 @@ svg.chart {
   margin-top: var(--baseline);
 }
 
+@media (width > 700px) {
+  svg.chart {
+    margin-left: -34px; /* = chart margin for y axis labels */
+  }
+}
+
 svg.chart :global .wind-line path {
   stroke-width: 2;
   fill: none;
