@@ -38,18 +38,19 @@ export default class Chart extends Component {
     const { dimensions } = this.state.visualisations
     const margin = { top: 25, right: 80, bottom: 24, left: 34 }
     return (
-      <svg
-        className={styles.chart}
-        width={dimensions.w + margin.left + margin.right}
-        height={dimensions.h + margin.top + margin.bottom}
-      >
-        <g
-          ref={this.canvasNode}
-          width={dimensions.w}
-          height={dimensions.h}
-          transform={`translate(${margin.left}, ${margin.top})`}
-        />
-      </svg>
+      <section className={`${styles.chart} layout-section`}>
+        <svg
+          width={dimensions.w + margin.left + margin.right}
+          height={dimensions.h + margin.top + margin.bottom}
+        >
+          <g
+            ref={this.canvasNode}
+            width={dimensions.w}
+            height={dimensions.h}
+            transform={`translate(${margin.left}, ${margin.top})`}
+          />
+        </svg>
+      </section>
     )
   }
 }

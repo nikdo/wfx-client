@@ -10,7 +10,7 @@ body {
   background-color: var(--color-background);
 }
 
-header, main {
+header, footer, .layout-section {
   padding: 0 var(--baseline);
 }
 
@@ -19,7 +19,7 @@ header, main {
     padding: calc(2 * var(--baseline)) 0;
   }
 
-  header, main {
+  header, footer, .layout-section {
     padding: 0 calc(3 * var(--baseline));
   }
 }
