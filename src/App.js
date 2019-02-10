@@ -4,7 +4,7 @@ import Selector from './components/Selector'
 import Chart from './components/Chart'
 import Attribution from './components/Attribution'
 import Spinner from './components/Spinner'
-import './App.css'
+import './global.css'
 
 const deserialize = spot => ({
   ...spot,
