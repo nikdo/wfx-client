@@ -1,7 +1,7 @@
 @import '~/brand.css';
 
 .attribution {
-  margin-top: calc(2 * var(--baseline));
+  margin-top: var(--baseline);
 }
 
 .attribution a {

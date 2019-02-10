@@ -1,11 +1,13 @@
 @import '~/brand.css';
 
-.chart {
-  margin-top: var(--baseline);
+section.chart {
+  padding-top: var(--baseline);
+  padding-bottom: var(--baseline);
+  overflow-x: scroll;
 }
 
 @media (width > 700px) {
-  .chart {
+  section.chart {
     margin-left: -34px; /* = chart margin for y axis labels */
   }
 }
