@@ -1,0 +1,41 @@
+:root {
+  --font-size-base: 16px;
+  --font-size-small: 13px;
+
+  --line-height: 1.5;
+
+  --baseline: calc(var(--line-height) * var(--font-size-base));
+
+  --color-mine-shaft:    #353438;
+  --color-mountain-mist: #909090;
+  --color-mercury:       #E6E6E6;
+  --color-romance:       #FCFCFA;
+
+  --color-text: var(--color-mine-shaft);
+  --color-background: var(--color-romance);
+  --color-secondary-text: var(--color-mountain-mist);
+  --color-line: var(--color-mercury);
+
+
+  --color-level-2: hsl(60, 0%, 95%);
+  --color-level-3: hsl(230, 29%, 79%);
+  --color-level-4: hsl(78, 100%, 38%);
+  --color-level-5: hsl(43, 95%, 57%);
+  --color-level-6: hsl(32, 100%, 50%);
+  --color-level-7: hsl(346, 100%, 50%);
+  --color-level-8: hsl(336, 38%, 25%);
+
+  --color-level-2-text: var(--color-mountain-mist);
+  --color-level-3-text: hsl(230, 29%, 50%);
+  --color-level-4-text: hsl(78, 100%, 25%);
+  --color-level-5-text: hsl(43, 95%, 45%);
+  --color-level-6-text: hsl(32, 100%, 35%);
+  --color-level-7-text: hsl(346, 100%, 40%);
+  --color-level-8-text: hsl(336, 38%, 35%);
+
+  /*
+  @custom-media --phone (width <= 700px);
+  @custom-media --tablet (700px < width <= 1200px); // tablet portrait or large phone
+  @custom-media --desktop (1200px < width); // desktop or tablet landscape
+  */
+}

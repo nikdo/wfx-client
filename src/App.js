@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import moment from 'moment-timezone'
 import Selector from './components/Selector'
 import Chart from './components/Chart'
+import Attribution from './components/Attribution'
 import Spinner from './components/Spinner'
-import './App.css'
+import './global.css'
 
 const deserialize = spot => ({
   ...spot,
@@ -58,18 +59,20 @@ export default class App extends Component {
   }
 
   render () {
-    return <main>
-      {this.state.spot && this.state.options.length
-        ? <div>
+    return this.state.spot && this.state.options.length
+      ? <>
+        <header>
           <Selector
             value={this.state.selected}
             spots={this.state.options}
             onChange={this.handleSpotChange}
           />
+        </header>
+        <main>
           <Chart spotId={this.state.spot._id} forecast={this.state.spot.forecast} />
-        </div>
-        : <Spinner />
-      }
-    </main>
+          <Attribution />
+        </main>
+      </>
+      : <Spinner />
   }
 }

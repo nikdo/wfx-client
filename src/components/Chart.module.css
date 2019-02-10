@@ -1,0 +1,113 @@
+@import '~/brand.css';
+
+section.chart {
+  padding-top: var(--baseline);
+  padding-bottom: var(--baseline);
+  overflow-x: scroll;
+}
+
+@media (width > 700px) {
+  section.chart svg {
+    margin-left: -34px; /* = chart margin for y axis labels */
+  }
+}
+
+.chart svg :global .wind-line path {
+  stroke-width: 2;
+  fill: none;
+}
+.chart svg :global .wind-line path.skipped-levels { stroke: var(--color-secondary-text); }
+.chart svg :global .wind-line path.relevant-levels { stroke: var(--color-text); }
+
+.chart svg :global .wind-fill.level-2 { fill: var(--color-level-2); }
+.chart svg :global .wind-fill.level-3 { fill: var(--color-level-3); }
+.chart svg :global .wind-fill.level-4 { fill: var(--color-level-4); }
+.chart svg :global .wind-fill.level-5 { fill: var(--color-level-5); }
+.chart svg :global .wind-fill.level-6 { fill: var(--color-level-6); }
+.chart svg :global .wind-fill.level-7 { fill: var(--color-level-7); }
+.chart svg :global .wind-fill.level-8,
+.chart svg :global .wind-fill.level-9,
+.chart svg :global .wind-fill.level-10,
+.chart svg :global .wind-fill.level-11,
+.chart svg :global .wind-fill.level-12 { fill: var(--color-level-8); }
+
+.chart svg :global .week-days {
+  color: var(--color-secondary-text);
+}
+
+.chart svg :global .week-days .domain {
+  display: none;
+}
+
+.chart svg :global .axis {
+  color: var(--color-secondary-text);
+  font-size: var(--font-size-small);
+}
+
+.chart svg :global .axis path.domain,
+.chart svg :global .axis .tick line {
+  color: var(--color-line);
+}
+
+.chart svg :global .grid path.domain {
+  display: none;
+}
+
+.chart svg :global .grid .tick line {
+  color: var(--color-line);
+}
+
+.chart svg :global .hover-target {
+  fill: none;
+  pointer-events: all;
+}
+
+.chart svg :global .hover-guide line {
+  stroke: var(--color-text);
+  stroke-width: 1px;
+}
+
+.chart svg :global .hover-guide .value circle {
+  fill: var(--color-background);
+  stroke: var(--color-text);
+  stroke-width: 2px;
+}
+
+.chart svg :global .hover-guide .value text {
+  stroke: var(--color-background);
+  stroke-width: 5px;
+}
+
+.chart svg :global .hover-guide .value text tspan {
+  font-size: var(--font-size-small);
+}
+.chart svg :global .hover-guide .value text tspan.gusts {
+  fill: var(--color-secondary-text);
+}
+
+.chart svg :global .hover-guide .value text.bft.level-2 { fill: var(--color-level-2-text); }
+.chart svg :global .hover-guide .value text.bft.level-3 { fill: var(--color-level-3-text); }
+.chart svg :global .hover-guide .value text.bft.level-4 { fill: var(--color-level-4-text); }
+.chart svg :global .hover-guide .value text.bft.level-5 { fill: var(--color-level-5-text); }
+.chart svg :global .hover-guide .value text.bft.level-6 { fill: var(--color-level-6-text); }
+.chart svg :global .hover-guide .value text.bft.level-7 { fill: var(--color-level-7-text); }
+.chart svg :global .hover-guide .value text.bft.level-8,
+.chart svg :global .hover-guide .value text.bft.level-9,
+.chart svg :global .hover-guide .value text.bft.level-10,
+.chart svg :global .hover-guide .value text.bft.level-11,
+.chart svg :global .hover-guide .value text.bft.level-12 { fill: var(--color-level-8-text); }
+
+.chart svg :global .hover-guide .value .wind-direction {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 2px;
+}
+
+.chart svg :global .hover-guide .time text {
+  font-size: var(--font-size-small);
+}
+
+.chart svg :global .hover-guide .time path {
+  stroke: var(--color-text);
+  stroke-width: 1px;
+}

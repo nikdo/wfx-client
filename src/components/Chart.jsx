@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './Chart.css'
 import transform from './transformations/transform'
 import windChart from '../charts/windChart'
+import styles from './Chart.module.css'
 
 export default class Chart extends Component {
   constructor (props) {
@@ -36,20 +36,21 @@ export default class Chart extends Component {
 
   render () {
     const { dimensions } = this.state.visualisations
-    const margin = { top: 30, right: 80, bottom: 40, left: 30 }
+    const margin = { top: 25, right: 34, bottom: 24, left: 34 }
     return (
-      <svg
-        width={dimensions.w + margin.left + margin.right}
-        height={dimensions.h + margin.top + margin.bottom}
-        style={{ marginLeft: -margin.left }}
-      >
-        <g
-          ref={this.canvasNode}
-          width={dimensions.w}
-          height={dimensions.h}
-          transform={`translate(${margin.left}, ${margin.top})`}
-        />
-      </svg>
+      <section className={`${styles.chart} layout-section`}>
+        <svg
+          width={dimensions.w + margin.left + margin.right}
+          height={dimensions.h + margin.top + margin.bottom}
+        >
+          <g
+            ref={this.canvasNode}
+            width={dimensions.w}
+            height={dimensions.h}
+            transform={`translate(${margin.left}, ${margin.top})`}
+          />
+        </svg>
+      </section>
     )
   }
 }

@@ -1,0 +1,14 @@
+@import '~/brand.css';
+
+.attribution {
+  margin-top: var(--baseline);
+}
+
+.attribution a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.attribution a > * {
+  vertical-align: middle;
+}
