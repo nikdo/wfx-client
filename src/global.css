@@ -21,6 +21,8 @@ header, footer, .layout-section {
 
   header, footer, .layout-section {
     padding: 0 calc(3 * var(--baseline));
+    margin: 0 auto;
+    max-width: calc(1200px + 34px + 34px); /* chart svg element total width */
   }
 }
 

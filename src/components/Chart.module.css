@@ -7,7 +7,7 @@ section.chart {
 }
 
 @media (width > 700px) {
-  section.chart {
+  section.chart svg {
     margin-left: -34px; /* = chart margin for y axis labels */
   }
 }

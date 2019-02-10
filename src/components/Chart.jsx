@@ -36,7 +36,7 @@ export default class Chart extends Component {
 
   render () {
     const { dimensions } = this.state.visualisations
-    const margin = { top: 25, right: 80, bottom: 24, left: 34 }
+    const margin = { top: 25, right: 34, bottom: 24, left: 34 }
     return (
       <section className={`${styles.chart} layout-section`}>
         <svg
