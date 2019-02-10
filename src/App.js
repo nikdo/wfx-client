@@ -59,19 +59,20 @@ export default class App extends Component {
   }
 
   render () {
-    return <main>
-      {this.state.spot && this.state.options.length
-        ? <>
+    return this.state.spot && this.state.options.length
+      ? <>
+        <header>
           <Selector
             value={this.state.selected}
             spots={this.state.options}
             onChange={this.handleSpotChange}
           />
+        </header>
+        <main>
           <Chart spotId={this.state.spot._id} forecast={this.state.spot.forecast} />
           <Attribution />
-        </>
-        : <Spinner />
-      }
-    </main>
+        </main>
+      </>
+      : <Spinner />
   }
 }
