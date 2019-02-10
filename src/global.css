@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  padding: var(--baseline);
+  padding: var(--baseline) 0;
   font-family: 'Open Sans', sans-serif;
   font-size: var(--font-size-base);
   line-height: var(--line-height);
@@ -10,9 +10,17 @@ body {
   background-color: var(--color-background);
 }
 
+header, main {
+  padding: 0 var(--baseline);
+}
+
 @media (width > 700px) {
   body {
-    padding: calc(2 * var(--baseline)) calc(3 * var(--baseline));
+    padding: calc(2 * var(--baseline)) 0;
+  }
+
+  header, main {
+    padding: 0 calc(3 * var(--baseline));
   }
 }
 
