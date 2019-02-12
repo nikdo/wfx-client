@@ -3,7 +3,7 @@ import Select from 'react-select'
 import './Selector.css'
 
 const label = ({ country, region, name }) =>
-  `${region ? region + ': ' : ''} ${name} (${country})`
+  `${name} (${region ? region + '/ ' : ''}${country})`
 
 const options = spots => spots.map(spot => ({
   label: label(spot),
