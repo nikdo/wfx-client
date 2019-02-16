@@ -4,9 +4,11 @@ import Selector from './components/Selector'
 import Chart from './components/Chart'
 import Attribution from './components/Attribution'
 import Spinner from './components/Spinner'
+/* Source: https://github.com/umpirsky/country-list/blob/master/data/en_US/country.json */
+import countries from './countries.json'
 import './global.css'
 
-const deserialize = spot => ({
+const deserializeSpot = spot => ({
   ...spot,
   forecast: spot.forecast.map(frame => ({
     ...frame,
@@ -16,36 +18,37 @@ const deserialize = spot => ({
   }))
 })
 
+const countryCodeToCountry = spot => ({
+  ...spot,
+  country: countries[spot.country]
+})
+
 export default class App extends Component {
   constructor () {
     super()
     this.state = {
-      spot: null,
-      selected: null,
-      options: []
+      selectedSpot: null,
+      spots: []
     }
-    this.handleSpotChange = this.handleSpotChange.bind(this)
   }
 
   fetchData () {
     fetch(process.env.REACT_APP_API_URL + '/spots')
       .then(res => res.json())
-      .then(options => {
-        this.fetchSpot(options[0]._id)
-        this.setState({
-          options,
-          selected: options[0]._id
-        })
+      .then(spots => spots.map(countryCodeToCountry))
+      .then(spots => {
+        this.fetchSpot(spots[0]._id)
+        this.setState({ spots })
       })
   }
 
   fetchSpot (id) {
     fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
       .then(res => res.json())
-      .then(deserialize)
+      .then(deserializeSpot)
       .then(spot => {
         document.title = spot.name
-        this.setState({ spot: spot })
+        this.setState({ selectedSpot: spot })
       })
   }
 
@@ -53,23 +56,18 @@ export default class App extends Component {
     this.fetchData()
   }
 
-  handleSpotChange (id) {
-    this.fetchSpot(id)
-    this.setState({ selected: id })
-  }
-
   render () {
-    return this.state.spot && this.state.options.length
+    return this.state.selectedSpot && this.state.spots.length
       ? <>
         <header>
           <Selector
-            value={this.state.selected}
-            spots={this.state.options}
-            onChange={this.handleSpotChange}
+            value={this.state.selectedSpot._id}
+            spots={this.state.spots}
+            onChange={id => this.fetchSpot(id)}
           />
         </header>
         <main>
-          <Chart spotId={this.state.spot._id} forecast={this.state.spot.forecast} />
+          <Chart spotId={this.state.selectedSpot._id} forecast={this.state.selectedSpot.forecast} />
           <Attribution />
         </main>
       </>
