@@ -30,7 +30,6 @@ export default class App extends Component {
       selectedSpot: null,
       spots: []
     }
-    this.handleSpotChange = this.handleSpotChange.bind(this)
   }
 
   fetchData () {
@@ -57,10 +56,6 @@ export default class App extends Component {
     this.fetchData()
   }
 
-  handleSpotChange (id) {
-    this.fetchSpot(id)
-  }
-
   render () {
     return this.state.selectedSpot && this.state.spots.length
       ? <>
@@ -68,7 +63,7 @@ export default class App extends Component {
           <Selector
             value={this.state.selectedSpot._id}
             spots={this.state.spots}
-            onChange={this.handleSpotChange}
+            onChange={id => this.fetchSpot(id)}
           />
         </header>
         <main>
