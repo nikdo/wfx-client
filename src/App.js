@@ -27,7 +27,7 @@ export default class App extends Component {
   constructor () {
     super()
     this.state = {
-      spot: null,
+      selectedSpot: null,
       options: []
     }
     this.handleSpotChange = this.handleSpotChange.bind(this)
@@ -49,7 +49,7 @@ export default class App extends Component {
       .then(deserialize)
       .then(spot => {
         document.title = spot.name
-        this.setState({ spot: spot })
+        this.setState({ selectedSpot: spot })
       })
   }
 
@@ -62,17 +62,17 @@ export default class App extends Component {
   }
 
   render () {
-    return this.state.spot && this.state.options.length
+    return this.state.selectedSpot && this.state.options.length
       ? <>
         <header>
           <Selector
-            value={this.state.spot._id}
+            value={this.state.selectedSpot._id}
             spots={this.state.options}
             onChange={this.handleSpotChange}
           />
         </header>
         <main>
-          <Chart spotId={this.state.spot._id} forecast={this.state.spot.forecast} />
+          <Chart spotId={this.state.selectedSpot._id} forecast={this.state.selectedSpot.forecast} />
           <Attribution />
         </main>
       </>
