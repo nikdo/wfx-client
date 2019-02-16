@@ -28,7 +28,7 @@ export default class App extends Component {
     super()
     this.state = {
       selectedSpot: null,
-      options: []
+      spots: []
     }
     this.handleSpotChange = this.handleSpotChange.bind(this)
   }
@@ -36,10 +36,10 @@ export default class App extends Component {
   fetchData () {
     fetch(process.env.REACT_APP_API_URL + '/spots')
       .then(res => res.json())
-      .then(options => options.map(countryCodeToCountry))
-      .then(options => {
-        this.fetchSpot(options[0]._id)
-        this.setState({ options })
+      .then(spots => spots.map(countryCodeToCountry))
+      .then(spots => {
+        this.fetchSpot(spots[0]._id)
+        this.setState({ spots })
       })
   }
 
@@ -62,12 +62,12 @@ export default class App extends Component {
   }
 
   render () {
-    return this.state.selectedSpot && this.state.options.length
+    return this.state.selectedSpot && this.state.spots.length
       ? <>
         <header>
           <Selector
             value={this.state.selectedSpot._id}
-            spots={this.state.options}
+            spots={this.state.spots}
             onChange={this.handleSpotChange}
           />
         </header>
