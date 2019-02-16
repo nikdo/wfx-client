@@ -4,6 +4,8 @@ import Selector from './components/Selector'
 import Chart from './components/Chart'
 import Attribution from './components/Attribution'
 import Spinner from './components/Spinner'
+/* Source: https://github.com/umpirsky/country-list/blob/master/data/en_US/country.json */
+import countries from './countries.json'
 import './global.css'
 
 const deserialize = spot => ({
@@ -14,6 +16,11 @@ const deserialize = spot => ({
     windSpeed: Math.round(frame.windSpeed * 10) / 10,
     windGust: Math.round(frame.windGust * 10) / 10
   }))
+})
+
+const countryCodeToCountry = spot => ({
+  ...spot,
+  country: countries[spot.country]
 })
 
 export default class App extends Component {
@@ -30,6 +37,7 @@ export default class App extends Component {
   fetchData () {
     fetch(process.env.REACT_APP_API_URL + '/spots')
       .then(res => res.json())
+      .then(options => options.map(countryCodeToCountry))
       .then(options => {
         this.fetchSpot(options[0]._id)
         this.setState({
