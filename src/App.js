@@ -28,7 +28,6 @@ export default class App extends Component {
     super()
     this.state = {
       spot: null,
-      selected: null,
       options: []
     }
     this.handleSpotChange = this.handleSpotChange.bind(this)
@@ -40,10 +39,7 @@ export default class App extends Component {
       .then(options => options.map(countryCodeToCountry))
       .then(options => {
         this.fetchSpot(options[0]._id)
-        this.setState({
-          options,
-          selected: options[0]._id
-        })
+        this.setState({ options })
       })
   }
 
@@ -63,7 +59,6 @@ export default class App extends Component {
 
   handleSpotChange (id) {
     this.fetchSpot(id)
-    this.setState({ selected: id })
   }
 
   render () {
@@ -71,7 +66,7 @@ export default class App extends Component {
       ? <>
         <header>
           <Selector
-            value={this.state.selected}
+            value={this.state.spot._id}
             spots={this.state.options}
             onChange={this.handleSpotChange}
           />
