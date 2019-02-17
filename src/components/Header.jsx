@@ -1,5 +1,6 @@
 import React from 'react'
 import Selector from './Selector'
+import Spinner from './Spinner'
 import styles from './Header.module.css'
 
 export default props => (
@@ -10,7 +11,9 @@ export default props => (
       spots={props.spots}
       onChange={props.onSpotSelected} />
     {props.spotLoading &&
-      <span className={styles.loading}>loading&hellip;</span>
+      <div className={styles.loading}>
+        <Spinner inline={true} />
+      </div>
     }
   </header>
 )

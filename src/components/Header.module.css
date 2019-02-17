@@ -5,6 +5,5 @@
 }
 
 .loading {
-  display: block;
   margin-left: var(--baseline);
 }
