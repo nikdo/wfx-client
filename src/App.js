@@ -30,7 +30,7 @@ export default class App extends Component {
       spots: [],
       selectedSpotId: null,
       spotLoading: false,
-      spotDetail: null,
+      spotDetail: null
     }
   }
 
