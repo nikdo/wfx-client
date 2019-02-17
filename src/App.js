@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment-timezone'
-import Selector from './components/Selector'
+import Header from './components/Header'
 import Chart from './components/Chart'
 import Attribution from './components/Attribution'
 import Spinner from './components/Spinner'
@@ -59,13 +59,10 @@ export default class App extends Component {
   render () {
     return this.state.selectedSpot && this.state.spots.length
       ? <>
-        <header>
-          <Selector
-            value={this.state.selectedSpot._id}
-            spots={this.state.spots}
-            onChange={id => this.fetchSpot(id)}
-          />
-        </header>
+        <Header
+          spots={this.state.spots}
+          selectedSpotId={this.state.selectedSpot._id}
+          onSpotSelected={id => this.fetchSpot(id)} />
         <main>
           <Chart spotId={this.state.selectedSpot._id} forecast={this.state.selectedSpot.forecast} />
           <Attribution />
