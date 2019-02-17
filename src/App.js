@@ -45,12 +45,14 @@ export default class App extends Component {
   }
 
   fetchSpot (id) {
-    this.setState({ selectedSpotId: id, spotLoading: true })
+    this.setState({ selectedSpotId: id })
+    const timeout = setTimeout(() => this.setState({ spotLoading: true }), 1000)
     fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
       .then(res => res.json())
       .then(deserializeSpot)
       .then(spot => {
         document.title = spot.name
+        clearTimeout(timeout)
         this.setState({ spotDetail: spot, spotLoading: false })
       })
   }
