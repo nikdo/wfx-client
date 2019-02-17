@@ -4,7 +4,7 @@
 
   --line-height: 1.5;
 
-  --baseline: calc(var(--line-height) * var(--font-size-base));
+  --baseline: calc(var(--line-height) * var(--font-size-base)); /* 24px */
 
   --color-mine-shaft:    #353438;
   --color-mountain-mist: #909090;
