@@ -1,5 +1,3 @@
-@import '~/brand.css';
-
 section.chart {
   padding-top: var(--baseline);
   padding-bottom: var(--baseline);
