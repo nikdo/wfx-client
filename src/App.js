@@ -28,6 +28,7 @@ export default class App extends Component {
     super()
     this.state = {
       spots: [],
+      selectedSpotId: null,
       spotLoading: false,
       spotDetail: null,
     }
@@ -44,7 +45,7 @@ export default class App extends Component {
   }
 
   fetchSpot (id) {
-    this.setState({ spotLoading: true })
+    this.setState({ selectedSpotId: id, spotLoading: true })
     fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
       .then(res => res.json())
       .then(deserializeSpot)
@@ -63,7 +64,7 @@ export default class App extends Component {
       ? <>
         <Header
           spots={this.state.spots}
-          selectedSpotId={this.state.spotDetail._id}
+          selectedSpotId={this.state.selectedSpotId}
           onSpotSelected={id => this.fetchSpot(id)}
           spotLoading={this.state.spotLoading} />
         <main>
