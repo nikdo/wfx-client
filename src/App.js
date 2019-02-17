@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment-timezone'
-import Selector from './components/Selector'
+import Header from './components/Header'
 import Chart from './components/Chart'
 import Attribution from './components/Attribution'
 import Spinner from './components/Spinner'
@@ -27,8 +27,10 @@ export default class App extends Component {
   constructor () {
     super()
     this.state = {
-      selectedSpot: null,
-      spots: []
+      spots: [],
+      selectedSpotId: null,
+      spotLoading: false,
+      spotDetail: null
     }
   }
 
@@ -43,12 +45,15 @@ export default class App extends Component {
   }
 
   fetchSpot (id) {
+    this.setState({ selectedSpotId: id })
+    const timeout = setTimeout(() => this.setState({ spotLoading: true }), 1000)
     fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
       .then(res => res.json())
       .then(deserializeSpot)
       .then(spot => {
         document.title = spot.name
-        this.setState({ selectedSpot: spot })
+        clearTimeout(timeout)
+        this.setState({ spotDetail: spot, spotLoading: false })
       })
   }
 
@@ -57,17 +62,15 @@ export default class App extends Component {
   }
 
   render () {
-    return this.state.selectedSpot && this.state.spots.length
+    return this.state.spotDetail && this.state.spots.length
       ? <>
-        <header>
-          <Selector
-            value={this.state.selectedSpot._id}
-            spots={this.state.spots}
-            onChange={id => this.fetchSpot(id)}
-          />
-        </header>
+        <Header
+          spots={this.state.spots}
+          selectedSpotId={this.state.selectedSpotId}
+          onSpotSelected={id => this.fetchSpot(id)}
+          spotLoading={this.state.spotLoading} />
         <main>
-          <Chart spotId={this.state.selectedSpot._id} forecast={this.state.selectedSpot.forecast} />
+          <Chart spotId={this.state.spotDetail._id} forecast={this.state.spotDetail.forecast} />
           <Attribution />
         </main>
       </>

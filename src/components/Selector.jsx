@@ -10,11 +10,12 @@ const options = spots => spots.map(spot => ({
   value: spot._id
 }))
 
-export default ({ value, spots, onChange }) => (
+export default ({ value, disabled, spots, onChange }) => (
   <Select
     value={options(spots).find(option => option.value === value)}
     onChange={option => onChange(option.value)}
     options={options(spots)}
+    isDisabled={disabled}
     blurInputOnSelect
     isClearable={false}
     backspaceRemovesValue={false}
