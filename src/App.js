@@ -27,8 +27,9 @@ export default class App extends Component {
   constructor () {
     super()
     this.state = {
+      spots: [],
+      spotLoading: false,
       selectedSpot: null,
-      spots: []
     }
   }
 
@@ -43,12 +44,13 @@ export default class App extends Component {
   }
 
   fetchSpot (id) {
+    this.setState({ spotLoading: true })
     fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
       .then(res => res.json())
       .then(deserializeSpot)
       .then(spot => {
         document.title = spot.name
-        this.setState({ selectedSpot: spot })
+        this.setState({ selectedSpot: spot, spotLoading: false })
       })
   }
 
@@ -62,7 +64,8 @@ export default class App extends Component {
         <Header
           spots={this.state.spots}
           selectedSpotId={this.state.selectedSpot._id}
-          onSpotSelected={id => this.fetchSpot(id)} />
+          onSpotSelected={id => this.fetchSpot(id)}
+          spotLoading={this.state.spotLoading} />
         <main>
           <Chart spotId={this.state.selectedSpot._id} forecast={this.state.selectedSpot.forecast} />
           <Attribution />
