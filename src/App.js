@@ -29,7 +29,7 @@ export default class App extends Component {
     this.state = {
       spots: [],
       spotLoading: false,
-      selectedSpot: null,
+      spotDetail: null,
     }
   }
 
@@ -50,7 +50,7 @@ export default class App extends Component {
       .then(deserializeSpot)
       .then(spot => {
         document.title = spot.name
-        this.setState({ selectedSpot: spot, spotLoading: false })
+        this.setState({ spotDetail: spot, spotLoading: false })
       })
   }
 
@@ -59,15 +59,15 @@ export default class App extends Component {
   }
 
   render () {
-    return this.state.selectedSpot && this.state.spots.length
+    return this.state.spotDetail && this.state.spots.length
       ? <>
         <Header
           spots={this.state.spots}
-          selectedSpotId={this.state.selectedSpot._id}
+          selectedSpotId={this.state.spotDetail._id}
           onSpotSelected={id => this.fetchSpot(id)}
           spotLoading={this.state.spotLoading} />
         <main>
-          <Chart spotId={this.state.selectedSpot._id} forecast={this.state.selectedSpot.forecast} />
+          <Chart spotId={this.state.spotDetail._id} forecast={this.state.spotDetail.forecast} />
           <Attribution />
         </main>
       </>
