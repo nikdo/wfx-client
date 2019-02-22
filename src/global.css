@@ -17,6 +17,7 @@ h1 {
   line-height: var(--h1-line-height);
   margin-top: calc(3 * var(--baseline) - var(--h1-line-height));
   margin-bottom: 0;
+  color: var(--color-blue-violet);
 }
 
 header, footer, h1, .layout-section {
