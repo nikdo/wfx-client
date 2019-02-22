@@ -6,6 +6,11 @@
 
   --baseline: calc(var(--line-height) * var(--font-size-base)); /* 24px */
 
+  /* https://www.modularscale.com/?16,20&px&1.5 */
+  --h1-font-size: 36px;
+  --h1-line-height: 40px;
+  --h1-font-weight: 400;
+
   --color-mine-shaft:    #353438;
   --color-mountain-mist: #909090;
   --color-mercury:       #E6E6E6;
