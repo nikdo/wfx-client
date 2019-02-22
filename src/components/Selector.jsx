@@ -2,11 +2,11 @@ import React from 'react'
 import Select from 'react-select'
 import './Selector.css'
 
-const label = ({ country, region, name }) =>
-  `${name} (${region ? region + ', ' : ''}${country})`
+const location = ({ region, country }) =>
+  `${region ? region + ', ' : ''}${country}`
 
 const options = spots => spots.map(spot => ({
-  label: label(spot),
+  label: `${spot.name} (${location(spot)})`,
   value: spot._id
 }))
 
