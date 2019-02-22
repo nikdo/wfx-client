@@ -12,7 +12,7 @@ export default props => (
       onChange={props.onSpotSelected} />
     {props.spotLoading &&
       <div className={styles.loading}>
-        <Spinner inline={true} />
+        <Spinner inline />
       </div>
     }
   </header>
