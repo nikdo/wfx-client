@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment-timezone'
 import Header from './components/Header'
+import SpotTitle from './components/SpotTitle'
 import Chart from './components/Chart'
 import Attribution from './components/Attribution'
 import Spinner from './components/Spinner'
@@ -70,10 +71,7 @@ export default class App extends Component {
           onSpotSelected={id => this.fetchSpot(id)}
           spotLoading={this.state.spotLoading} />
         <main>
-          <header>
-            <h1>{this.state.spotDetail.name}</h1>
-            <p>{this.state.spotDetail.country}</p>
-          </header>
+          <SpotTitle spot={this.state.spotDetail} />
           <Chart spotId={this.state.spotDetail._id} forecast={this.state.spotDetail.forecast} />
           <Attribution />
         </main>
