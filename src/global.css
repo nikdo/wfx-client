@@ -26,9 +26,10 @@ header, footer, h1, .layout-section {
 
   header, footer, h1, .layout-section {
     padding: 0 calc(3 * var(--baseline));
-    max-width: calc(1200px + 34px + 34px); /* chart svg element total width */
     margin-left: auto;
     margin-right: auto;
+    --chart-svg-element-total-width: calc(1200px + 34px + 34px);
+    max-width: var(--chart-svg-element-total-width);
   }
 }
 
