@@ -20,7 +20,7 @@ h1 {
   color: var(--color-blue-violet);
 }
 
-header, footer, h1, .layout-section {
+header, footer, .layout-section {
   padding: 0 var(--baseline);
 }
 
@@ -29,7 +29,7 @@ header, footer, h1, .layout-section {
     padding: calc(2 * var(--baseline)) 0;
   }
 
-  header, footer, h1, .layout-section {
+  header, footer, .layout-section {
     padding: 0 calc(3 * var(--baseline));
     margin-left: auto;
     margin-right: auto;

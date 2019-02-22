@@ -70,7 +70,10 @@ export default class App extends Component {
           onSpotSelected={id => this.fetchSpot(id)}
           spotLoading={this.state.spotLoading} />
         <main>
-          <h1>{this.state.spotDetail.name}</h1>
+          <header>
+            <h1>{this.state.spotDetail.name}</h1>
+            <p>{this.state.spotDetail.country}</p>
+          </header>
           <Chart spotId={this.state.spotDetail._id} forecast={this.state.spotDetail.forecast} />
           <Attribution />
         </main>
