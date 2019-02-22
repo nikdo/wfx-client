@@ -9,19 +9,19 @@ import Spinner from './components/Spinner'
 import countries from './countries.json'
 import './global.css'
 
-const deserializeSpot = spot => ({
+const countryCodeToCountry = spot => ({
   ...spot,
+  country: countries[spot.country]
+})
+
+const deserializeSpot = spot => ({
+  ...countryCodeToCountry(spot),
   forecast: spot.forecast.map(frame => ({
     ...frame,
     time: moment.unix(frame.time).tz(spot.timezone),
     windSpeed: Math.round(frame.windSpeed * 10) / 10,
     windGust: Math.round(frame.windGust * 10) / 10
   }))
-})
-
-const countryCodeToCountry = spot => ({
-  ...spot,
-  country: countries[spot.country]
 })
 
 export default class App extends Component {
