@@ -10,7 +10,12 @@ body {
   background-color: var(--color-background);
 }
 
-header, footer, .layout-section {
+h1 {
+  margin-top: var(--baseline);
+  margin-bottom: 0;
+}
+
+header, footer, h1, .layout-section {
   padding: 0 var(--baseline);
 }
 
@@ -19,10 +24,11 @@ header, footer, .layout-section {
     padding: calc(2 * var(--baseline)) 0;
   }
 
-  header, footer, .layout-section {
+  header, footer, h1, .layout-section {
     padding: 0 calc(3 * var(--baseline));
-    margin: 0 auto;
     max-width: calc(1200px + 34px + 34px); /* chart svg element total width */
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
