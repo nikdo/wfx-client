@@ -15,7 +15,7 @@ h1 {
   font-size: var(--h1-font-size);
   font-weight: var(--h1-font-weight);
   line-height: var(--h1-line-height);
-  margin-top: calc(3 * var(--baseline) - var(--h1-line-height));
+  margin-top: calc(2.5 * var(--baseline) - var(--h1-line-height));
   margin-bottom: 0;
   color: var(--color-blue-violet);
 }
@@ -27,6 +27,12 @@ header, footer, .layout-section {
 @media (width > 700px) {
   body {
     padding: calc(2 * var(--baseline)) 0;
+  }
+
+  h1 {
+    font-size: var(--h1-desktop-font-size);
+    line-height: var(--h1-desktop-line-height);
+    margin-top: calc(3 * var(--baseline) - var(--h1-desktop-line-height));
   }
 
   header, footer, .layout-section {
