@@ -1,9 +1,14 @@
 .header {
+  margin-top: var(--baseline);
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.loading {
-  margin-left: var(--baseline);
+@media (width > 700px), (orientation: landscape) and (width > 440px) {
+  .header {
+    margin-top: 0;
+    padding-left: var(--baseline);
+    float: right;
+  }
 }

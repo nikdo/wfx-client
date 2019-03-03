@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment-timezone'
 import Header from './components/Header'
+import SpotTitle from './components/SpotTitle'
 import Chart from './components/Chart'
 import Attribution from './components/Attribution'
 import Spinner from './components/Spinner'
@@ -8,19 +9,19 @@ import Spinner from './components/Spinner'
 import countries from './countries.json'
 import './global.css'
 
-const deserializeSpot = spot => ({
+const countryCodeToCountry = spot => ({
   ...spot,
+  country: countries[spot.country]
+})
+
+const deserializeSpot = spot => ({
+  ...countryCodeToCountry(spot),
   forecast: spot.forecast.map(frame => ({
     ...frame,
     time: moment.unix(frame.time).tz(spot.timezone),
     windSpeed: Math.round(frame.windSpeed * 10) / 10,
     windGust: Math.round(frame.windGust * 10) / 10
   }))
-})
-
-const countryCodeToCountry = spot => ({
-  ...spot,
-  country: countries[spot.country]
 })
 
 export default class App extends Component {
@@ -70,6 +71,7 @@ export default class App extends Component {
           onSpotSelected={id => this.fetchSpot(id)}
           spotLoading={this.state.spotLoading} />
         <main>
+          <SpotTitle spot={this.state.spotDetail} />
           <Chart spotId={this.state.spotDetail._id} forecast={this.state.spotDetail.forecast} />
           <Attribution />
         </main>

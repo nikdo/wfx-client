@@ -6,10 +6,20 @@
 
   --baseline: calc(var(--line-height) * var(--font-size-base)); /* 24px */
 
+  /* https://www.modularscale.com/?16,18&px&1.333 */
+  --h1-font-size: 28px;
+  --h1-line-height: 32px;
+  --h1-font-weight: 400;
+
+  /* https://www.modularscale.com/?16,20&px&1.5 */
+  --h1-desktop-font-size: 36px;
+  --h1-desktop-line-height: 40px;
+
   --color-mine-shaft:    #353438;
   --color-mountain-mist: #909090;
   --color-mercury:       #E6E6E6;
   --color-romance:       #FCFCFA;
+  --color-blue-violet:   #5657AE;
 
   --color-text: var(--color-mine-shaft);
   --color-background: var(--color-romance);
@@ -34,6 +44,7 @@
   --color-level-8-text: hsl(336, 38%, 35%);
 
   /*
+  @custom-media --phone-portrait (width <= 440px);
   @custom-media --phone (width <= 700px);
   @custom-media --tablet (700px < width <= 1200px); // tablet portrait or large phone
   @custom-media --desktop (1200px < width); // desktop or tablet landscape
