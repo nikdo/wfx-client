@@ -44,6 +44,7 @@
   --color-level-8-text: hsl(336, 38%, 35%);
 
   /*
+  @custom-media --phone-portrait (width <= 440px);
   @custom-media --phone (width <= 700px);
   @custom-media --tablet (700px < width <= 1200px); // tablet portrait or large phone
   @custom-media --desktop (1200px < width); // desktop or tablet landscape

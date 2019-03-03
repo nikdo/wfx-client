@@ -3,10 +3,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
 
-@media (width > 700px), (orientation: landscape) {
+@media (width > 700px), (orientation: landscape) and (width > 440px) {
   .header {
     margin-top: 0;
     padding-left: var(--baseline);
