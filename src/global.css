@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  padding: var(--baseline) 0;
+  padding: 0;
   font-family: 'Open Sans', sans-serif;
   font-size: var(--font-size-base);
   line-height: var(--line-height);
@@ -25,10 +25,6 @@ header, footer, .layout-section {
 }
 
 @media (width > 700px) {
-  body {
-    padding: calc(2 * var(--baseline)) 0;
-  }
-
   h1 {
     font-size: var(--h1-desktop-font-size);
     line-height: var(--h1-desktop-line-height);

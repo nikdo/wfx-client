@@ -1,7 +1,17 @@
 .header {
+  margin-top: var(--baseline);
   display: flex;
   flex-direction: row;
   align-items: center;
+
+}
+
+@media (width > 700px), (orientation: landscape) {
+  .header {
+    margin-top: 0;
+    padding-left: var(--baseline);
+    float: right;
+  }
 }
 
 .loading {
