@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 import location from './location'
-import './Selector.css'
+import styles from './Selector.module.css'
 
 const options = spots => spots.map(spot => ({
   label: `${spot.name} (${location(spot)})`,
@@ -17,7 +17,7 @@ export default ({ value, disabled, spots, onChange }) => (
     blurInputOnSelect
     isClearable={false}
     backspaceRemovesValue={false}
-    className='select'
+    className={styles.select}
     classNamePrefix='select'
   />
 )

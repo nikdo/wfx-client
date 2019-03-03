@@ -2,10 +2,10 @@
   width: 20rem;
 }
 
-.select__control {
+.select :global .select__control {
   background-color: transparent !important;
 }
 
-.select__indicator-separator {
+.select :global .select__indicator-separator {
   display: none;
 }
