@@ -12,7 +12,3 @@
     float: right;
   }
 }
-
-.loading {
-  margin-left: var(--baseline);
-}

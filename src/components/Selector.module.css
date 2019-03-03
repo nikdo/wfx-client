@@ -9,3 +9,7 @@
 .select :global .select__indicator-separator {
   display: none;
 }
+
+.loading {
+  margin-left: var(--baseline);
+}
