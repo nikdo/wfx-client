@@ -21,7 +21,7 @@ export default ({ inline = false }) => {
   return <svg className={styles.spinner} viewBox='0 0 50 50' style={position}>
     <linearGradient id='gradient'>
       <stop offset='0%' stopColor='#476FB8' />
-      <stop offset='100%' stopColor='#5B4CB4' />
+      <stop offset='100%' stopColor='#5657AE' />
     </linearGradient>
     <circle
       className={styles.path}
