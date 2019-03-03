@@ -10,6 +10,14 @@
   display: none;
 }
 
+.select:global.select--is-disabled .select__dropdown-indicator {
+  visibility: hidden;
+}
+
 .loading {
-  margin-left: var(--baseline);
+  --loader-width: -25px;
+  --dropdown-indicator-alignment: -7px;
+  margin-left: var(--loader-width);
+  position: relative;
+  left: var(--dropdown-indicator-alignment);
 }
