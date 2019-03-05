@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+const search = (spots, query) => spots
+  .filter(spot => spot.name.startsWith(query))
+
 export default class Home extends Component {
   constructor () {
     super()
@@ -14,7 +17,7 @@ export default class Home extends Component {
     return <>
       <input type='text' value={this.state.query} onChange={this.handleChange} />
       <ul>
-        {this.props.spots.map(spot =>
+        {search(this.props.spots, this.state.query).map(spot =>
           <li onClick={() => this.props.onSpotSelected(spot._id)}>
             {spot.name}
           </li>
