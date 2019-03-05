@@ -1,14 +1,33 @@
 :root {
+  --input-border-width: 1px;
   --input-border-radius: 3px;
   --input-padding: calc(var(--baseline) / 3) calc(var(--baseline) / 2);
 }
 
+/* Space holder is here to help achieve shadow for both input and dropdown
+   while keeping the dropdown absolutely positioned above content.
+   https://github.com/nikdo/wind-alert/issues/4#issuecomment-469870444
+ */
+.spaceHolder {
+  margin-top: 30vh;
+  height: calc(
+    (2 * var(--input-border-width)) +
+    (2 * var(--input-padding)) +
+    var(--baseline)
+  );
+}
+
 .container {
-  margin: 30vh auto auto;
+  width: 100%;
   max-width: 20rem;
-  border: 1px solid var(--color-mountain-mist);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  border: var(--input-border-width) solid var(--color-mountain-mist);
   border-radius: var(--input-border-radius);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: var(--color-romance);
 }
 
 .input {
@@ -29,7 +48,7 @@ ul.suggestionsList {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--color-mercury);
+  border-top: var(--input-border-width) solid var(--color-mercury);
 }
 
 li.suggestion {
@@ -42,5 +61,6 @@ li.suggestionHighlighted {
 }
 
 li:last-child.suggestionHighlighted {
-  border-radius: 0 0 calc(var(--input-border-radius) - 1px) calc(var(--input-border-radius) - 1px);
+  border-bottom-left-radius: calc(var(--input-border-radius) - var(--input-border-width));
+  border-bottom-right-radius: calc(var(--input-border-radius) - var(--input-border-width));
 }

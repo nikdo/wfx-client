@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
 import location from '../components/location'
-import theme from './Home.module.css'
+import styles from './Home.module.css'
 
 const getSuggestions = (spots, query) => {
   query = query.trim().toLowerCase()
@@ -50,15 +50,17 @@ export default class Home extends Component {
       autoFocus: true
     }
 
-    return <Autosuggest
-      alwaysRenderSuggestions
-      suggestions={suggestions}
-      onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-      onSuggestionSelected={this.onSuggestionSelected}
-      getSuggestionValue={getSuggestionValue}
-      renderSuggestion={renderSuggestion}
-      inputProps={inputProps}
-      theme={theme}
-    />
+    return <div className={styles.spaceHolder}>
+      <Autosuggest
+        alwaysRenderSuggestions
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+        onSuggestionSelected={this.onSuggestionSelected}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={inputProps}
+        theme={styles}
+      />
+    </div>
   }
 }
