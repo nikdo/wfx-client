@@ -20,11 +20,10 @@
     "eject": "react-scripts eject"
   },
   "standard": {
-    "globals": [
-      "describe",
-      "expect",
-      "fetch",
-      "it"
+    "env": [
+      "browser",
+      "es6",
+      "jest"
     ],
     "parser": "babel-eslint"
   },
