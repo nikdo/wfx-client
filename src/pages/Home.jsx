@@ -46,7 +46,8 @@ export default class Home extends Component {
     const inputProps = {
       placeholder: 'Find spot',
       value: query,
-      onChange: this.onChange
+      onChange: this.onChange,
+      autoFocus: true
     }
 
     return <Autosuggest
