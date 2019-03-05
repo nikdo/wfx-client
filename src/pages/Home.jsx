@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Autosuggest from 'react-autosuggest'
 
 const getSuggestions = (spots, query) => {
   query = query.trim().toLowerCase()
@@ -7,26 +8,57 @@ const getSuggestions = (spots, query) => {
     : []
 }
 
+const getSuggestionValue = spot => spot.name
+
+const renderSuggestion = spot => spot.name
+
 export default class Home extends Component {
   constructor () {
     super()
-    this.state = { query: '' }
+    this.state = { query: '', suggestions: [] }
   }
 
-  handleChange = event => {
-    this.setState({ query: event.target.value })
+  onChange = (event, { newValue }) => {
+    this.setState({
+      query: newValue
+    })
+  }
+
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      suggestions: getSuggestions(this.props.spots, value)
+    })
+  }
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: []
+    })
+  }
+
+  onSuggestionSelected = (event, { suggestion }) => {
+    this.props.onSpotSelected(suggestion._id)
   }
 
   render () {
+    const { query, suggestions } = this.state
+
+    const inputProps = {
+      placeholder: 'Find spot',
+      value: query,
+      onChange: this.onChange
+    }
+
     return <>
-      <input type='text' value={this.state.query} onChange={this.handleChange} />
-      <ul>
-        {getSuggestions(this.props.spots, this.state.query).map(spot =>
-          <li onClick={() => this.props.onSpotSelected(spot._id)}>
-            {spot.name}
-          </li>
-        )}
-      </ul>
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+        onSuggestionSelected={this.onSuggestionSelected}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={inputProps}
+      />
     </>
   }
 }
