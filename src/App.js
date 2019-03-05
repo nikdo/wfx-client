@@ -33,7 +33,7 @@ export default class App extends Component {
     }
   }
 
-  fetchData () {
+  fetchData = () => {
     fetch(process.env.REACT_APP_API_URL + '/spots')
       .then(res => res.json())
       .then(spots => spots.map(countryCodeToCountry))
@@ -42,7 +42,7 @@ export default class App extends Component {
       })
   }
 
-  fetchSpot (id) {
+  fetchSpot = id => {
     this.setState({ selectedSpotId: id })
     const timeout = setTimeout(() => this.setState({ spotLoading: true }), 1000)
     fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
@@ -69,7 +69,8 @@ export default class App extends Component {
         fetchSpot={this.fetchSpot} />
     } else if (this.state.spots.length) {
       return <Home
-        onSpotSelected={() => this.fetchSpot(this.state.spots[0]._id)} />
+        spots={this.state.spots}
+        onSpotSelected={this.fetchSpot} />
     } else {
       return <Spinner />
     }
