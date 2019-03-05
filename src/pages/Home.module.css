@@ -1,0 +1,10 @@
+.container {
+  margin: 30vh auto auto;
+  max-width: 20rem;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}

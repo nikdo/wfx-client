@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
 import location from '../components/location'
+import theme from './Home.module.css'
 
 const getSuggestions = (spots, query) => {
   query = query.trim().toLowerCase()
@@ -63,6 +64,7 @@ export default class Home extends Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
+        theme={theme}
       />
     </>
   }
