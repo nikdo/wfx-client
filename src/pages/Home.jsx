@@ -36,12 +36,6 @@ export default class Home extends Component {
     })
   }
 
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    })
-  }
-
   onSuggestionSelected = (event, { suggestion }) => {
     this.props.onSpotSelected(suggestion._id)
   }
@@ -56,9 +50,9 @@ export default class Home extends Component {
     }
 
     return <Autosuggest
+      alwaysRenderSuggestions
       suggestions={suggestions}
       onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={this.onSuggestionsClearRequested}
       onSuggestionSelected={this.onSuggestionSelected}
       getSuggestionValue={getSuggestionValue}
       renderSuggestion={renderSuggestion}
