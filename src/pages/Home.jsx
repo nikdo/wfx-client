@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 const search = (spots, query) => spots
-  .filter(spot => spot.name.startsWith(query))
+  .filter(spot => spot.name.toLowerCase().startsWith(query.trim().toLowerCase()))
 
 export default class Home extends Component {
   constructor () {
