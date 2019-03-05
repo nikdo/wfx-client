@@ -17,7 +17,6 @@
   border: none;
   outline: none;
   padding: var(--input-padding);
-  background-color: transparent;
 }
 
 ul.suggestionsList {
