@@ -1,14 +1,40 @@
+:root {
+  --input-border-radius: 3px;
+  --input-padding: calc(var(--baseline) / 3) calc(var(--baseline) / 2);
+}
+
 .container {
   margin: 30vh auto auto;
   max-width: 20rem;
+  border: 1px solid var(--color-mountain-mist);
+  border-radius: var(--input-border-radius);
 }
 
 .input {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid var(--color-mountain-mist);
-  border-radius: 3px;
+  border: none;
   outline: none;
-  padding: calc(var(--baseline) / 3) calc(var(--baseline) / 2);
+  padding: var(--input-padding);
+  background-color: transparent;
+}
+
+ul.suggestionsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.suggestion {
+  padding: var(--input-padding);
+  cursor: default;
+}
+
+li.suggestionHighlighted {
+  background-color: var(--color-mercury);
+}
+
+li:last-child.suggestionHighlighted {
+  border-radius: 0 0 calc(var(--input-border-radius) - 1px) calc(var(--input-border-radius) - 1px);
 }
