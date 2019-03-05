@@ -1,5 +1,9 @@
 import React from 'react'
 
-export default ({ spots, onSpotSelected }) => <button onClick={() => onSpotSelected(spots[0]._id)}>
-  Select first spot
-</button>
+export default ({ spots, onSpotSelected }) => <ul>
+  {spots.map(spot =>
+    <li onClick={() => onSpotSelected(spot._id)}>
+      {spot.name}
+    </li>
+  )}
+</ul>
