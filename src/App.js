@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment-timezone'
+import Home from './pages/Home'
 import Detail from './pages/Detail'
 import Spinner from './components/Spinner'
 /* Source: https://github.com/umpirsky/country-list/blob/master/data/en_US/country.json */
@@ -67,9 +68,8 @@ export default class App extends Component {
         spotDetail={this.state.spotDetail}
         fetchSpot={this.fetchSpot} />
     } else if (this.state.spots.length) {
-      return <button onClick={() => this.fetchSpot(this.state.spots[0]._id)}>
-        Select first spot
-      </button>
+      return <Home
+        onSpotSelected={() => this.fetchSpot(this.state.spots[0]._id)} />
     } else {
       return <Spinner />
     }
