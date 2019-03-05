@@ -37,7 +37,6 @@ export default class App extends Component {
       .then(res => res.json())
       .then(spots => spots.map(countryCodeToCountry))
       .then(spots => {
-        this.fetchSpot(spots[0]._id)
         this.setState({ spots })
       })
   }
@@ -60,13 +59,19 @@ export default class App extends Component {
   }
 
   render () {
-    return this.state.spotDetail && this.state.spots.length
-      ? <Detail
+    if (this.state.spotDetail) {
+      return <Detail
         spots={this.state.spots}
         selectedSpotId={this.state.selectedSpotId}
         spotLoading={this.state.spotLoading}
         spotDetail={this.state.spotDetail}
         fetchSpot={this.fetchSpot} />
-      : <Spinner />
+    } else if (this.state.spots.length) {
+      return <button onClick={() => this.fetchSpot(this.state.spots[0]._id)}>
+        Select first spot
+      </button>
+    } else {
+      return <Spinner />
+    }
   }
 }
