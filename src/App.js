@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment-timezone'
-import Header from './components/Header'
-import SpotTitle from './components/SpotTitle'
-import Chart from './components/Chart'
-import Attribution from './components/Attribution'
+import Detail from './pages/Detail'
 import Spinner from './components/Spinner'
 /* Source: https://github.com/umpirsky/country-list/blob/master/data/en_US/country.json */
 import countries from './countries.json'
@@ -64,18 +61,12 @@ export default class App extends Component {
 
   render () {
     return this.state.spotDetail && this.state.spots.length
-      ? <>
-        <Header
-          spots={this.state.spots}
-          selectedSpotId={this.state.selectedSpotId}
-          onSpotSelected={id => this.fetchSpot(id)}
-          spotLoading={this.state.spotLoading} />
-        <main>
-          <SpotTitle spot={this.state.spotDetail} />
-          <Chart spotId={this.state.spotDetail._id} forecast={this.state.spotDetail.forecast} />
-          <Attribution />
-        </main>
-      </>
+      ? <Detail
+        spots={this.state.spots}
+        selectedSpotId={this.state.selectedSpotId}
+        spotLoading={this.state.spotLoading}
+        spotDetail={this.state.spotDetail}
+        fetchSpot={this.fetchSpot} />
       : <Spinner />
   }
 }
