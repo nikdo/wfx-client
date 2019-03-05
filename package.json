@@ -10,6 +10,9 @@
     "react-scripts": "2.1.3",
     "react-select": "^2.0.0"
   },
+  "devDependencies": {
+    "standard": "^12.0.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -22,7 +25,8 @@
       "expect",
       "fetch",
       "it"
-    ]
+    ],
+    "parser": "babel-eslint"
   },
   "engines": {
     "node": "10.15.0",
