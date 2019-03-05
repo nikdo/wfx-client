@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
+import location from '../components/location'
 
 const getSuggestions = (spots, query) => {
   query = query.trim().toLowerCase()
@@ -10,7 +11,11 @@ const getSuggestions = (spots, query) => {
 
 const getSuggestionValue = spot => spot.name
 
-const renderSuggestion = spot => spot.name
+const renderSuggestion = spot => <>
+  <span>{spot.name}</span>
+  {' '}
+  <span>({location(spot)})</span>
+</>
 
 export default class Home extends Component {
   constructor () {
