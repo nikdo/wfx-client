@@ -53,7 +53,8 @@ export default class Home extends Component {
       placeholder: 'Find spot',
       value: query,
       onChange: this.onChange,
-      autoFocus: true
+      autoFocus: true,
+      spellCheck: false
     }
 
     return <div className={styles.spaceHolder}>
