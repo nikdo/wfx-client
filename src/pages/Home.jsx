@@ -53,6 +53,7 @@ export default class Home extends Component {
     return <div className={styles.spaceHolder}>
       <Autosuggest
         alwaysRenderSuggestions
+        highlightFirstSuggestion
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionSelected={this.onSuggestionSelected}
