@@ -44,6 +44,7 @@ export default class Home extends Component {
   }
 
   onSuggestionSelected = (event, { suggestion }) => {
+    this.input.blur()
     this.props.onSpotSelected(suggestion._id)
   }
 
@@ -71,6 +72,12 @@ export default class Home extends Component {
     return <div className={styles.spaceHolder}>
       <Autosuggest
         highlightFirstSuggestion
+        ref={autosuggest => {
+          if (autosuggest !== null) {
+            this.input = autosuggest.input
+          }
+        }}
+        focusInputOnSuggestionClick={false}
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
