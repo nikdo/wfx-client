@@ -60,9 +60,12 @@
 }
 
 .suggestionsContainer {
-  border-top: var(--input-border-width) solid var(--color-mercury);
   max-height: calc(5.5 * var(--suggestion-approximate-height));
   overflow: scroll;
+}
+
+.suggestionsContainerOpen {
+  border-top: var(--input-border-width) solid var(--color-line);
 }
 
 ul.suggestionsList {
