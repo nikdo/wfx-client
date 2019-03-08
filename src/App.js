@@ -60,17 +60,19 @@ export default class App extends Component {
   }
 
   render () {
-    if (this.state.spotDetail) {
+    const { spotDetail, spots, selectedSpotId, spotLoading } = this.state
+
+    if (spotDetail) {
       return <Detail
-        spots={this.state.spots}
-        selectedSpotId={this.state.selectedSpotId}
-        spotLoading={this.state.spotLoading}
-        spotDetail={this.state.spotDetail}
+        spots={spots}
+        selectedSpotId={selectedSpotId}
+        spotLoading={spotLoading}
+        spotDetail={spotDetail}
         fetchSpot={this.fetchSpot} />
-    } else if (this.state.spots.length) {
+    } else if (spots.length) {
       return <Home
-        spots={this.state.spots}
-        spotLoading={this.state.spotLoading}
+        spots={spots}
+        spotLoading={spotLoading}
         onSpotSelected={this.fetchSpot} />
     } else {
       return <Spinner />
