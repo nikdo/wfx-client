@@ -19,6 +19,10 @@ input {
   background-color: transparent;
 }
 
+input:disabled {
+  color: var(--color-secondary-text);
+}
+
 h1 {
   font-family: 'Nunito', sans-serif;
   font-size: var(--h1-font-size);

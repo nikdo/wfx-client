@@ -62,6 +62,7 @@ export default class Home extends Component {
     const inputProps = {
       placeholder: 'Find spot',
       value: query,
+      disabled: this.props.spotLoading,
       onChange: this.onChange,
       autoFocus: true,
       spellCheck: false
