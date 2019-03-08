@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
 import location from '../components/location'
+import Spinner from '../components/Spinner'
 import styles from './Home.module.css'
 
 const getSuggestions = (spots, query) => {
@@ -46,6 +47,15 @@ export default class Home extends Component {
     this.props.onSpotSelected(suggestion._id)
   }
 
+  renderInputComponent = inputProps => (
+    <div className={styles.inputContainer}>
+      <input {...inputProps} />
+      {this.props.spotLoading &&
+        <Spinner inline />
+      }
+    </div>
+  )
+
   render () {
     const { query, suggestions } = this.state
 
@@ -64,6 +74,7 @@ export default class Home extends Component {
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         onSuggestionSelected={this.onSuggestionSelected}
+        renderInputComponent={this.renderInputComponent}
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}

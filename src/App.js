@@ -70,6 +70,7 @@ export default class App extends Component {
     } else if (this.state.spots.length) {
       return <Home
         spots={this.state.spots}
+        spotLoading={this.state.spotLoading}
         onSpotSelected={this.fetchSpot} />
     } else {
       return <Spinner />
