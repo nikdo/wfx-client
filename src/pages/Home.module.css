@@ -81,7 +81,7 @@
 }
 
 .suggestionsContainerOpen {
-  border-top: var(--input-border-width) solid var(--color-line);
+  border-top: var(--input-border-width) solid var(--color-border);
 }
 
 ul.suggestionsList {
