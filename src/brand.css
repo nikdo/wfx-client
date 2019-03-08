@@ -24,7 +24,9 @@
   --color-text: var(--color-mine-shaft);
   --color-background: var(--color-romance);
   --color-secondary-text: var(--color-mountain-mist);
+  --color-border: var(--color-mountain-mist);
   --color-line: var(--color-mercury);
+  --color-selected: var(--color-mercury);
 
 
   --color-level-2: hsl(60, 0%, 95%);

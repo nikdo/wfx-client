@@ -45,9 +45,9 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  border: var(--input-border-width) solid var(--color-mountain-mist);
+  border: var(--input-border-width) solid var(--color-border);
   border-radius: var(--input-border-radius);
-  background-color: var(--color-romance);
+  background-color: var(--color-background);
   outline: none;
   padding: var(--input-padding);
 }
@@ -69,9 +69,9 @@
 
 .containerOpen {
   box-sizing: border-box;
-  border: var(--input-border-width) solid var(--color-mountain-mist);
+  border: var(--input-border-width) solid var(--color-border);
   border-radius: var(--input-border-radius);
-  background-color: var(--color-romance);
+  background-color: var(--color-background);
   box-shadow: var(--shadow);
 }
 
@@ -96,7 +96,7 @@ li.suggestion {
 }
 
 li.suggestionHighlighted {
-  background-color: var(--color-mercury);
+  background-color: var(--color-selected);
 }
 
 li:last-child.suggestionHighlighted {
