@@ -1,13 +1,12 @@
 import React from 'react'
-import Selector from './Selector'
+import Search from './Search'
 import styles from './Header.module.css'
 
-export default props => (
+export default ({ spots, spotLoading, onSpotSelected }) => (
   <header className={styles.header}>
-    <Selector
-      value={props.selectedSpotId}
-      spotLoading={props.spotLoading}
-      spots={props.spots}
-      onChange={props.onSpotSelected} />
+    <Search
+      spots={spots}
+      spotLoading={spotLoading}
+      onSpotSelected={onSpotSelected} />
   </header>
 )

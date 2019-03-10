@@ -60,12 +60,11 @@ export default class App extends Component {
   }
 
   render () {
-    const { spotDetail, spots, selectedSpotId, spotLoading } = this.state
+    const { spotDetail, spots, spotLoading } = this.state
 
     if (spotDetail) {
       return <Detail
         spots={spots}
-        selectedSpotId={selectedSpotId}
         spotLoading={spotLoading}
         spotDetail={spotDetail}
         fetchSpot={this.fetchSpot} />
