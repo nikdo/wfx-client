@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { createStore } from 'redux'
+import { connect } from 'react-redux'
 import moment from 'moment-timezone'
-import rootReducer from './reducers'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
 import Spinner from './components/Spinner'
@@ -24,19 +23,15 @@ const deserializeSpot = spot => ({
   }))
 })
 
-export default class App extends Component {
+class App extends Component {
   constructor () {
     super()
     this.state = {
-      ...this.store.getState(),
       spots: [],
       spotLoading: false,
       spotDetail: null
     }
-    this.store.subscribe(() => this.setState(this.store.getState()))
   }
-
-  store = createStore(rootReducer)
 
   fetchData = () => {
     fetch(process.env.REACT_APP_API_URL + '/spots')
@@ -55,7 +50,7 @@ export default class App extends Component {
       .then(spot => {
         document.title = spot.name
         clearTimeout(timeout)
-        this.store.dispatch({ type: 'SPOT_FETCH_COMPLETED' })
+        this.props.dispatch({ type: 'SPOT_FETCH_COMPLETED' })
         this.setState({
           spotDetail: spot,
           spotLoading: false
@@ -68,12 +63,13 @@ export default class App extends Component {
   }
 
   render () {
-    const { searchQuery, spotDetail, spots, spotLoading } = this.state
+    const { searchQuery, dispatch } = this.props
+    const { spotDetail, spots, spotLoading } = this.state
 
     if (spotDetail) {
       return <Detail
         query={searchQuery}
-        dispatch={this.store.dispatch}
+        dispatch={dispatch}
         spots={spots}
         spotLoading={spotLoading}
         spotDetail={spotDetail}
@@ -81,7 +77,7 @@ export default class App extends Component {
     } else if (spots.length) {
       return <Home
         query={searchQuery}
-        dispatch={this.store.dispatch}
+        dispatch={dispatch}
         spots={spots}
         spotLoading={spotLoading}
         onSpotSelected={this.fetchSpot} />
@@ -90,3 +86,5 @@ export default class App extends Component {
     }
   }
 }
+
+export default connect(state => state)(App)
