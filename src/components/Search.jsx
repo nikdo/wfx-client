@@ -19,7 +19,7 @@ const renderSuggestion = spot => <>
   <span>({location(spot)})</span>
 </>
 
-export default class Home extends Component {
+export default class Search extends Component {
   constructor () {
     super()
     this.state = { suggestions: [] }
