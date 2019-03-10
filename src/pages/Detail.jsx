@@ -4,9 +4,8 @@ import SpotTitle from '../components/SpotTitle'
 import Chart from '../components/Chart'
 import Attribution from '../components/Attribution'
 
-export default ({ spots, spotDetail, fetchSpot }) => <>
+export default ({ spotDetail, fetchSpot }) => <>
   <Header
-    spots={spots}
     onSpotSelected={id => fetchSpot(id)} />
   <main>
     <SpotTitle spot={spotDetail} />

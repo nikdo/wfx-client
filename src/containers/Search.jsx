@@ -8,10 +8,12 @@ class SearchContainer extends Component {
   }
 
   render () {
+    const { spots, searchQuery, onSpotSelected, spotLoading } = this.props
     return <Search
-      {...this.props}
-      query={this.props.searchQuery}
-      spotLoading={this.props.spotLoading}
+      onSpotSelected={onSpotSelected}
+      spots={spots}
+      query={searchQuery}
+      spotLoading={spotLoading}
       onChange={this.onChange} />
   }
 }

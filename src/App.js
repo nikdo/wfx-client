@@ -24,19 +24,12 @@ const deserializeSpot = spot => ({
 })
 
 class App extends Component {
-  constructor () {
-    super()
-    this.state = {
-      spots: []
-    }
-  }
-
   fetchData = () => {
     fetch(process.env.REACT_APP_API_URL + '/spots')
       .then(res => res.json())
       .then(spots => spots.map(countryCodeToCountry))
       .then(spots => {
-        this.setState({ spots })
+        this.props.dispatch({ type: 'SPOT_LIST_COMPLETED', payload: spots })
       })
   }
 
@@ -60,17 +53,14 @@ class App extends Component {
   }
 
   render () {
-    const { spotDetail } = this.props
-    const { spots } = this.state
+    const { spots, spotDetail } = this.props
 
     if (spotDetail) {
       return <Detail
-        spots={spots}
         spotDetail={spotDetail}
         fetchSpot={this.fetchSpot} />
     } else if (spots.length) {
       return <Home
-        spots={spots}
         onSpotSelected={this.fetchSpot} />
     } else {
       return <Spinner />
