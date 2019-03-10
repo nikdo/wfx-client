@@ -59,13 +59,14 @@ export default class Home extends Component {
 
   render () {
     const { query, suggestions } = this.state
+    const { spotLoading, autoFocus } = this.props
 
     const inputProps = {
       placeholder: 'Find spot',
       value: query,
-      disabled: this.props.spotLoading,
+      disabled: spotLoading,
       onChange: this.onChange,
-      autoFocus: true,
+      autoFocus: autoFocus,
       spellCheck: false
     }
 

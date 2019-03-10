@@ -5,6 +5,7 @@ import styles from './Home.module.css'
 export default ({ spots, spotLoading, onSpotSelected }) => {
   return <section className={styles.search}>
     <Search
+      autoFocus
       spots={spots}
       spotLoading={spotLoading}
       onSpotSelected={onSpotSelected} />
