@@ -30,7 +30,6 @@ export default class App extends Component {
     this.state = {
       searchQuery: this.store.getState(),
       spots: [],
-      selectedSpotId: null,
       spotLoading: false,
       spotDetail: null
     }
@@ -49,7 +48,6 @@ export default class App extends Component {
   }
 
   fetchSpot = id => {
-    this.setState({ selectedSpotId: id })
     const timeout = setTimeout(() => this.setState({ spotLoading: true }), 1000)
     fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
       .then(res => res.json())
