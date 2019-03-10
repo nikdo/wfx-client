@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { createStore } from 'redux'
 import moment from 'moment-timezone'
-import queryReducer from './reducers/queryReducer'
+import rootReducer from './reducers'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
 import Spinner from './components/Spinner'
@@ -28,15 +28,15 @@ export default class App extends Component {
   constructor () {
     super()
     this.state = {
-      searchQuery: this.store.getState(),
+      ...this.store.getState(),
       spots: [],
       spotLoading: false,
       spotDetail: null
     }
-    this.store.subscribe(() => this.setState({ searchQuery: this.store.getState() }))
+    this.store.subscribe(() => this.setState(this.store.getState()))
   }
 
-  store = createStore(queryReducer)
+  store = createStore(rootReducer)
 
   fetchData = () => {
     fetch(process.env.REACT_APP_API_URL + '/spots')
