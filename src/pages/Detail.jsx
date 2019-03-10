@@ -4,8 +4,10 @@ import SpotTitle from '../components/SpotTitle'
 import Chart from '../components/Chart'
 import Attribution from '../components/Attribution'
 
-export default ({ spots, spotLoading, spotDetail, fetchSpot }) => <>
+export default ({ query, onQueryChange, spots, spotLoading, spotDetail, fetchSpot }) => <>
   <Header
+    query={query}
+    onQueryChange={onQueryChange}
     spots={spots}
     onSpotSelected={id => fetchSpot(id)}
     spotLoading={spotLoading} />

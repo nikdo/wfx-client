@@ -22,13 +22,11 @@ const renderSuggestion = spot => <>
 export default class Home extends Component {
   constructor () {
     super()
-    this.state = { query: '', suggestions: [] }
+    this.state = { suggestions: [] }
   }
 
   onChange = (event, { newValue }) => {
-    this.setState({
-      query: newValue
-    })
+    this.props.onChange(newValue)
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
@@ -58,8 +56,8 @@ export default class Home extends Component {
   )
 
   render () {
-    const { query, suggestions } = this.state
-    const { spotLoading, autoFocus } = this.props
+    const { suggestions } = this.state
+    const { query, spotLoading, autoFocus } = this.props
 
     const inputProps = {
       placeholder: 'Find spot',

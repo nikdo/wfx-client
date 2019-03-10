@@ -26,6 +26,7 @@ export default class App extends Component {
   constructor () {
     super()
     this.state = {
+      searchQuery: '',
       spots: [],
       selectedSpotId: null,
       spotLoading: false,
@@ -51,25 +52,35 @@ export default class App extends Component {
       .then(spot => {
         document.title = spot.name
         clearTimeout(timeout)
-        this.setState({ spotDetail: spot, spotLoading: false })
+        this.setState({
+          searchQuery: '',
+          spotDetail: spot,
+          spotLoading: false
+        })
       })
   }
+
+  onSearchQueryChange = searchQuery => this.setState({ searchQuery })
 
   componentDidMount () {
     this.fetchData()
   }
 
   render () {
-    const { spotDetail, spots, spotLoading } = this.state
+    const { searchQuery, spotDetail, spots, spotLoading } = this.state
 
     if (spotDetail) {
       return <Detail
+        query={searchQuery}
+        onQueryChange={this.onSearchQueryChange}
         spots={spots}
         spotLoading={spotLoading}
         spotDetail={spotDetail}
         fetchSpot={this.fetchSpot} />
     } else if (spots.length) {
       return <Home
+        query={searchQuery}
+        onQueryChange={this.onSearchQueryChange}
         spots={spots}
         spotLoading={spotLoading}
         onSpotSelected={this.fetchSpot} />
