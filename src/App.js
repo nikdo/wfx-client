@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { createStore } from 'redux'
 import moment from 'moment-timezone'
+import queryReducer from './reducers/queryReducer'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
 import Spinner from './components/Spinner'
@@ -26,13 +28,16 @@ export default class App extends Component {
   constructor () {
     super()
     this.state = {
-      searchQuery: '',
+      searchQuery: this.store.getState(),
       spots: [],
       selectedSpotId: null,
       spotLoading: false,
       spotDetail: null
     }
+    this.store.subscribe(() => this.setState({ searchQuery: this.store.getState() }))
   }
+
+  store = createStore(queryReducer)
 
   fetchData = () => {
     fetch(process.env.REACT_APP_API_URL + '/spots')
@@ -52,15 +57,17 @@ export default class App extends Component {
       .then(spot => {
         document.title = spot.name
         clearTimeout(timeout)
+        this.store.dispatch({ type: 'SPOT_FETCH_COMPLETED' })
         this.setState({
-          searchQuery: '',
           spotDetail: spot,
           spotLoading: false
         })
       })
   }
 
-  onSearchQueryChange = searchQuery => this.setState({ searchQuery })
+  onSearchQueryChange = payload => {
+    this.store.dispatch({ type: 'SEARCH_QUERY_CHANGE', payload })
+  }
 
   componentDidMount () {
     this.fetchData()
