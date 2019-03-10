@@ -19,14 +19,13 @@
  */
 .spaceHolder {
   height: var(--input-height);
+  width: 20rem;
+  position: relative;
 }
 
 .container {
   width: 100%;
-  max-width: 20rem;
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .inputContainer {
