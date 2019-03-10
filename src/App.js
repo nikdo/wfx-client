@@ -63,21 +63,16 @@ class App extends Component {
   }
 
   render () {
-    const { searchQuery, dispatch } = this.props
     const { spotDetail, spots, spotLoading } = this.state
 
     if (spotDetail) {
       return <Detail
-        query={searchQuery}
-        dispatch={dispatch}
         spots={spots}
         spotLoading={spotLoading}
         spotDetail={spotDetail}
         fetchSpot={this.fetchSpot} />
     } else if (spots.length) {
       return <Home
-        query={searchQuery}
-        dispatch={dispatch}
         spots={spots}
         spotLoading={spotLoading}
         onSpotSelected={this.fetchSpot} />
@@ -87,4 +82,4 @@ class App extends Component {
   }
 }
 
-export default connect(state => state)(App)
+export default connect()(App)
