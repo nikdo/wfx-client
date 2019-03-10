@@ -65,10 +65,6 @@ export default class App extends Component {
       })
   }
 
-  onSearchQueryChange = payload => {
-    this.store.dispatch({ type: 'SEARCH_QUERY_CHANGE', payload })
-  }
-
   componentDidMount () {
     this.fetchData()
   }
@@ -79,7 +75,7 @@ export default class App extends Component {
     if (spotDetail) {
       return <Detail
         query={searchQuery}
-        onQueryChange={this.onSearchQueryChange}
+        dispatch={this.store.dispatch}
         spots={spots}
         spotLoading={spotLoading}
         spotDetail={spotDetail}
@@ -87,7 +83,7 @@ export default class App extends Component {
     } else if (spots.length) {
       return <Home
         query={searchQuery}
-        onQueryChange={this.onSearchQueryChange}
+        dispatch={this.store.dispatch}
         spots={spots}
         spotLoading={spotLoading}
         onSpotSelected={this.fetchSpot} />
