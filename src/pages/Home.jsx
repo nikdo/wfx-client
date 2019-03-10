@@ -1,13 +1,13 @@
 import React from 'react'
-import Search from '../components/Search'
+import SearchContainer from '../containers/Search'
 import styles from './Home.module.css'
 
 export default ({ query, dispatch, spots, spotLoading, onSpotSelected }) => {
   return <section className={styles.search}>
-    <Search
+    <SearchContainer
       autoFocus
       query={query}
-      onChange={payload => dispatch({ type: 'SEARCH_QUERY_CHANGE', payload })}
+      dispatch={dispatch}
       spots={spots}
       spotLoading={spotLoading}
       onSpotSelected={onSpotSelected} />

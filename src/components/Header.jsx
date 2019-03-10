@@ -1,12 +1,12 @@
 import React from 'react'
-import Search from './Search'
+import SearchContainer from '../containers/Search'
 import styles from './Header.module.css'
 
 export default ({ query, dispatch, spots, spotLoading, onSpotSelected }) => (
   <header className={styles.header}>
-    <Search
+    <SearchContainer
       query={query}
-      onChange={payload => dispatch({ type: 'SEARCH_QUERY_CHANGE', payload })}
+      dispatch={dispatch}
       spots={spots}
       spotLoading={spotLoading}
       onSpotSelected={onSpotSelected} />
