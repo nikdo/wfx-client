@@ -27,8 +27,7 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      spots: [],
-      spotDetail: null
+      spots: []
     }
   }
 
@@ -52,10 +51,7 @@ class App extends Component {
       .then(spot => {
         document.title = spot.name
         clearTimeout(timeout)
-        this.props.dispatch({ type: 'SPOT_FETCH_COMPLETED' })
-        this.setState({
-          spotDetail: spot
-        })
+        this.props.dispatch({ type: 'SPOT_FETCH_COMPLETED', payload: spot })
       })
   }
 
@@ -64,7 +60,8 @@ class App extends Component {
   }
 
   render () {
-    const { spotDetail, spots } = this.state
+    const { spotDetail } = this.props
+    const { spots } = this.state
 
     if (spotDetail) {
       return <Detail
@@ -81,4 +78,4 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+export default connect(state => state)(App)
