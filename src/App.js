@@ -28,7 +28,6 @@ class App extends Component {
     super()
     this.state = {
       spots: [],
-      spotLoading: false,
       spotDetail: null
     }
   }
@@ -43,7 +42,10 @@ class App extends Component {
   }
 
   fetchSpot = id => {
-    const timeout = setTimeout(() => this.setState({ spotLoading: true }), 1000)
+    const timeout = setTimeout(
+      () => this.props.dispatch({ type: 'SPOT_FETCH_DELAYED' }),
+      1000
+    )
     fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
       .then(res => res.json())
       .then(deserializeSpot)
@@ -52,8 +54,7 @@ class App extends Component {
         clearTimeout(timeout)
         this.props.dispatch({ type: 'SPOT_FETCH_COMPLETED' })
         this.setState({
-          spotDetail: spot,
-          spotLoading: false
+          spotDetail: spot
         })
       })
   }
@@ -63,7 +64,8 @@ class App extends Component {
   }
 
   render () {
-    const { spotDetail, spots, spotLoading } = this.state
+    const { spotLoading } = this.props
+    const { spotDetail, spots } = this.state
 
     if (spotDetail) {
       return <Detail
@@ -82,4 +84,4 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+export default connect(state => state)(App)
