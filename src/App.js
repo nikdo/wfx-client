@@ -64,19 +64,16 @@ class App extends Component {
   }
 
   render () {
-    const { spotLoading } = this.props
     const { spotDetail, spots } = this.state
 
     if (spotDetail) {
       return <Detail
         spots={spots}
-        spotLoading={spotLoading}
         spotDetail={spotDetail}
         fetchSpot={this.fetchSpot} />
     } else if (spots.length) {
       return <Home
         spots={spots}
-        spotLoading={spotLoading}
         onSpotSelected={this.fetchSpot} />
     } else {
       return <Spinner />
@@ -84,4 +81,4 @@ class App extends Component {
   }
 }
 
-export default connect(state => state)(App)
+export default connect()(App)
