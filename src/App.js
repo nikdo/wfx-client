@@ -1,56 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import moment from 'moment-timezone'
-import { spotListCompleted, spotFetchDelayed, spotFetchCompleted } from './actions'
+import { fetchSpots, fetchSpotDetail } from './actions'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
 import Spinner from './components/Spinner'
-/* Source: https://github.com/umpirsky/country-list/blob/master/data/en_US/country.json */
-import countries from './countries.json'
 import './global.css'
 
-const countryCodeToCountry = spot => ({
-  ...spot,
-  country: countries[spot.country]
-})
-
-const deserializeSpot = spot => ({
-  ...countryCodeToCountry(spot),
-  forecast: spot.forecast.map(frame => ({
-    ...frame,
-    time: moment.unix(frame.time).tz(spot.timezone),
-    windSpeed: Math.round(frame.windSpeed * 10) / 10,
-    windGust: Math.round(frame.windGust * 10) / 10
-  }))
-})
-
 class App extends Component {
-  fetchData = () => {
-    fetch(process.env.REACT_APP_API_URL + '/spots')
-      .then(res => res.json())
-      .then(spots => spots.map(countryCodeToCountry))
-      .then(spots => {
-        this.props.spotListCompleted(spots)
-      })
-  }
-
   fetchSpot = id => {
-    const timeout = setTimeout(
-      () => this.props.spotFetchDelayed(),
-      1000
-    )
-    fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
-      .then(res => res.json())
-      .then(deserializeSpot)
-      .then(spot => {
-        document.title = spot.name
-        clearTimeout(timeout)
-        this.props.spotFetchCompleted(spot)
-      })
+    fetchSpotDetail(this.props.dispatch, id)
   }
 
   componentDidMount () {
-    this.fetchData()
+    fetchSpots(this.props.dispatch)
   }
 
   render () {
@@ -69,7 +31,4 @@ class App extends Component {
   }
 }
 
-export default connect(
-  state => state,
-  { spotListCompleted, spotFetchDelayed, spotFetchCompleted }
-)(App)
+export default connect(state => state)(App)
