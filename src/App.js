@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment-timezone'
+import { spotListCompleted, spotFetchDelayed, spotFetchCompleted } from './actions'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
 import Spinner from './components/Spinner'
@@ -29,13 +30,13 @@ class App extends Component {
       .then(res => res.json())
       .then(spots => spots.map(countryCodeToCountry))
       .then(spots => {
-        this.props.dispatch({ type: 'SPOT_LIST_COMPLETED', payload: spots })
+        this.props.dispatch(spotListCompleted(spots))
       })
   }
 
   fetchSpot = id => {
     const timeout = setTimeout(
-      () => this.props.dispatch({ type: 'SPOT_FETCH_DELAYED' }),
+      () => this.props.dispatch(spotFetchDelayed()),
       1000
     )
     fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
@@ -44,7 +45,7 @@ class App extends Component {
       .then(spot => {
         document.title = spot.name
         clearTimeout(timeout)
-        this.props.dispatch({ type: 'SPOT_FETCH_COMPLETED', payload: spot })
+        this.props.dispatch(spotFetchCompleted(spot))
       })
   }
 
