@@ -12,12 +12,11 @@ class App extends Component {
   }
 
   render () {
-    const { spots, spotDetail } = this.props
+    const { spotDetail, spotsLoaded } = this.props
 
     if (spotDetail) {
-      return <Detail
-        spotDetail={spotDetail} />
-    } else if (spots.length) {
+      return <Detail spotDetail={spotDetail} />
+    } else if (spotsLoaded) {
       return <Home />
     } else {
       return <Spinner />
@@ -25,4 +24,7 @@ class App extends Component {
   }
 }
 
-export default connect(state => state)(App)
+export default connect(({ spots, spotDetail }) => ({
+  spotsLoaded: !!spots.length,
+  spotDetail
+}))(App)
