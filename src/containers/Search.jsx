@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fetchSpotDetail } from '../actions'
 import Search from '../components/Search'
 
 class SearchContainer extends Component {
@@ -8,9 +9,9 @@ class SearchContainer extends Component {
   }
 
   render () {
-    const { spots, searchQuery, onSpotSelected, spotLoading } = this.props
+    const { spots, searchQuery, spotLoading } = this.props
     return <Search
-      onSpotSelected={onSpotSelected}
+      onSpotSelected={id => fetchSpotDetail(this.props.dispatch, id)}
       spots={spots}
       query={searchQuery}
       spotLoading={spotLoading}

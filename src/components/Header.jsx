@@ -2,9 +2,8 @@ import React from 'react'
 import SearchContainer from '../containers/Search'
 import styles from './Header.module.css'
 
-export default ({ onSpotSelected }) => (
+export default () => (
   <header className={styles.header}>
-    <SearchContainer
-      onSpotSelected={onSpotSelected} />
+    <SearchContainer />
   </header>
 )
