@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchSpotDetail } from '../actions'
+import { fetchSpotDetail, searchQueryChange } from '../actions'
 import Search from '../components/Search'
 
 class SearchContainer extends Component {
-  onChange = payload => {
-    this.props.dispatch({ type: 'SEARCH_QUERY_CHANGE', payload })
-  }
-
   render () {
     const { spots, searchQuery, spotLoading } = this.props
     return <Search
@@ -15,7 +11,7 @@ class SearchContainer extends Component {
       spots={spots}
       query={searchQuery}
       spotLoading={spotLoading}
-      onChange={this.onChange} />
+      onChange={query => this.props.dispatch(searchQueryChange(query))} />
   }
 }
 

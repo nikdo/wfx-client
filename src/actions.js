@@ -18,7 +18,8 @@ const deserializeSpot = spot => ({
 })
 
 export const spotListCompleted = spots => ({
-  type: 'SPOT_LIST_COMPLETED', payload: spots
+  type: 'SPOT_LIST_COMPLETED',
+  payload: spots
 })
 
 export const spotFetchDelayed = () => ({
@@ -26,7 +27,13 @@ export const spotFetchDelayed = () => ({
 })
 
 export const spotFetchCompleted = spot => ({
-  type: 'SPOT_FETCH_COMPLETED', payload: spot
+  type: 'SPOT_FETCH_COMPLETED',
+  payload: spot
+})
+
+export const searchQueryChange = query => ({
+  type: 'SEARCH_QUERY_CHANGE',
+  payload: query
 })
 
 export const fetchSpots = dispatch => {
