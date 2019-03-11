@@ -30,13 +30,13 @@ class App extends Component {
       .then(res => res.json())
       .then(spots => spots.map(countryCodeToCountry))
       .then(spots => {
-        this.props.dispatch(spotListCompleted(spots))
+        this.props.spotListCompleted(spots)
       })
   }
 
   fetchSpot = id => {
     const timeout = setTimeout(
-      () => this.props.dispatch(spotFetchDelayed()),
+      () => this.props.spotFetchDelayed(),
       1000
     )
     fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
@@ -45,7 +45,7 @@ class App extends Component {
       .then(spot => {
         document.title = spot.name
         clearTimeout(timeout)
-        this.props.dispatch(spotFetchCompleted(spot))
+        this.props.spotFetchCompleted(spot)
       })
   }
 
@@ -69,4 +69,7 @@ class App extends Component {
   }
 }
 
-export default connect(state => state)(App)
+export default connect(
+  state => state,
+  { spotListCompleted, spotFetchDelayed, spotFetchCompleted }
+)(App)
