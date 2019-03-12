@@ -11,6 +11,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+input:disabled {
+  color: var(--color-secondary-text);
+}
+
 h1 {
   font-family: 'Nunito', sans-serif;
   font-size: var(--h1-font-size);
