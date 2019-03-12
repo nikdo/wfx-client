@@ -1,14 +1,21 @@
 :root {
   --input-border-width: 1px;
   --input-border-radius: 3px;
-  --input-padding: calc(var(--baseline) / 3) calc(var(--baseline) / 2);
+  --input-padding: calc(var(--baseline) / 4) calc(var(--baseline) / 2);
+  --input-fat-padding: calc(var(--baseline) / 3) calc(var(--baseline) / 2);
   --input-height: calc(
     (2 * var(--input-border-width)) +
     (2 * var(--input-padding)) +
-    var(--baseline)
+    (var(--line-height) * var(--font-size-base))
+  );
+  --input-fat-height: calc(
+    (2 * var(--input-border-width)) +
+    (2 * var(--input-fat-padding)) +
+    (var(--line-height) * var(--font-size-large))
   );
   --suggestion-approximate-height: calc(
-    var(--input-height) - (2 * var(--input-border-width))
+    (2 * var(--input-fat-padding)) +
+    var(--baseline)
   );
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -21,6 +28,10 @@
   height: var(--input-height);
   width: 20rem;
   position: relative;
+}
+
+.spaceHolder.fat {
+  height: var(--input-fat-height);
 }
 
 .container {
@@ -50,8 +61,9 @@
   padding: var(--input-padding);
 }
 
-.input.fat {
+.fat .input {
   font-size: var(--font-size-large);
+  padding: var(--input-fat-padding);
 }
 
 .input::placeholder {
@@ -93,7 +105,7 @@ ul.suggestionsList {
 }
 
 li.suggestion {
-  padding: var(--input-padding);
+  padding: var(--input-fat-padding);
   cursor: default;
 }
 

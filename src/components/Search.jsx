@@ -69,7 +69,7 @@ export default class Search extends Component {
       spellCheck: false
     }
 
-    return <div className={styles.spaceHolder}>
+    return <div className={classNames(styles.spaceHolder, { [styles.fat]: fat })}>
       <Autosuggest
         highlightFirstSuggestion
         ref={autosuggest => {
@@ -86,10 +86,7 @@ export default class Search extends Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
-        theme={{
-          ...styles,
-          input: classNames(styles.input, { [styles.fat]: fat })
-        }}
+        theme={styles}
       />
     </div>
   }
