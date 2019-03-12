@@ -50,6 +50,10 @@
   padding: var(--input-padding);
 }
 
+.input.fat {
+  font-size: var(--font-size-large);
+}
+
 .input::placeholder {
   position: relative;
   left: 1px;

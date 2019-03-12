@@ -57,7 +57,7 @@ export default class Search extends Component {
 
   render () {
     const { suggestions } = this.state
-    const { query, spotLoading, autoFocus } = this.props
+    const { query, spotLoading, autoFocus, fat } = this.props
 
     const inputProps = {
       placeholder: 'Find spot',
@@ -85,7 +85,10 @@ export default class Search extends Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
-        theme={styles}
+        theme={{
+          ...styles,
+          input: `${styles.input} ${fat ? styles.fat : ''}`
+        }}
       />
     </div>
   }

@@ -4,6 +4,6 @@ import styles from './Home.module.css'
 
 export default () => {
   return <section className={styles.search}>
-    <SearchContainer autoFocus />
+    <SearchContainer autoFocus fat />
   </section>
 }
