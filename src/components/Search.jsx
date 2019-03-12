@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
+import classNames from 'classnames'
 import location from '../components/location'
 import Spinner from '../components/Spinner'
 import styles from './Search.module.css'
@@ -87,7 +88,7 @@ export default class Search extends Component {
         inputProps={inputProps}
         theme={{
           ...styles,
-          input: `${styles.input} ${fat ? styles.fat : ''}`
+          input: classNames(styles.input, { [styles.fat]: fat })
         }}
       />
     </div>
