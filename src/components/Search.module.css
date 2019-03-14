@@ -40,6 +40,11 @@
 .container {
   width: 100%;
   position: absolute;
+  /* Fixes bug with IOS Safari positioning -webkit-overflow-scrolling: touch
+     above dropdown.
+     Similar issue: https://stackoverflow.com/q/37696746/5763764
+  */
+  z-index: 1;
 }
 
 .inputContainer {
@@ -95,6 +100,7 @@
 .suggestionsContainer {
   max-height: calc(5.5 * var(--suggestion-approximate-height));
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .suggestionsContainerOpen {
