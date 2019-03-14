@@ -20,6 +20,10 @@ input {
   background-color: transparent;
 }
 
+input[type=text] {
+  appearance: none;
+}
+
 input:disabled {
   color: var(--color-secondary-text);
 }
