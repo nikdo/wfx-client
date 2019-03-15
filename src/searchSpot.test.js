@@ -27,4 +27,13 @@ describe('searchSpot', () => {
       [{ name: 'Foo' }]
     )
   })
+
+  it('trims query whitespace', () => {
+    expect(searchSpot(
+      [{ name: 'Foo' }, { name: 'Boo' }],
+      ' f '
+    )).toEqual(
+      [{ name: 'Foo' }]
+    )
+  })
 })

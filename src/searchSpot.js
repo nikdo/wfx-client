@@ -1,6 +1,8 @@
+const strip = str => str.trim().toLowerCase()
+
 export default (spots, query) => {
-  query = query.trim().toLowerCase()
+  query = strip(query)
   return query.length
-    ? spots.filter(spot => spot.name.toLowerCase().startsWith(query))
+    ? spots.filter(spot => strip(spot.name).startsWith(query))
     : []
 }
