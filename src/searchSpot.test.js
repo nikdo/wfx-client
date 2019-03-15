@@ -53,4 +53,14 @@ describe('searchSpot', () => {
       expect.objectContaining({ name: 'čóó' })
     ])
   })
+
+  it('returns both names and regions that match query', () => {
+    expect(searchSpot(
+      [{ name: 'Foo' }, { name: 'Bar', region: 'Far' }, { name: 'Boo' }],
+      'f'
+    )).toEqual([
+      expect.objectContaining({ name: 'Foo' }),
+      expect.objectContaining({ region: 'Far' })
+    ])
+  })
 })
