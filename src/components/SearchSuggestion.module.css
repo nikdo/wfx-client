@@ -1,5 +1,6 @@
 .highlight {
   color: var(--color-highlight);
+  font-weight: var(--font-weight-bold);
 }
 
 .location {
