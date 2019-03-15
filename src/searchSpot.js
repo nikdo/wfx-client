@@ -4,8 +4,11 @@ import parse from 'autosuggest-highlight/parse'
 export default (spots, query) => spots
   .map(spot => ({
     ...spot,
-    nameMatches: match(spot.name, query),
-    regionMatches: match(spot.region, query)
+    nameMatches: match(spot.name, query)
+  }))
+  .map(spot => ({
+    ...spot,
+    regionMatches: spot.nameMatches.length ? [] : match(spot.region, query)
   }))
   .filter(spot => spot.nameMatches.length || spot.regionMatches.length)
   .map(spotWithMatches => {

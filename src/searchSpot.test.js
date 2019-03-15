@@ -63,4 +63,15 @@ describe('searchSpot', () => {
       expect.objectContaining({ region: 'Far' })
     ])
   })
+
+  it('does not highlight region if there is a name match', () => {
+    expect(searchSpot(
+      [{ name: 'Foo', region: 'Fee' }],
+      'f'
+    )).toEqual(
+      [expect.objectContaining({
+        regionFragments: [{ text: 'Fee', highlight: false }]
+      })]
+    )
+  })
 })
