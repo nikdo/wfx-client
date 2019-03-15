@@ -15,9 +15,8 @@ const getSuggestions = (spots, query) => {
 const getSuggestionValue = spot => spot.name
 
 const renderSuggestion = spot => <>
-  <span>{spot.name}</span>
-  {' '}
-  <span>({location(spot)})</span>
+  <div>{spot.name}</div>
+  <div className={styles.location}>{location(spot)}</div>
 </>
 
 export default class Search extends Component {
