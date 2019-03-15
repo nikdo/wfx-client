@@ -5,53 +5,52 @@ describe('searchSpot', () => {
     expect(searchSpot(
       [{ name: 'Foo' }, { name: 'Far' }, { name: 'Boo' }],
       'F'
-    )).toEqual(
-      [{ name: 'Foo' }, { name: 'Far' }]
-    )
+    )).toEqual([
+      expect.objectContaining({ name: 'Foo' }),
+      expect.objectContaining({ name: 'Far' })
+    ])
   })
 
   it('returns empty array when no name starts with query', () => {
     expect(searchSpot(
       [{ name: 'Foo' }, { name: 'Boo' }],
       'X'
-    )).toEqual(
-      []
-    )
+    )).toEqual([])
   })
 
   it('ignores casing', () => {
     expect(searchSpot(
       [{ name: 'Foo' }, { name: 'Boo' }],
       'f'
-    )).toEqual(
-      [{ name: 'Foo' }]
-    )
+    )).toEqual([
+      expect.objectContaining({ name: 'Foo' })
+    ])
   })
 
   it('trims query whitespace', () => {
     expect(searchSpot(
       [{ name: 'Foo' }, { name: 'Boo' }],
       ' f '
-    )).toEqual(
-      [{ name: 'Foo' }]
-    )
+    )).toEqual([
+      expect.objectContaining({ name: 'Foo' })
+    ])
   })
 
   it('ignores diacritics in query', () => {
     expect(searchSpot(
       [{ name: 'coo' }, { name: 'boo' }],
       'čó'
-    )).toEqual(
-      [{ name: 'coo' }]
-    )
+    )).toEqual([
+      expect.objectContaining({ name: 'coo' })
+    ])
   })
 
   it('ignores diacritics in spot name', () => {
     expect(searchSpot(
       [{ name: 'čóó' }, { name: 'boo' }],
       'co'
-    )).toEqual(
-      [{ name: 'čóó' }]
-    )
+    )).toEqual([
+      expect.objectContaining({ name: 'čóó' })
+    ])
   })
 })

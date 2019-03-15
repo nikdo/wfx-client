@@ -7,6 +7,8 @@
 
   --baseline: calc(var(--line-height) * var(--font-size-base)); /* 24px */
 
+  --font-weight-bold: 600;
+
   /* https://www.modularscale.com/?16,18&px&1.333 */
   --h1-font-size: 28px;
   --h1-line-height: 32px;
@@ -21,6 +23,7 @@
   --color-mercury:       #E6E6E6;
   --color-romance:       #FCFCFA;
   --color-blue-violet:   #5657AE;
+  --color-san-marino:    #476FB8;
 
   --color-text: var(--color-mine-shaft);
   --color-background: var(--color-romance);
@@ -28,6 +31,7 @@
   --color-border: var(--color-mountain-mist);
   --color-line: var(--color-mercury);
   --color-selected: var(--color-mercury);
+  --color-highlight: var(--color-san-marino);
 
 
   --color-level-2: hsl(60, 0%, 95%);
