@@ -16,10 +16,6 @@
     (2 * var(--input-fat-vertical-padding)) +
     (var(--line-height) * var(--font-size-large))
   );
-  --suggestion-approximate-height: calc(
-    (2 * var(--input-fat-vertical-padding)) +
-    var(--baseline)
-  );
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -98,7 +94,8 @@
 }
 
 .suggestionsContainer {
-  max-height: calc(5.5 * var(--suggestion-approximate-height));
+  --suggestion-approximate-height: calc(2.5 * var(--baseline));
+  max-height: calc(4.5 * var(--suggestion-approximate-height));
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
 }
@@ -116,6 +113,12 @@ ul.suggestionsList {
 li.suggestion {
   padding: var(--input-fat-padding);
   cursor: default;
+}
+
+li.suggestion .location {
+  font-size: var(--font-size-small);
+  margin-top: -1px; /* put closer to spot name */
+  margin-bottom: 2px; /* stretch to match vertical rhythm */
 }
 
 li.suggestionHighlighted {
