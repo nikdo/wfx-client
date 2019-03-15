@@ -116,7 +116,7 @@ li.suggestion {
 }
 
 li.suggestionHighlighted {
-  background-color: var(--color-selected);
+  background: var(--gradient-selected);
 }
 
 li:last-child.suggestionHighlighted {
