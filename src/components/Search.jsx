@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
 import classNames from 'classnames'
+import searchSpot from '../searchSpot'
 import location from '../components/location'
 import Spinner from '../components/Spinner'
 import styles from './Search.module.css'
-
-const getSuggestions = (spots, query) => {
-  query = query.trim().toLowerCase()
-  return query.length
-    ? spots.filter(spot => spot.name.toLowerCase().startsWith(query))
-    : []
-}
 
 const getSuggestionValue = spot => spot.name
 
@@ -31,7 +25,7 @@ export default class Search extends Component {
 
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      suggestions: getSuggestions(this.props.spots, value)
+      suggestions: searchSpot(this.props.spots, value)
     })
   }
 
