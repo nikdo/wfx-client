@@ -36,4 +36,22 @@ describe('searchSpot', () => {
       [{ name: 'Foo' }]
     )
   })
+
+  it('ignores diacritics in query', () => {
+    expect(searchSpot(
+      [{ name: 'coo' }, { name: 'boo' }],
+      'čó'
+    )).toEqual(
+      [{ name: 'coo' }]
+    )
+  })
+
+  it('ignores diacritics in spot name', () => {
+    expect(searchSpot(
+      [{ name: 'čóó' }, { name: 'boo' }],
+      'co'
+    )).toEqual(
+      [{ name: 'čóó' }]
+    )
+  })
 })
