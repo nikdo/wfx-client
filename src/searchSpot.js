@@ -1,10 +1,3 @@
-const strip = str => str.trim().toLowerCase()
-  // https://stackoverflow.com/a/37511463/5763764
-  .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+import match from 'autosuggest-highlight/match'
 
-export default (spots, query) => {
-  query = strip(query)
-  return query.length
-    ? spots.filter(spot => strip(spot.name).startsWith(query))
-    : []
-}
+export default (spots, query) => spots.filter(spot => match(spot.name, query).length)
