@@ -12,10 +12,18 @@ export default (spots, query) => spots
   }))
   .filter(spot => spot.nameMatches.length || spot.regionMatches.length)
   .map(spotWithMatches => {
-    const { nameMatches, regionMatches, ...spot } = spotWithMatches
+    const { nameMatches, ...spot } = spotWithMatches
     return {
       ...spot,
-      nameFragments: parse(spot.name, nameMatches),
-      regionFragments: spot.region ? parse(spot.region, regionMatches) : undefined
+      nameFragments: parse(spot.name, nameMatches)
     }
+  })
+  .map(spotWithMatches => {
+    const { regionMatches, ...spot } = spotWithMatches
+    return spot.region
+      ? {
+        ...spot,
+        regionFragments: parse(spot.region, regionMatches)
+      }
+      : spot
   })
