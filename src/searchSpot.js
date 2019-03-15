@@ -1,3 +1,5 @@
 import match from 'autosuggest-highlight/match'
 
-export default (spots, query) => spots.filter(spot => match(spot.name, query).length)
+export default (spots, query) => spots
+  .map(spot => ({ ...spot, nameMatches: match(spot.name, query) }))
+  .filter(spot => spot.nameMatches.length)
