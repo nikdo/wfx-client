@@ -1,0 +1,9 @@
+.highlight {
+  color: var(--color-highlight);
+}
+
+.location {
+  font-size: var(--font-size-small);
+  margin-top: -1px; /* put closer to spot name */
+  margin-bottom: 2px; /* stretch to match vertical rhythm */
+}

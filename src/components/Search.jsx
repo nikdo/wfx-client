@@ -1,24 +1,12 @@
 import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
 import classNames from 'classnames'
-import parse from 'autosuggest-highlight/parse'
 import searchSpot from '../searchSpot'
-import location from '../components/location'
-import Spinner from '../components/Spinner'
+import SearchSuggestion from './SearchSuggestion'
+import Spinner from './Spinner'
 import styles from './Search.module.css'
 
 const getSuggestionValue = spot => spot.name
-
-const renderSuggestion = spot => <>
-  <div>
-    {parse(spot.name, spot.nameMatches).map((fragment, i) =>
-      <span key={i} className={classNames({ [styles.highlight]: fragment.highlight })}>
-        {fragment.text}
-      </span>
-    )}
-  </div>
-  <div className={styles.location}>{location(spot)}</div>
-</>
 
 export default class Search extends Component {
   constructor () {
@@ -84,7 +72,7 @@ export default class Search extends Component {
         onSuggestionSelected={this.onSuggestionSelected}
         renderInputComponent={this.renderInputComponent}
         getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
+        renderSuggestion={spot => <SearchSuggestion spot={spot} />}
         inputProps={inputProps}
         theme={styles}
       />

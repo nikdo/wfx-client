@@ -115,16 +115,6 @@ li.suggestion {
   cursor: default;
 }
 
-li.suggestion .highlight {
-  color: var(--color-highlight);
-}
-
-li.suggestion .location {
-  font-size: var(--font-size-small);
-  margin-top: -1px; /* put closer to spot name */
-  margin-bottom: 2px; /* stretch to match vertical rhythm */
-}
-
 li.suggestionHighlighted {
   background-color: var(--color-selected);
 }
