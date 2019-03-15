@@ -33,6 +33,12 @@
   --color-selected: var(--color-mercury);
   --color-highlight: var(--color-san-marino);
 
+  --gradient-selected: linear-gradient(
+    #E0E0E0, /* -2 lightness */
+    var(--color-selected) 15%,
+    var(--color-selected) 85%,
+    #EBEBEB /* +2 lightness */
+  );
 
   --color-level-2: hsl(60, 0%, 95%);
   --color-level-3: hsl(230, 29%, 79%);
