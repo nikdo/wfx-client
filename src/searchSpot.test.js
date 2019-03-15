@@ -53,4 +53,36 @@ describe('searchSpot', () => {
       expect.objectContaining({ name: 'čóó' })
     ])
   })
+
+  it('returns both names and regions that match query', () => {
+    expect(searchSpot(
+      [{ name: 'Foo' }, { name: 'Bar', region: 'Far' }, { name: 'Boo' }],
+      'f'
+    )).toEqual([
+      expect.objectContaining({ name: 'Foo' }),
+      expect.objectContaining({ region: 'Far' })
+    ])
+  })
+
+  it('does not highlight region if there is a name match', () => {
+    expect(searchSpot(
+      [{ name: 'Foo', region: 'Fee' }],
+      'f'
+    )).toEqual(
+      [expect.objectContaining({
+        regionFragments: [{ text: 'Fee', highlight: false }]
+      })]
+    )
+  })
+
+  it('sorts name matches before region matches', () => {
+    expect(searchSpot(
+      [{ name: 'Foo' }, { name: 'Boo', region: 'Fax' }, { name: 'Far' }],
+      'f'
+    )).toEqual([
+      expect.objectContaining({ name: 'Foo' }),
+      expect.objectContaining({ name: 'Far' }),
+      expect.objectContaining({ region: 'Fax' })
+    ])
+  })
 })

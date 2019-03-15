@@ -1,16 +1,16 @@
 import React from 'react'
-import classNames from 'classnames'
-import parse from 'autosuggest-highlight/parse'
-import location from './location'
+import HighlightedText from './HighlightedText'
 import styles from './SearchSuggestion.module.css'
 
 export default ({ spot }) => <>
   <div>
-    {parse(spot.name, spot.nameMatches).map((fragment, i) =>
-      <span key={i} className={classNames({ [styles.highlight]: fragment.highlight })}>
-        {fragment.text}
-      </span>
-    )}
+    <HighlightedText fragments={spot.nameFragments} />
   </div>
-  <div className={styles.location}>{location(spot)}</div>
+  <div className={styles.location}>
+    {spot.region && <>
+      <HighlightedText fragments={spot.regionFragments} />
+      {', '}
+    </>}
+    <span>{spot.country}</span>
+  </div>
 </>
