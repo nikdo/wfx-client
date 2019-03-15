@@ -74,4 +74,15 @@ describe('searchSpot', () => {
       })]
     )
   })
+
+  it('sorts name matches before region matches', () => {
+    expect(searchSpot(
+      [{ name: 'Foo' }, { name: 'Boo', region: 'Fax' }, { name: 'Far' }],
+      'f'
+    )).toEqual([
+      expect.objectContaining({ name: 'Foo' }),
+      expect.objectContaining({ name: 'Far' }),
+      expect.objectContaining({ region: 'Fax' })
+    ])
+  })
 })
