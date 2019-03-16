@@ -1,3 +1,8 @@
+export const searchQueryChange = query => ({
+  type: 'SEARCH_QUERY_CHANGE',
+  payload: query
+})
+
 export default (state = '', action) => {
   switch (action.type) {
     case 'SEARCH_QUERY_CHANGE':

@@ -31,11 +31,6 @@ export const spotFetchCompleted = spot => ({
   payload: spot
 })
 
-export const searchQueryChange = query => ({
-  type: 'SEARCH_QUERY_CHANGE',
-  payload: query
-})
-
 export const fetchSpots = dispatch => {
   fetch(process.env.REACT_APP_API_URL + '/spots')
     .then(res => res.json())
