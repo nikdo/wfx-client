@@ -7,7 +7,7 @@ export default ({ spotLoading, inputProps }) => (
   <div className={styles.inputContainer}>
     <input {...inputProps} />
     {spotLoading ? (
-      <Spinner inline />
+      <Spinner inline className={styles.spinner} />
     ) : (
       <SearchIcon className={styles.searchIcon} />
     )}
