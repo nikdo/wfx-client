@@ -1,0 +1,10 @@
+.inputContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.inputContainer svg {
+  position: absolute;
+  right: calc(var(--baseline) / 3);
+}

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
 import classNames from 'classnames'
 import searchSpot from '../searchSpot'
+import SearchInput from './SearchInput'
 import SearchSuggestion from './SearchSuggestion'
-import Spinner from './Spinner'
 import styles from './Search.module.css'
 
 const getSuggestionValue = spot => spot.name
@@ -35,15 +35,6 @@ export default class Search extends Component {
     this.props.onSpotSelected(suggestion._id)
   }
 
-  renderInputComponent = inputProps => (
-    <div className={styles.inputContainer}>
-      <input {...inputProps} />
-      {this.props.spotLoading &&
-        <Spinner inline />
-      }
-    </div>
-  )
-
   render () {
     const { suggestions } = this.state
     const { query, spotLoading, autoFocus, fat } = this.props
@@ -59,21 +50,24 @@ export default class Search extends Component {
 
     return <div className={classNames(styles.spaceHolder, { [styles.fat]: fat })}>
       <Autosuggest
-        highlightFirstSuggestion
         ref={autosuggest => {
           if (autosuggest !== null) {
             this.input = autosuggest.input
           }
         }}
+        highlightFirstSuggestion
         focusInputOnSuggestionClick={false}
-        suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         onSuggestionSelected={this.onSuggestionSelected}
-        renderInputComponent={this.renderInputComponent}
+        suggestions={suggestions}
         getSuggestionValue={getSuggestionValue}
-        renderSuggestion={spot => <SearchSuggestion spot={spot} />}
         inputProps={inputProps}
+        renderInputComponent={inputProps => <SearchInput
+          spotLoading={this.props.spotLoading}
+          inputProps={inputProps} />
+        }
+        renderSuggestion={spot => <SearchSuggestion spot={spot} />}
         theme={styles}
       />
     </div>
