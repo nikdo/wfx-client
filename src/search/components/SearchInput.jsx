@@ -1,5 +1,5 @@
 import React from 'react'
-import Spinner from './Spinner'
+import Spinner from '../../components/Spinner'
 import styles from './SearchInput.module.css'
 
 export default ({ spotLoading, inputProps }) => (
