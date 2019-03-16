@@ -8,3 +8,9 @@
   position: absolute;
   right: calc(var(--baseline) / 3);
 }
+
+svg.searchIcon {
+  width: 18px;
+  height: 18px;
+  fill: var(--color-border);
+}
