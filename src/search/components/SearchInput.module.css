@@ -4,7 +4,7 @@
   position: relative;
 }
 
-.inputContainer .control {
+.control {
   position: absolute;
   right: calc(var(--input-border-radius) / 2);
   width: var(--input-height);
@@ -12,33 +12,45 @@
   display: grid;
 }
 
-.inputContainer.fat .control {
+.fat .control {
   width: var(--input-fat-height);
   height: var(--input-fat-height);
 }
 
-.control > * {
+.control > a {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  /* both icons present at the same time during animation */
+  position: absolute;
+}
+
+.control svg {
   margin: auto;
 }
 
-svg.searchIcon {
+a.search {
+  cursor: default;
+}
+
+a.search svg {
   width: 18px;
   height: 18px;
   fill: var(--color-border);
 }
 
-svg.crossIcon {
+a.cancel svg {
   width: 12px;
   height: 12px;
   fill: var(--color-border);
 }
 
-.fat svg.searchIcon {
+.fat a.search svg {
   width: 22px;
   height: 22px;
 }
 
-.fat svg.crossIcon {
+.fat a.cancel svg {
   width: 15px;
   height: 15px;
 }

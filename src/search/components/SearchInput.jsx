@@ -8,21 +8,30 @@ import styles from './SearchInput.module.css'
 
 const SearchControl = ({ spotLoading, showSearchIcon, onSearchIconClick }) => {
   if (spotLoading) {
-    return <div className={styles.control}>
-      <Spinner inline />
-    </div>
+    return <Spinner inline />
   }
 
   return <>
     <OpacityTransition in={showSearchIcon}>
-      <div className={styles.control} onClick={onSearchIconClick}>
-        <SearchIcon className={styles.searchIcon} />
-      </div>
+      <a href='#'
+        className={styles.search}
+        onClick={(e) => {
+          e.preventDefault()
+          onSearchIconClick()
+        }}
+      >
+        <SearchIcon />
+      </a>
     </OpacityTransition>
     <OpacityTransition in={!showSearchIcon}>
-      <div className={styles.control}>
-        <CrossIcon className={styles.crossIcon} />
-      </div>
+      <a href='#'
+        className={styles.cancel}
+        onClick={(e) => {
+          e.preventDefault()
+        }}
+      >
+        <CrossIcon />
+      </a>
     </OpacityTransition>
   </>
 }
@@ -31,6 +40,8 @@ export default (props) => {
   const { fat, inputProps, ...controlProps } = props
   return <div className={classNames(styles.inputContainer, { [styles.fat]: fat })}>
     <input {...inputProps} />
-    <SearchControl {...controlProps} />
+    <div className={styles.control}>
+      <SearchControl {...controlProps} />
+    </div>
   </div>
 }
