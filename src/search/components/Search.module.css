@@ -20,15 +20,20 @@
      Similar issue: https://stackoverflow.com/q/37696746/5763764
   */
   z-index: 1;
+  box-sizing: border-box;
+  border: var(--input-border-width) solid var(--color-border);
+  border-radius: var(--input-border-radius);
+  background-color: var(--color-background);
+}
+
+.focused .container {
+  box-shadow: var(--shadow);
 }
 
 .input {
   display: block;
   width: 100%;
-  box-sizing: border-box;
-  border: var(--input-border-width) solid var(--color-border);
-  border-radius: var(--input-border-radius);
-  background-color: var(--color-background);
+  border: none;
   outline: none;
   padding: var(--input-padding);
 }
@@ -41,24 +46,6 @@
 .input::placeholder {
   position: relative;
   left: 1px;
-}
-
-.focused .input {
-  box-shadow: var(--shadow);
-}
-
-.containerOpen .input {
-  border: none;
-  background-color: transparent;
-  box-shadow: none;
-}
-
-.containerOpen {
-  box-sizing: border-box;
-  border: var(--input-border-width) solid var(--color-border);
-  border-radius: var(--input-border-radius);
-  background-color: var(--color-background);
-  box-shadow: var(--shadow);
 }
 
 .suggestionsContainer {
