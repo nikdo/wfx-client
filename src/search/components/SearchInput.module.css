@@ -27,7 +27,18 @@ svg.searchIcon {
   fill: var(--color-border);
 }
 
+svg.crossIcon {
+  width: 12px;
+  height: 12px;
+  fill: var(--color-border);
+}
+
 .fat svg.searchIcon {
   width: 22px;
   height: 22px;
+}
+
+.fat svg.crossIcon {
+  width: 15px;
+  height: 15px;
 }

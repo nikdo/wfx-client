@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { ReactComponent as SearchIcon } from './search.svg'
+import { ReactComponent as CrossIcon } from './cross.svg'
 import OpacityTransition from '../../components/OpacityTransition'
 import Spinner from '../../components/Spinner'
 import styles from './SearchInput.module.css'
@@ -12,13 +13,18 @@ const SearchControl = ({ spotLoading, showSearchIcon, onSearchIconClick }) => {
     </div>
   }
 
-  return (
+  return <>
     <OpacityTransition in={showSearchIcon}>
       <div className={styles.control} onClick={onSearchIconClick}>
         <SearchIcon className={styles.searchIcon} />
       </div>
     </OpacityTransition>
-  )
+    <OpacityTransition in={!showSearchIcon}>
+      <div className={styles.control}>
+        <CrossIcon className={styles.crossIcon} />
+      </div>
+    </OpacityTransition>
+  </>
 }
 
 export default (props) => {
