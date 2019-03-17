@@ -43,7 +43,7 @@
   left: 1px;
 }
 
-.inputFocused {
+.focused .input {
   box-shadow: var(--shadow);
 }
 

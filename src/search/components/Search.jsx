@@ -11,11 +11,26 @@ const getSuggestionValue = spot => spot.name
 export default class Search extends Component {
   constructor () {
     super()
-    this.state = { suggestions: [] }
+    this.state = {
+      suggestions: [],
+      focused: false
+    }
   }
 
   onChange = (event, { newValue }) => {
     this.props.onChange(newValue)
+  }
+
+  onFocus = () => {
+    this.setState({
+      focused: true
+    })
+  }
+
+  onBlur = () => {
+    this.setState({
+      focused: false
+    })
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
@@ -36,7 +51,7 @@ export default class Search extends Component {
   }
 
   render () {
-    const { suggestions } = this.state
+    const { suggestions, focused } = this.state
     const { query, spotLoading, autoFocus, fat } = this.props
 
     const inputProps = {
@@ -44,11 +59,19 @@ export default class Search extends Component {
       value: query,
       disabled: spotLoading,
       onChange: this.onChange,
+      onFocus: this.onFocus,
+      onBlur: this.onBlur,
       autoFocus: autoFocus,
       spellCheck: false
     }
 
-    return <div className={classNames(styles.spaceHolder, { [styles.fat]: fat })}>
+    const spaceHolderClassNames = classNames({
+      [styles.spaceHolder]: true,
+      [styles.fat]: fat,
+      [styles.focused]: focused
+    })
+
+    return <div className={spaceHolderClassNames}>
       <Autosuggest
         ref={autosuggest => {
           if (autosuggest !== null) {
