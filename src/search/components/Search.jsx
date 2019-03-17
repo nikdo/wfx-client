@@ -66,6 +66,7 @@ export default class Search extends Component {
         renderInputComponent={inputProps => <SearchInput
           fat={fat}
           spotLoading={this.props.spotLoading}
+          showSearchIcon={!query.length}
           onSearchIconClick={() => this.input.focus()}
           inputProps={inputProps} />
         }

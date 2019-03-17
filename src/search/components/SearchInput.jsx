@@ -4,17 +4,26 @@ import { ReactComponent as SearchIcon } from './search.svg'
 import Spinner from '../../components/Spinner'
 import styles from './SearchInput.module.css'
 
-export default ({ fat, spotLoading, inputProps, onSearchIconClick }) => (
-  <div className={classNames(styles.inputContainer, { [styles.fat]: fat })}>
+const SearchControl = ({ spotLoading, showSearchIcon, onSearchIconClick }) => {
+  if (spotLoading) {
+    return <div className={styles.control}>
+      <Spinner inline />
+    </div>
+  }
+
+  if (showSearchIcon) {
+    return <div className={styles.control} onClick={onSearchIconClick}>
+      <SearchIcon className={styles.searchIcon} />
+    </div>
+  }
+
+  return null
+}
+
+export default (props) => {
+  const { fat, inputProps, ...controlProps } = props
+  return <div className={classNames(styles.inputContainer, { [styles.fat]: fat })}>
     <input {...inputProps} />
-    {spotLoading ? (
-      <div className={styles.control}>
-        <Spinner inline />
-      </div>
-    ) : (
-      <div className={styles.control} onClick={onSearchIconClick}>
-        <SearchIcon className={styles.searchIcon} />
-      </div>
-    )}
+    <SearchControl {...controlProps} />
   </div>
-)
+}
