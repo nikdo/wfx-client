@@ -40,7 +40,7 @@ export default class Search extends Component {
     const { query, spotLoading, autoFocus, fat } = this.props
 
     const inputProps = {
-      placeholder: 'Find spot',
+      placeholder: fat ? 'Find spot' : undefined,
       value: query,
       disabled: spotLoading,
       onChange: this.onChange,
