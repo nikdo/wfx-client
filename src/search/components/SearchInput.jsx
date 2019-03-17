@@ -1,30 +1,48 @@
 import React from 'react'
 import classNames from 'classnames'
 import { ReactComponent as SearchIcon } from './search.svg'
+import { ReactComponent as CrossIcon } from './cross.svg'
 import OpacityTransition from '../../components/OpacityTransition'
 import Spinner from '../../components/Spinner'
 import styles from './SearchInput.module.css'
 
-const SearchControl = ({ spotLoading, showSearchIcon, onSearchIconClick }) => {
+const SearchControl = ({ spotLoading, showSearchIcon, onSearchClick, onCancelClick }) => {
   if (spotLoading) {
-    return <div className={styles.control}>
-      <Spinner inline />
-    </div>
+    return <Spinner inline />
   }
 
-  return (
+  return <>
     <OpacityTransition in={showSearchIcon}>
-      <div className={styles.control} onClick={onSearchIconClick}>
-        <SearchIcon className={styles.searchIcon} />
-      </div>
+      <a href='#'
+        className={styles.search}
+        onClick={(e) => {
+          e.preventDefault()
+          onSearchClick()
+        }}
+      >
+        <SearchIcon />
+      </a>
     </OpacityTransition>
-  )
+    <OpacityTransition in={!showSearchIcon}>
+      <a href='#'
+        className={styles.cancel}
+        onClick={(e) => {
+          e.preventDefault()
+          onCancelClick()
+        }}
+      >
+        <CrossIcon />
+      </a>
+    </OpacityTransition>
+  </>
 }
 
 export default (props) => {
   const { fat, inputProps, ...controlProps } = props
   return <div className={classNames(styles.inputContainer, { [styles.fat]: fat })}>
     <input {...inputProps} />
-    <SearchControl {...controlProps} />
+    <div className={styles.control}>
+      <SearchControl {...controlProps} />
+    </div>
   </div>
 }

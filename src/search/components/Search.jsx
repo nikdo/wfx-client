@@ -33,6 +33,17 @@ export default class Search extends Component {
     })
   }
 
+  onKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      this.input.blur()
+      this.onCancel()
+    }
+  }
+
+  onCancel = () => {
+    this.props.onChange('')
+  }
+
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: searchSpot(this.props.spots, value)
@@ -61,6 +72,7 @@ export default class Search extends Component {
       onChange: this.onChange,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
+      onKeyDown: this.onKeyDown,
       autoFocus: autoFocus,
       spellCheck: false
     }
@@ -90,7 +102,8 @@ export default class Search extends Component {
           fat={fat}
           spotLoading={this.props.spotLoading}
           showSearchIcon={!query.length}
-          onSearchIconClick={() => this.input.focus()}
+          onSearchClick={() => this.input.focus()}
+          onCancelClick={this.onCancel}
           inputProps={inputProps} />
         }
         renderSuggestion={spot => <SearchSuggestion spot={spot} />}
