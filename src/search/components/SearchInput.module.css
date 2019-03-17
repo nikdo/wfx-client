@@ -31,3 +31,21 @@ svg.searchIcon {
   width: 22px;
   height: 22px;
 }
+
+.enter {
+  opacity: 0.01;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: all 300ms ease-out;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0.01;
+  transition: all 300ms ease-out;
+}

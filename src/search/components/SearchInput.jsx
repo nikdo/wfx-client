@@ -1,4 +1,5 @@
 import React from 'react'
+import { CSSTransition } from 'react-transition-group'
 import classNames from 'classnames'
 import { ReactComponent as SearchIcon } from './search.svg'
 import Spinner from '../../components/Spinner'
@@ -11,13 +12,18 @@ const SearchControl = ({ spotLoading, showSearchIcon, onSearchIconClick }) => {
     </div>
   }
 
-  if (showSearchIcon) {
-    return <div className={styles.control} onClick={onSearchIconClick}>
-      <SearchIcon className={styles.searchIcon} />
-    </div>
-  }
-
-  return null
+  return (
+    <CSSTransition
+      in={showSearchIcon}
+      classNames={styles}
+      unmountOnExit
+      timeout={300}
+    >
+      <div className={styles.control} onClick={onSearchIconClick}>
+        <SearchIcon className={styles.searchIcon} />
+      </div>
+    </CSSTransition>
+  )
 }
 
 export default (props) => {
