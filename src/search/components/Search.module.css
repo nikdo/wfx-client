@@ -1,24 +1,3 @@
-:root {
-  --input-border-width: 1px;
-  --input-border-radius: 3px;
-  --input-vertical-padding: calc(var(--baseline) / 4);
-  --input-fat-vertical-padding: calc(var(--baseline) / 3);
-  --input-horizontal-padding: calc(var(--baseline) / 2);
-  --input-padding: var(--input-vertical-padding) var(--input-horizontal-padding);
-  --input-fat-padding: var(--input-fat-vertical-padding) var(--input-horizontal-padding);
-  --input-height: calc(
-    (2 * var(--input-border-width)) +
-    (2 * var(--input-vertical-padding)) +
-    (var(--line-height) * var(--font-size-base))
-  );
-  --input-fat-height: calc(
-    (2 * var(--input-border-width)) +
-    (2 * var(--input-fat-vertical-padding)) +
-    (var(--line-height) * var(--font-size-large))
-  );
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
 /* Space holder is here to help achieve shadow for both input and dropdown
    while keeping the dropdown absolutely positioned above content.
    https://github.com/nikdo/wind-alert/issues/4#issuecomment-469870444
