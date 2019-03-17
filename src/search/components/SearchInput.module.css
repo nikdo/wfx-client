@@ -43,6 +43,11 @@ a.cancel svg {
   width: 12px;
   height: 12px;
   fill: var(--color-border);
+  transition: fill var(--transition-duration) ease-out;
+}
+
+a.cancel:hover svg {
+  fill: var(--color-highlight);
 }
 
 .fat a.search svg {
