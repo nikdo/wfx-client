@@ -33,6 +33,13 @@ export default class Search extends Component {
     })
   }
 
+  onKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      this.input.blur()
+      this.onCancel()
+    }
+  }
+
   onCancel = () => {
     this.props.onChange('')
   }
@@ -65,6 +72,7 @@ export default class Search extends Component {
       onChange: this.onChange,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
+      onKeyDown: this.onKeyDown,
       autoFocus: autoFocus,
       spellCheck: false
     }
