@@ -1,17 +1,21 @@
 .enter {
   opacity: 0.01;
+  transform: scale(0.6);
 }
 
 .enterActive {
   opacity: 1;
-  transition: opacity var(--transition-duration) ease-out;
+  transform: scale(1);
+  transition: all var(--transition-duration) ease-out;
 }
 
 .exit {
   opacity: 1;
+  transform: scale(1);
 }
 
 .exitActive {
   opacity: 0.01;
-  transition: opacity var(--transition-duration) ease-out;
+  transform: scale(0.6);
+  transition: all var(--transition-duration) ease-out;
 }
