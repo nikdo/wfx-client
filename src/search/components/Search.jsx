@@ -33,6 +33,10 @@ export default class Search extends Component {
     })
   }
 
+  onCancel = () => {
+    this.props.onChange('')
+  }
+
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: searchSpot(this.props.spots, value)
@@ -90,7 +94,8 @@ export default class Search extends Component {
           fat={fat}
           spotLoading={this.props.spotLoading}
           showSearchIcon={!query.length}
-          onSearchIconClick={() => this.input.focus()}
+          onSearchClick={() => this.input.focus()}
+          onCancelClick={this.onCancel}
           inputProps={inputProps} />
         }
         renderSuggestion={spot => <SearchSuggestion spot={spot} />}

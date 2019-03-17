@@ -6,7 +6,7 @@ import OpacityTransition from '../../components/OpacityTransition'
 import Spinner from '../../components/Spinner'
 import styles from './SearchInput.module.css'
 
-const SearchControl = ({ spotLoading, showSearchIcon, onSearchIconClick }) => {
+const SearchControl = ({ spotLoading, showSearchIcon, onSearchClick, onCancelClick }) => {
   if (spotLoading) {
     return <Spinner inline />
   }
@@ -17,7 +17,7 @@ const SearchControl = ({ spotLoading, showSearchIcon, onSearchIconClick }) => {
         className={styles.search}
         onClick={(e) => {
           e.preventDefault()
-          onSearchIconClick()
+          onSearchClick()
         }}
       >
         <SearchIcon />
@@ -28,6 +28,7 @@ const SearchControl = ({ spotLoading, showSearchIcon, onSearchIconClick }) => {
         className={styles.cancel}
         onClick={(e) => {
           e.preventDefault()
+          onCancelClick()
         }}
       >
         <CrossIcon />
