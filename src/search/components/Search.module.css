@@ -24,6 +24,7 @@
   border: var(--input-border-width) solid var(--color-border);
   border-radius: var(--input-border-radius);
   background-color: var(--color-background);
+  transition: box-shadow var(--transition-duration) ease-out;
 }
 
 .focused .container {
