@@ -9,7 +9,7 @@ export default ({ fat, spotLoading, inputProps, onSearchIconClick }) => (
     <input {...inputProps} />
     {spotLoading ? (
       <div className={styles.control}>
-        <Spinner inline className={styles.spinner} />
+        <Spinner inline />
       </div>
     ) : (
       <div className={styles.control} onClick={onSearchIconClick}>

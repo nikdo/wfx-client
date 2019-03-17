@@ -1,9 +1,8 @@
 import React from 'react'
-import classNames from 'classnames'
 import styles from './Spinner.module.css'
 
 // https://codepen.io/supah/pen/BjYLdW
-export default ({ inline = false, className }) => {
+export default ({ inline = false }) => {
   const position = inline
     ? {
       width: 25,
@@ -20,7 +19,7 @@ export default ({ inline = false, className }) => {
     }
   const strokeWidth = inline ? 6 : 4
   return <svg
-    className={classNames(styles.spinner, className)}
+    className={styles.spinner}
     viewBox='0 0 50 50'
     style={position}
   >
