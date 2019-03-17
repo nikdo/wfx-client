@@ -18,7 +18,11 @@ export default ({ inline = false }) => {
       marginTop: -25
     }
   const strokeWidth = inline ? 6 : 4
-  return <svg className={styles.spinner} viewBox='0 0 50 50' style={position}>
+  return <svg
+    className={styles.spinner}
+    viewBox='0 0 50 50'
+    style={position}
+  >
     <linearGradient id='gradient'>
       <stop offset='0%' stopColor='#476FB8' />
       <stop offset='100%' stopColor='#5657AE' />

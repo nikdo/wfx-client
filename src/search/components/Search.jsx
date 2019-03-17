@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Autosuggest from 'react-autosuggest'
 import classNames from 'classnames'
 import searchSpot from '../searchSpot'
+import SearchInput from './SearchInput'
 import SearchSuggestion from './SearchSuggestion'
-import Spinner from './Spinner'
 import styles from './Search.module.css'
 
 const getSuggestionValue = spot => spot.name
@@ -11,11 +11,26 @@ const getSuggestionValue = spot => spot.name
 export default class Search extends Component {
   constructor () {
     super()
-    this.state = { suggestions: [] }
+    this.state = {
+      suggestions: [],
+      focused: false
+    }
   }
 
   onChange = (event, { newValue }) => {
     this.props.onChange(newValue)
+  }
+
+  onFocus = () => {
+    this.setState({
+      focused: true
+    })
+  }
+
+  onBlur = () => {
+    this.setState({
+      focused: false
+    })
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
@@ -35,45 +50,50 @@ export default class Search extends Component {
     this.props.onSpotSelected(suggestion._id)
   }
 
-  renderInputComponent = inputProps => (
-    <div className={styles.inputContainer}>
-      <input {...inputProps} />
-      {this.props.spotLoading &&
-        <Spinner inline />
-      }
-    </div>
-  )
-
   render () {
-    const { suggestions } = this.state
+    const { suggestions, focused } = this.state
     const { query, spotLoading, autoFocus, fat } = this.props
 
     const inputProps = {
-      placeholder: 'Find spot',
+      placeholder: fat ? 'Find spot' : undefined,
       value: query,
       disabled: spotLoading,
       onChange: this.onChange,
+      onFocus: this.onFocus,
+      onBlur: this.onBlur,
       autoFocus: autoFocus,
       spellCheck: false
     }
 
-    return <div className={classNames(styles.spaceHolder, { [styles.fat]: fat })}>
+    const spaceHolderClassNames = classNames({
+      [styles.spaceHolder]: true,
+      [styles.fat]: fat,
+      [styles.focused]: focused
+    })
+
+    return <div className={spaceHolderClassNames}>
       <Autosuggest
-        highlightFirstSuggestion
         ref={autosuggest => {
           if (autosuggest !== null) {
             this.input = autosuggest.input
           }
         }}
+        highlightFirstSuggestion
         focusInputOnSuggestionClick={false}
-        suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         onSuggestionSelected={this.onSuggestionSelected}
-        renderInputComponent={this.renderInputComponent}
+        suggestions={suggestions}
         getSuggestionValue={getSuggestionValue}
-        renderSuggestion={spot => <SearchSuggestion spot={spot} />}
         inputProps={inputProps}
+        renderInputComponent={inputProps => <SearchInput
+          fat={fat}
+          spotLoading={this.props.spotLoading}
+          showSearchIcon={!query.length}
+          onSearchIconClick={() => this.input.focus()}
+          inputProps={inputProps} />
+        }
+        renderSuggestion={spot => <SearchSuggestion spot={spot} />}
         theme={styles}
       />
     </div>

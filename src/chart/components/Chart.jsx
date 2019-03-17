@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import transform from './transformations/transform'
-import windChart from '../charts/windChart'
+import transform from '../transformations/transform'
+import windChart from '../visuals/windChart'
 import styles from './Chart.module.css'
 
 export default class Chart extends Component {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchSpotDetail, searchQueryChange } from '../actions'
+import { fetchSpotDetail } from '../../actions'
+import { searchQueryChange } from '../reducer'
 import Search from '../components/Search'
 
 class SearchContainer extends Component {

@@ -56,6 +56,28 @@
   --color-level-7-text: hsl(346, 100%, 40%);
   --color-level-8-text: hsl(336, 38%, 35%);
 
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  --transition-duration: 200ms;
+
+  --input-border-width: 1px;
+  --input-border-radius: 3px;
+  --input-vertical-padding: calc(var(--baseline) / 4);
+  --input-fat-vertical-padding: calc(var(--baseline) / 3);
+  --input-horizontal-padding: calc(var(--baseline) / 2);
+  --input-padding: var(--input-vertical-padding) var(--input-horizontal-padding);
+  --input-fat-padding: var(--input-fat-vertical-padding) var(--input-horizontal-padding);
+  --input-height: calc(
+    (2 * var(--input-border-width)) +
+    (2 * var(--input-vertical-padding)) +
+    (var(--line-height) * var(--font-size-base))
+  );
+  --input-fat-height: calc(
+    (2 * var(--input-border-width)) +
+    (2 * var(--input-fat-vertical-padding)) +
+    (var(--line-height) * var(--font-size-large))
+  );
+
   /*
   @custom-media --phone-portrait (width <= 440px);
   @custom-media --phone (width <= 700px);

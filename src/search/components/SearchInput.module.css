@@ -1,0 +1,33 @@
+.inputContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.inputContainer .control {
+  position: absolute;
+  right: calc(var(--input-border-radius) / 2);
+  width: var(--input-height);
+  height: var(--input-height);
+  display: grid;
+}
+
+.inputContainer.fat .control {
+  width: var(--input-fat-height);
+  height: var(--input-fat-height);
+}
+
+.control > * {
+  margin: auto;
+}
+
+svg.searchIcon {
+  width: 18px;
+  height: 18px;
+  fill: var(--color-border);
+}
+
+.fat svg.searchIcon {
+  width: 22px;
+  height: 22px;
+}
