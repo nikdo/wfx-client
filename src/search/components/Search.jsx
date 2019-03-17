@@ -64,6 +64,7 @@ export default class Search extends Component {
         getSuggestionValue={getSuggestionValue}
         inputProps={inputProps}
         renderInputComponent={inputProps => <SearchInput
+          fat={fat}
           spotLoading={this.props.spotLoading}
           inputProps={inputProps} />
         }
