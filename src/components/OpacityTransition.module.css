@@ -1,0 +1,17 @@
+.enter {
+  opacity: 0.01;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: all var(--transition-duration) ease-out;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0.01;
+  transition: all var(--transition-duration) ease-out;
+}

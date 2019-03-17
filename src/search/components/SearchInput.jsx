@@ -1,7 +1,7 @@
 import React from 'react'
-import { CSSTransition } from 'react-transition-group'
 import classNames from 'classnames'
 import { ReactComponent as SearchIcon } from './search.svg'
+import OpacityTransition from '../../components/OpacityTransition'
 import Spinner from '../../components/Spinner'
 import styles from './SearchInput.module.css'
 
@@ -13,16 +13,11 @@ const SearchControl = ({ spotLoading, showSearchIcon, onSearchIconClick }) => {
   }
 
   return (
-    <CSSTransition
-      in={showSearchIcon}
-      classNames={styles}
-      unmountOnExit
-      timeout={300}
-    >
+    <OpacityTransition in={showSearchIcon}>
       <div className={styles.control} onClick={onSearchIconClick}>
         <SearchIcon className={styles.searchIcon} />
       </div>
-    </CSSTransition>
+    </OpacityTransition>
   )
 }
 
