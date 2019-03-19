@@ -3,7 +3,7 @@ import SearchContainer from '../search/containers/Search'
 import styles from './Home.module.css'
 
 export default () => {
-  return <section className={styles.search}>
+  return <header className={styles.header}>
     <SearchContainer autoFocus fat />
-  </section>
+  </header>
 }
