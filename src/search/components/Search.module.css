@@ -52,7 +52,7 @@
 .suggestionsContainer {
   --suggestion-approximate-height: calc(2.5 * var(--baseline));
   max-height: calc(4.5 * var(--suggestion-approximate-height));
-  overflow: scroll;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
 
