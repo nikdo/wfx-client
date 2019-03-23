@@ -13,7 +13,7 @@ const SearchControl = ({ spotLoading, showSearchIcon, onSearchClick, onCancelCli
 
   return <>
     <OpacityTransition in={showSearchIcon}>
-      <a href='#'
+      <span
         className={styles.search}
         onClick={(e) => {
           e.preventDefault()
@@ -21,10 +21,10 @@ const SearchControl = ({ spotLoading, showSearchIcon, onSearchClick, onCancelCli
         }}
       >
         <SearchIcon />
-      </a>
+      </span>
     </OpacityTransition>
     <OpacityTransition in={!showSearchIcon}>
-      <a href='#'
+      <span
         className={styles.cancel}
         onClick={(e) => {
           e.preventDefault()
@@ -32,7 +32,7 @@ const SearchControl = ({ spotLoading, showSearchIcon, onSearchClick, onCancelCli
         }}
       >
         <CrossIcon />
-      </a>
+      </span>
     </OpacityTransition>
   </>
 }
