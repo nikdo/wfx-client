@@ -82,7 +82,7 @@
   --transition-duration: 200ms;
 
   --input-border-width: 1px;
-  --input-border-radius: 3px;
+  --input-border-radius: 4px;
   --input-vertical-padding: calc(var(--baseline) / 4);
   --input-fat-vertical-padding: calc(var(--baseline) / 3);
   --input-horizontal-padding: calc(var(--baseline) / 2);
