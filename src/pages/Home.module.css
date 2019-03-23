@@ -10,7 +10,7 @@
   text-align: center;
   font-size: var(--logo-font-size);
   letter-spacing: -1.6px;
-  margin-top: calc(4 * var(--baseline));
+  margin-top: 20vh;
   line-height: calc(3 * var(--baseline));
   cursor: default;
   white-space: nowrap;
@@ -33,6 +33,7 @@
 @media (width > 700px) {
   .header h1 {
     font-size: var(--logo-desktop-font-size);
+    margin-top: calc(4 * var(--baseline));
   }
 
   .header h1 svg {
