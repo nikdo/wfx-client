@@ -45,7 +45,6 @@
 .fat .control svg {
   width: 24px;
   height: 24px;
-  fill: var(--color-text-inverted);
 }
 
 span.cancel svg {
@@ -56,10 +55,11 @@ span.cancel:hover svg {
   fill: var(--color-highlight);
 }
 
+.fat span.cancel svg,
 .fat span.cancel:hover svg {
   fill: var(--color-text-inverted);
 }
 
 .fat span.search svg {
-  opacity: 0.6;
+  fill: var(--color-secondary-text-inverted);
 }

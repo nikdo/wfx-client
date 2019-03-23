@@ -49,6 +49,10 @@
   padding: var(--input-padding);
 }
 
+.fat .input:disabled {
+  color: var(--color-secondary-text-inverted);
+}
+
 .fat .input {
   font-size: var(--font-size-large);
   padding: var(--input-fat-padding);
@@ -60,8 +64,7 @@
 }
 
 .fat .input::placeholder {
-  color: var(--color-text-inverted);
-  opacity: 0.6;
+  color: var(--color-secondary-text-inverted);
 }
 
 .suggestionsContainer {
