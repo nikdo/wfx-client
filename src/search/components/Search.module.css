@@ -23,12 +23,16 @@
   box-sizing: border-box;
   border: var(--input-border-width) solid var(--color-border);
   border-radius: var(--input-border-radius);
-  background-color: var(--color-background);
   transition: box-shadow var(--transition-duration) ease-out;
+  overflow: hidden;
 }
 
 .focused .container {
   box-shadow: var(--shadow);
+}
+
+.fat .container {
+  border-color: var(--color-border-inverted);
 }
 
 .input {
@@ -49,15 +53,25 @@
   left: 1px;
 }
 
+.fat .input::placeholder {
+  color: var(--color-text-inverted);
+  opacity: 0.6;
+}
+
 .suggestionsContainer {
   --suggestion-approximate-height: calc(2.5 * var(--baseline));
   max-height: calc(4.5 * var(--suggestion-approximate-height));
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  background-color: var(--color-background);
 }
 
 .suggestionsContainerOpen {
   border-top: var(--input-border-width) solid var(--color-border);
+}
+
+.fat .suggestionsContainerOpen {
+  border-top-color: var(--color-border-inverted);
 }
 
 ul.suggestionsList {

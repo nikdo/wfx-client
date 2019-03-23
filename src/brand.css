@@ -31,8 +31,10 @@
   --color-text: var(--color-mine-shaft);
   --color-text-inverted: var(--color-romance);
   --color-background: var(--color-romance);
+  --color-background-semi-transparent: hsla(60, 25%, 98%, 0.2); /* romance + alpha */
   --color-secondary-text: var(--color-mountain-mist);
   --color-border: var(--color-mountain-mist);
+  --color-border-inverted: var(--color-text-inverted);
   --color-line: var(--color-mercury);
   --color-selected: var(--color-mercury);
   --color-highlight: var(--color-san-marino);
