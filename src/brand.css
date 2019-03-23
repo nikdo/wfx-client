@@ -10,9 +10,10 @@
   --font-weight-bold: 600;
 
   /* https://www.modularscale.com/?16,18&px&1.333 */
+  --h1-font-size-fat: 54px;
   --h1-font-size: 28px;
-  --h1-line-height: 32px;
   --h1-font-weight: 400;
+  --h1-line-height: 32px;
 
   /* https://www.modularscale.com/?16,20&px&1.5 */
   --h1-desktop-font-size: 36px;
@@ -26,6 +27,7 @@
   --color-san-marino:    #476FB8;
 
   --color-text: var(--color-mine-shaft);
+  --color-text-inverted: var(--color-romance);
   --color-background: var(--color-romance);
   --color-secondary-text: var(--color-mountain-mist);
   --color-border: var(--color-mountain-mist);
