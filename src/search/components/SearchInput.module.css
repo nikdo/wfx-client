@@ -55,3 +55,7 @@ span.cancel:hover svg {
 .fat span.cancel:hover svg {
   fill: var(--color-text-inverted);
 }
+
+.fat span.search svg {
+  opacity: 0.6;
+}
