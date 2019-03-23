@@ -9,8 +9,10 @@
 
   --font-weight-bold: 600;
 
+  --logo-font-size: 43px;
+  --logo-desktop-font-size: 54px;
+
   /* https://www.modularscale.com/?16,18&px&1.333 */
-  --h1-font-size-fat: 54px;
   --h1-font-size: 28px;
   --h1-font-weight: 400;
   --h1-line-height: 32px;

@@ -8,7 +8,7 @@
 .header h1 {
   color: var(--color-text-inverted);
   text-align: center;
-  font-size: var(--h1-font-size-fat);
+  font-size: var(--logo-font-size);
   letter-spacing: -1.6px;
   margin-top: calc(4 * var(--baseline));
   line-height: calc(3 * var(--baseline));
@@ -21,11 +21,22 @@
 }
 
 .header h1 svg {
-  width: 49px;
-  height: 49px;
+  width: 40px;
+  height: 40px;
   fill: var(--color-text-inverted);
 }
 
 .header .search {
   margin: calc(2 * var(--baseline)) auto 0;
+}
+
+@media (width > 700px) {
+  .header h1 {
+    font-size: var(--logo-desktop-font-size);
+  }
+
+  .header h1 svg {
+    width: 49px;
+    height: 49px;
+  }
 }
