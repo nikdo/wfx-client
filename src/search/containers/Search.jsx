@@ -6,10 +6,11 @@ import Search from '../components/Search'
 
 class SearchContainer extends Component {
   render () {
-    const { autoFocus, fat, spots, searchQuery, spotLoading } = this.props
+    const { autoFocus, fat, className, spots, searchQuery, spotLoading } = this.props
     return <Search
       autoFocus={autoFocus}
       fat={fat}
+      className={className}
       onSpotSelected={id => fetchSpotDetail(this.props.dispatch, id)}
       spots={spots}
       query={searchQuery}

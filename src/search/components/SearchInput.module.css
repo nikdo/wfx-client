@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   position: relative;
+  color: var(--color-text-inverted);
+  background-color: var(--color-background-semi-transparent);
 }
 
 .control {
@@ -17,7 +19,7 @@
   height: var(--input-fat-height);
 }
 
-.control > a {
+.control > span {
   width: 100%;
   height: 100%;
   display: grid;
@@ -25,37 +27,35 @@
   position: absolute;
 }
 
+.control span.cancel {
+  cursor: pointer;
+}
+
 .control svg {
   margin: auto;
-}
-
-a.search {
-  cursor: default;
-}
-
-a.search svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   fill: var(--color-border);
 }
 
-a.cancel svg {
-  width: 12px;
-  height: 12px;
-  fill: var(--color-border);
+.fat .control svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-text-inverted);
+}
+
+span.cancel svg {
   transition: fill var(--transition-duration) ease-out;
 }
 
-a.cancel:hover svg {
+span.cancel:hover svg {
   fill: var(--color-highlight);
 }
 
-.fat a.search svg {
-  width: 22px;
-  height: 22px;
+.fat span.cancel:hover svg {
+  fill: var(--color-text-inverted);
 }
 
-.fat a.cancel svg {
-  width: 15px;
-  height: 15px;
+.fat span.search svg {
+  opacity: 0.6;
 }

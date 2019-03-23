@@ -63,7 +63,7 @@ export default class Search extends Component {
 
   render () {
     const { suggestions, focused } = this.state
-    const { query, spotLoading, autoFocus, fat } = this.props
+    const { query, spotLoading, autoFocus, fat, className } = this.props
 
     const inputProps = {
       placeholder: fat ? 'Find spot' : undefined,
@@ -80,7 +80,8 @@ export default class Search extends Component {
     const spaceHolderClassNames = classNames({
       [styles.spaceHolder]: true,
       [styles.fat]: fat,
-      [styles.focused]: focused
+      [styles.focused]: focused,
+      [className]: className
     })
 
     return <div className={spaceHolderClassNames}>
