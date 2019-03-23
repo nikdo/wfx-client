@@ -5,6 +5,6 @@ import styles from './Home.module.css'
 export default () => {
   return <header className={styles.header}>
     <h1>Wind Freaks</h1>
-    <SearchContainer autoFocus fat />
+    <SearchContainer className={styles.search} autoFocus fat />
   </header>
 }
