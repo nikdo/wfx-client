@@ -6,9 +6,9 @@ import OpacityTransition from '../../components/OpacityTransition'
 import Spinner from '../../components/Spinner'
 import styles from './SearchInput.module.css'
 
-const SearchControl = ({ spotLoading, showSearchIcon, onSearchClick, onCancelClick }) => {
+const SearchControl = ({ spotLoading, fat, showSearchIcon, onSearchClick, onCancelClick }) => {
   if (spotLoading) {
-    return <Spinner inline />
+    return <Spinner inline inverted={fat} />
   }
 
   return <>
@@ -38,8 +38,8 @@ const SearchControl = ({ spotLoading, showSearchIcon, onSearchClick, onCancelCli
 }
 
 export default (props) => {
-  const { fat, inputProps, ...controlProps } = props
-  return <div className={classNames(styles.inputContainer, { [styles.fat]: fat })}>
+  const { inputProps, ...controlProps } = props
+  return <div className={classNames(styles.inputContainer, { [styles.fat]: props.fat })}>
     <input {...inputProps} />
     <div className={styles.control}>
       <SearchControl {...controlProps} />
