@@ -44,13 +44,13 @@
   --gradient-background: linear-gradient(
     120deg,
     var(--color-gradient-start),
-    var(--color-gradient-end) 80%
+    var(--color-gradient-end) 70%
   );
 
   --gradient-background-vertical: linear-gradient(
     150deg,
     var(--color-gradient-start),
-    var(--color-gradient-end) 80%
+    var(--color-gradient-end) 50%
   );
 
   --gradient-selected: linear-gradient(
