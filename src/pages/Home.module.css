@@ -41,3 +41,9 @@
     height: 49px;
   }
 }
+
+@media (orientation: portrait) {
+  .header {
+    background: var(--gradient-background-vertical);
+  }
+}

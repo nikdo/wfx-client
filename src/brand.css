@@ -36,11 +36,19 @@
   --color-line: var(--color-mercury);
   --color-selected: var(--color-mercury);
   --color-highlight: var(--color-san-marino);
+  --color-gradient-start: hsla(239, 35%, 51%, 0.83); /* blue-violet + alpha */
+  --color-gradient-end: hsla(219, 44%, 50%, 0.83); /* san-marino + alpha */
 
   --gradient-background: linear-gradient(
     120deg,
-    hsla(239, 35%, 51%, 0.83), /* blue-violet + alpha */
-    hsla(219, 44%, 50%, 0.83) 80%  /* san-marino + alpha */
+    var(--color-gradient-start),
+    var(--color-gradient-end) 80%
+  );
+
+  --gradient-background-vertical: linear-gradient(
+    150deg,
+    var(--color-gradient-start),
+    var(--color-gradient-end) 80%
   );
 
   --gradient-selected: linear-gradient(
