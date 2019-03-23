@@ -1,5 +1,9 @@
 .header {
+  height: 100vh;
   padding-top: 30vh;
+  box-sizing: border-box;
+  background: var(--gradient-background);
+  max-width: none;
 }
 
 .header > * {
