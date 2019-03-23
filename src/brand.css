@@ -33,6 +33,7 @@
   --color-background: var(--color-romance);
   --color-background-semi-transparent: hsla(60, 25%, 98%, 0.2); /* romance + alpha */
   --color-secondary-text: var(--color-mountain-mist);
+  --color-secondary-text-inverted: hsla(60, 25%, 98%, 0.6); /* romance + alpha */
   --color-border: var(--color-mountain-mist);
   --color-border-inverted: var(--color-text-inverted);
   --color-line: var(--color-mercury);
