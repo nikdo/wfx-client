@@ -13,6 +13,7 @@
   margin-top: calc(4 * var(--baseline));
   line-height: calc(3 * var(--baseline));
   cursor: default;
+  white-space: nowrap;
 }
 
 .header h1 > * {
