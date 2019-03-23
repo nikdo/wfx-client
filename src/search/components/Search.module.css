@@ -27,12 +27,16 @@
   overflow: hidden;
 }
 
+.fat .container {
+  border-color: var(--color-border-inverted);
+}
+
 .focused .container {
   box-shadow: var(--shadow);
 }
 
-.fat .container {
-  border-color: var(--color-border-inverted);
+.fat.focused .container {
+  box-shadow: var(--fat-shadow);
 }
 
 .input {
