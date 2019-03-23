@@ -24,7 +24,7 @@ export default ({ inline = false }) => {
     style={position}
   >
     <linearGradient id='gradient'>
-      <stop offset='0%' stopColor='#476FB8' />
+      <stop offset='30%' stopColor='#476FB8' />
       <stop offset='100%' stopColor='#5657AE' />
     </linearGradient>
     <circle
