@@ -42,8 +42,8 @@
     "parser": "babel-eslint"
   },
   "engines": {
-    "node": "10.15.0",
-    "yarn": "1.13.0"
+    "node": "11.12.0",
+    "yarn": "1.15.2"
   },
   "browserslist": [
     ">0.2%",
