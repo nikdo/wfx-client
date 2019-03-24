@@ -30,6 +30,10 @@
   margin: calc(2 * var(--baseline)) auto 0;
 }
 
+.header .attribution {
+  text-align: center;
+}
+
 @media (width > 700px) {
   .header h1 {
     font-size: var(--logo-desktop-font-size);
