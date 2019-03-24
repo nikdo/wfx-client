@@ -1,11 +1,18 @@
 import React from 'react'
-import { ReactComponent as DarkSkyLogo } from '../img/dark-sky.svg'
+import classNames from 'classnames'
 import styles from './Attribution.module.css'
+import logo1x from '../img/dark-sky@1x.png'
+import logo2x from '../img/dark-sky@2x.png'
+import logo3x from '../img/dark-sky@3x.png'
 
-export default () => (
-  <footer className={styles.attribution}>
+export default ({ className }) => (
+  <section className={classNames(styles.attribution, className)}>
     <a href='https://darksky.net/poweredby/'>
-      <DarkSkyLogo height='17' width='13' />&nbsp;<span>Powered by Dark Sky</span>
+      <img
+        srcSet={`${logo1x}, ${logo2x} 2x, ${logo3x} 3x`}
+        src={logo3x}
+        alt='Powered by Dark Sky'
+      />
     </a>
-  </footer>
+  </section>
 )

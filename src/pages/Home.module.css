@@ -1,8 +1,11 @@
 .header {
   height: 100vh;
-  overflow: auto; /* https://stackoverflow.com/a/13573739/5763764 */
-  background: var(--gradient-background);
   max-width: none;
+  box-sizing: border-box;
+  padding-bottom: calc(2 * var(--baseline));
+  background: var(--gradient-background);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 .header h1 {
@@ -28,6 +31,10 @@
 
 .header .search {
   margin: calc(2 * var(--baseline)) auto 0;
+}
+
+.header .attribution {
+  text-align: center;
 }
 
 @media (width > 700px) {
