@@ -9,7 +9,7 @@ const newTab = {
   rel: 'noopener noreferrer'
 }
 
-export default ({ lat, lng, windguruId }) => (
+export default ({ lat, lng, windguruId, windfinderId }) => (
   <section className='layout-section'>
     <p>Other forecasts:</p>
     <ul className={styles.links}>
@@ -25,11 +25,13 @@ export default ({ lat, lng, windguruId }) => (
           </a>
         </li>
       }
-      <li>
-        <a href='https://www.windfinder.com/' title='Windfinder' {...newTab}>
-          <WindfinderLogo />
-        </a>
-      </li>
+      {windfinderId &&
+        <li>
+          <a href={`https://www.windfinder.com/forecast/${windfinderId}`} title='Windfinder' {...newTab}>
+            <WindfinderLogo />
+          </a>
+        </li>
+      }
     </ul>
   </section>
 )

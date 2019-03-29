@@ -12,7 +12,8 @@ export default ({ spotDetail }) => <>
     <OtherForecasts
       lat={spotDetail.lat}
       lng={spotDetail.lng}
-      windguruId={spotDetail.forecasts.Windguru}
+      windguruId={spotDetail.forecasts && spotDetail.forecasts.Windguru}
+      windfinderId={spotDetail.forecasts && spotDetail.forecasts.Windfinder}
     />
   </main>
 </>
