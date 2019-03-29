@@ -9,6 +9,6 @@ export default ({ spotDetail }) => <>
   <main>
     <SpotTitle spot={spotDetail} />
     <Chart spotId={spotDetail._id} forecast={spotDetail.forecast} />
-    <OtherForecasts />
+    <OtherForecasts lat={spotDetail.lat} lng={spotDetail.lng} />
   </main>
 </>

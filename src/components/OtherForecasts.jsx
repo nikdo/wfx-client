@@ -9,12 +9,12 @@ const newTab = {
   rel: 'noopener noreferrer'
 }
 
-export default () => (
+export default ({ lat, lng }) => (
   <section className='layout-section'>
     <p>Other forecasts:</p>
     <ul className={styles.links}>
       <li>
-        <a href='https://www.windy.com/' title='Windy' {...newTab}>
+        <a href={`https://www.windy.com/${lat}/${lng}`} title='Windy' {...newTab}>
           <WindyLogo />
         </a>
       </li>
