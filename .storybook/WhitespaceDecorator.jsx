@@ -6,8 +6,8 @@ export default ({ inverted } = { inverted: false }) => storyFn => {
     background: inverted
       ? `linear-gradient(
         120deg,
-        hsla(239, 35%, 51%, 0.83),
-        hsla(219, 44%, 50%, 0.83) 70%
+        #7172BA,
+        #6586C3 70%
       )`
       : 'transparent'
   }
