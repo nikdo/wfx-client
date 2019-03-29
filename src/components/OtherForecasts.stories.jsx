@@ -4,7 +4,8 @@ import OtherForecasts from './OtherForecasts'
 
 const defaultProps = {
   lat: 43.406544,
-  lng: 4.589882
+  lng: 4.589882,
+  windguruId: 48606
 }
 
 storiesOf('OtherForecasts', module)
