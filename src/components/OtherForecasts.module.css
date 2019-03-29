@@ -2,35 +2,50 @@
   --forecast-icon-dimension: calc(1.5 * var(--baseline));
 }
 
-ul.links {
+.forecasts ul {
   list-style: none;
-  margin: calc(var(--baseline) / 3) 0 0;
+  /* -3px: compensate 1st icon whitespace (click target area) */
+  margin: calc(var(--baseline) / 3) 0 0 -3px;
   padding: 0;
 }
 
-ul.links li {
+.forecasts ul li {
   display: inline-block;
-  margin-left: -3px; /* compensate 1st icon whitespace (click target area) */
 }
 
-ul.links li:not(:first-child) {
+.forecasts ul li:not(:first-child) {
   margin-left: calc(var(--baseline) / 3 * 2);
 }
 
-ul.links li a {
+.forecasts ul li a {
   display: inline-block;
   width: var(--forecast-icon-dimension);
   height: var(--forecast-icon-dimension);
 }
 
-ul.links li svg {
+.forecasts ul li svg {
   width: var(--forecast-icon-dimension);
   height: var(--forecast-icon-dimension);
   opacity: var(--opacity-secondary-icon);
   transition: all var(--transition-duration) ease-in;
 }
 
-ul.links li a:hover svg {
+.forecasts ul li a:hover svg {
   opacity: 1;
   transform: scale(1.2);
+}
+
+@media (width > 440px) {
+  .forecasts {
+    display: flex;
+    margin-top: var(--baseline);
+  }
+
+  .forecasts p {
+    line-height: var(--forecast-icon-dimension);
+    margin-top: 0;
+  }
+  .forecasts ul {
+    margin: 0 0 0 calc(var(--baseline) / 2);
+  }
 }

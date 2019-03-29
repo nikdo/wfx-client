@@ -10,9 +10,9 @@ const newTab = {
 }
 
 export default ({ lat, lng, windguruId, windfinderId }) => (
-  <section className='layout-section'>
+  <section className={`layout-section ${styles.forecasts}`}>
     <p>Other forecasts:</p>
-    <ul className={styles.links}>
+    <ul>
       <li>
         <a href={`https://www.windy.com/${lat}/${lng}`} title='Windy' {...newTab}>
           <WindyLogo />
