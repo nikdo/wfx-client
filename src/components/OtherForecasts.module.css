@@ -11,3 +11,11 @@ ul.links li {
 ul.links li:not(:first-child) {
   margin-left: calc(var(--baseline) / 3 * 2);
 }
+
+ul.links li svg {
+  transition: all var(--transition-duration) ease-in;
+}
+
+ul.links li a:hover svg {
+  transform: scale(1.2);
+}
