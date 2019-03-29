@@ -14,17 +14,17 @@ export default () => (
     <p>Other forecasts:</p>
     <ul className={styles.links}>
       <li>
-        <a href='https://www.windy.com/' {...newTab}>
+        <a href='https://www.windy.com/' title='Windy' {...newTab}>
           <WindyLogo />
         </a>
       </li>
       <li>
-        <a href='https://www.windguru.cz/' {...newTab}>
+        <a href='https://www.windguru.cz/' title='Windguru' {...newTab}>
           <WindguruLogo />
         </a>
       </li>
       <li>
-        <a href='https://www.windfinder.com/' {...newTab}>
+        <a href='https://www.windfinder.com/' title='Windfinder' {...newTab}>
           <WindfinderLogo />
         </a>
       </li>
