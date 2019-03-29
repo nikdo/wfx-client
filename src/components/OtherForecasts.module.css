@@ -1,18 +1,31 @@
+:root {
+  --forecast-icon-dimension: calc(1.5 * var(--baseline));
+}
+
 ul.links {
   list-style: none;
-  margin: calc(var(--baseline) / 2) 0 0;
+  margin: calc(var(--baseline) / 3) 0 0;
   padding: 0;
 }
 
 ul.links li {
   display: inline-block;
+  margin-left: -3px; /* compensate 1st icon whitespace (click target area) */
 }
 
 ul.links li:not(:first-child) {
   margin-left: calc(var(--baseline) / 3 * 2);
 }
 
+ul.links li a {
+  display: inline-block;
+  width: var(--forecast-icon-dimension);
+  height: var(--forecast-icon-dimension);
+}
+
 ul.links li svg {
+  width: var(--forecast-icon-dimension);
+  height: var(--forecast-icon-dimension);
   opacity: var(--opacity-secondary-icon);
   transition: all var(--transition-duration) ease-in;
 }
