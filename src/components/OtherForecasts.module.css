@@ -13,9 +13,11 @@ ul.links li:not(:first-child) {
 }
 
 ul.links li svg {
+  opacity: var(--opacity-secondary-icon);
   transition: all var(--transition-duration) ease-in;
 }
 
 ul.links li a:hover svg {
+  opacity: 1;
   transform: scale(1.2);
 }

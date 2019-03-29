@@ -44,6 +44,8 @@
   --color-gradient-start: var(--color-scampi);
   --color-gradient-end: var(--color-danube);
 
+  --opacity-secondary-icon: 0.83;
+
   --gradient-background: linear-gradient(
     120deg,
     var(--color-gradient-start),
