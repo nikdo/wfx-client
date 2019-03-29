@@ -26,7 +26,9 @@
   --color-mercury:       #E6E6E6;
   --color-romance:       #FCFCFA;
   --color-blue-violet:   #5657AE;
+  --color-scampi:        #7172BA;
   --color-san-marino:    #476FB8;
+  --color-danube:        #6586C3;
 
   --color-text: var(--color-mine-shaft);
   --color-text-inverted: var(--color-romance);
@@ -39,8 +41,10 @@
   --color-line: var(--color-mercury);
   --color-selected: var(--color-mercury);
   --color-highlight: var(--color-san-marino);
-  --color-gradient-start: hsla(239, 35%, 51%, 0.83); /* blue-violet + alpha */
-  --color-gradient-end: hsla(219, 44%, 50%, 0.83); /* san-marino + alpha */
+  --color-gradient-start: var(--color-scampi);
+  --color-gradient-end: var(--color-danube);
+
+  --opacity-secondary-icon: 0.83;
 
   --gradient-background: linear-gradient(
     120deg,
