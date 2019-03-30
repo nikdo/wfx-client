@@ -29,6 +29,10 @@
   margin: calc(2 * var(--baseline)) auto 0;
 }
 
+.header.top .search {
+  margin-left: var(--baseline);
+}
+
 .header.full .attribution {
   text-align: center;
 }
