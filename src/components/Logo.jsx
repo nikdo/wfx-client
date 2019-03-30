@@ -3,9 +3,11 @@ import classNames from 'classnames'
 import { ReactComponent as Logo } from '../img/logo.svg'
 import styles from './Logo.module.css'
 
-export default ({ className }) => (
-  <div className={classNames(styles.logo, className)}>
+export default ({ fat = false, className }) => (
+  <div className={classNames(styles.logo, className, { [styles.fat]: fat })}>
     <Logo />
-    <span>Wind Freaks</span>
+    {fat &&
+      <span>Wind Freaks</span>
+    }
   </div>
 )

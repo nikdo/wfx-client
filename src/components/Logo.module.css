@@ -1,13 +1,18 @@
 .logo {
   color: var(--color-text-inverted);
-  text-align: center;
   font-family: var(--font-family-title);
-  font-size: var(--logo-font-size);
+  font-size: var(--logo-fat-font-size);
   font-weight: var(--h1-font-weight);
   letter-spacing: -1.6px;
-  line-height: calc(3 * var(--baseline));
   cursor: default;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo.fat {
+  height: calc(3 * var(--baseline));
 }
 
 .logo > * {
@@ -15,17 +20,27 @@
 }
 
 .logo svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--color-text-inverted);
+}
+
+.logo.fat svg {
   width: 40px;
   height: 40px;
-  fill: var(--color-text-inverted);
 }
 
 @media (width > 700px) {
   .logo {
-    font-size: var(--logo-desktop-font-size);
+    font-size: var(--logo-fat-desktop-font-size);
   }
 
   .logo svg {
+    width: 38px;
+    height: 38px;
+  }
+
+  .logo.fat svg {
     width: 49px;
     height: 49px;
   }

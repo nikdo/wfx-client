@@ -5,4 +5,5 @@ import Logo from './Logo'
 
 storiesOf('Logo', module)
   .addDecorator(WhitespaceDecorator({ inverted: true }))
-  .add('fat', () => <Logo />)
+  .add('fat', () => <Logo fat />)
+  .add('slim', () => <Logo />)

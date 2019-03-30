@@ -7,9 +7,7 @@ import styles from './Header.module.css'
 
 export default ({ fullSize = false }) => (
   <header className={classNames(styles.header, fullSize ? styles.full : styles.top)}>
-    {fullSize &&
-      <Logo className={styles.logo} />
-    }
+    <Logo className={styles.logo} fat={fullSize} />
     <SearchContainer className={styles.search} autoFocus={fullSize} fat={fullSize} />
     {fullSize &&
       <Attribution className={styles.attribution} />
