@@ -13,17 +13,18 @@ class App extends Component {
 
   render () {
     const { spotDetail, spotsLoaded } = this.props
+    const appLoading = !spotsLoaded && !spotDetail
 
-    if (spotDetail) {
-      return <>
-        <Header />
-        <Detail spotDetail={spotDetail} />
-      </>
-    } else if (spotsLoaded) {
-      return <Header fullSize />
-    } else {
+    if (appLoading) {
       return <Spinner />
     }
+
+    return <>
+      <Header fullSize={!spotDetail} />
+      {spotDetail &&
+        <Detail spotDetail={spotDetail} />
+      }
+    </>
   }
 }
 
