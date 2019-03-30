@@ -8,7 +8,7 @@ import styles from './SearchInput.module.css'
 
 const SearchControl = ({ spotLoading, fat, showSearchIcon, onSearchClick, onCancelClick }) => {
   if (spotLoading) {
-    return <Spinner inline inverted={fat} />
+    return <Spinner inline inverted />
   }
 
   return <>
