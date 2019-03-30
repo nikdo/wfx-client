@@ -6,8 +6,6 @@ import styles from './Logo.module.css'
 export default ({ fat = false, className }) => (
   <div className={classNames(styles.logo, className, { [styles.fat]: fat })}>
     <Logo />
-    {fat &&
-      <span>Wind Freaks</span>
-    }
+    <span className={styles.name}>Wind Freaks</span>
   </div>
 )
