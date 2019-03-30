@@ -44,7 +44,7 @@
     height: 49px;
   }
 
-  .logo .name {
+  .logo.fat .name {
     font-size: var(--logo-fat-desktop-font-size);
   }
 }
