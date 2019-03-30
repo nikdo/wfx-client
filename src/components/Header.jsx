@@ -6,7 +6,7 @@ import Attribution from '../components/Attribution'
 import styles from './Header.module.css'
 
 export default ({ fullSize = false }) => (
-  <header className={classNames(styles.header, fullSize ? styles.full : styles.top)}>
+  <header className={classNames('layout-section', styles.header, fullSize ? styles.full : styles.top)}>
     <Logo className={styles.logo} fat={fullSize} />
     <SearchContainer className={styles.search} autoFocus={fullSize} fat={fullSize} />
     {fullSize &&

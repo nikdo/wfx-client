@@ -38,7 +38,7 @@ h1 {
   color: var(--color-blue-violet);
 }
 
-header, footer, .layout-section {
+.layout-section {
   padding: 0 var(--baseline);
 }
 
@@ -49,7 +49,7 @@ header, footer, .layout-section {
     margin-top: calc(3 * var(--baseline) - var(--h1-desktop-line-height));
   }
 
-  header, footer, .layout-section {
+  .layout-section {
     padding: 0 calc(3 * var(--baseline));
     margin-left: auto;
     margin-right: auto;
