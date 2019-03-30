@@ -1,0 +1,54 @@
+.logo {
+  color: var(--color-text-inverted);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--baseline) / 2);
+  margin-left: calc(var(--baseline) / -2);
+  cursor: default;
+}
+
+.logo.fat {
+  height: calc(3 * var(--baseline));
+  padding: 0;
+  margin: 0;
+}
+
+.logo > * {
+  vertical-align: middle;
+}
+
+.logo svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--color-text-inverted);
+}
+
+.logo.fat svg {
+  width: 40px;
+  height: 40px;
+}
+
+.logo .name {
+  display: none;
+}
+
+.logo.fat .name {
+  display: inline;
+  font-family: var(--font-family-title);
+  font-size: var(--logo-fat-font-size);
+  font-weight: var(--h1-font-weight);
+  letter-spacing: -1.6px;
+}
+
+@media (width > 700px) {
+  .logo.fat svg {
+    width: 49px;
+    height: 49px;
+  }
+
+  .logo.fat .name {
+    font-size: var(--logo-fat-desktop-font-size);
+  }
+}

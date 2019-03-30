@@ -1,12 +1,10 @@
 import React from 'react'
-import Header from '../components/Header'
 import SpotTitle from '../components/SpotTitle'
 import Chart from '../chart/components/Chart'
 import OtherForecasts from '../components/OtherForecasts'
 import styles from './Detail.module.css'
 
-export default ({ spotDetail }) => <>
-  <Header />
+export default ({ spotDetail }) => (
   <main className={styles.main}>
     <SpotTitle spot={spotDetail} />
     <Chart spotId={spotDetail._id} forecast={spotDetail.forecast} />
@@ -17,4 +15,4 @@ export default ({ spotDetail }) => <>
       windfinderId={spotDetail.forecasts.Windfinder}
     />
   </main>
-</>
+)

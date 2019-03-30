@@ -21,22 +21,15 @@
   */
   z-index: 1;
   box-sizing: border-box;
-  border: var(--input-border-width) solid var(--color-border);
+  border: var(--input-border-width) solid transparent;
   border-radius: var(--input-border-radius);
-  transition: box-shadow var(--transition-duration) ease-out;
+  transition-property: box-shadow, border-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: ease-out;
   overflow: hidden;
 }
 
-.fat .container {
-  border-color: transparent;
-  transition: border-color var(--transition-duration) ease-out;
-}
-
 .focused .container {
-  box-shadow: var(--shadow);
-}
-
-.fat.focused .container {
   border-color: var(--color-border-inverted);
   box-shadow: var(--fat-shadow);
 }
@@ -49,7 +42,7 @@
   padding: var(--input-padding);
 }
 
-.fat .input:disabled {
+.input:disabled {
   color: var(--color-secondary-text-inverted);
 }
 
@@ -76,11 +69,7 @@
 }
 
 .suggestionsContainerOpen {
-  border-top: var(--input-border-width) solid var(--color-border);
-}
-
-.fat .suggestionsContainerOpen {
-  border-top-color: var(--color-border-inverted);
+  border-top: var(--input-border-width) solid var(--color-border-inverted);
 }
 
 ul.suggestionsList {
