@@ -1,14 +1,14 @@
 .header {
-  margin-top: var(--baseline);
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: calc(2.5 * var(--baseline));
+  background-color: var(--color-background);
+  box-shadow: var(--fat-shadow);
 }
 
 @media (width > 700px), (orientation: landscape) and (width > 440px) {
   .header {
-    margin-top: 0;
-    padding-left: var(--baseline);
-    float: right;
+    height: calc(3 * var(--baseline));
   }
 }
