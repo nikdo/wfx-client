@@ -1,14 +1,18 @@
 .logo {
   color: var(--color-text-inverted);
-  cursor: default;
   white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: calc(var(--baseline) / 2);
+  margin-left: calc(var(--baseline) / -2);
+  cursor: default;
 }
 
 .logo.fat {
   height: calc(3 * var(--baseline));
+  padding: 0;
+  margin: 0;
 }
 
 .logo > * {
