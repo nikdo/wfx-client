@@ -1,23 +1,24 @@
+/* holds full-width background */
 .header {
   background: var(--gradient-background);
+  box-shadow: var(--fat-shadow);
 }
 
-.header.full {
+/* restraints content: padding + max-width */
+.header.full :global .layout-section {
   height: 100vh;
-  max-width: none;
   box-sizing: border-box;
   padding-bottom: calc(2 * var(--baseline));
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
 
-.header.top {
+.header.top :global .layout-section {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: calc(2.5 * var(--baseline));
-  box-shadow: var(--fat-shadow);
 }
 
 .header.full .logo {
@@ -37,7 +38,7 @@
     margin-top: calc(4 * var(--baseline));
   }
 
-  .header.top {
+  .header.top :global .layout-section {
     height: calc(3 * var(--baseline));
   }
 }
