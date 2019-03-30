@@ -12,23 +12,19 @@ class App extends Component {
   }
 
   render () {
-    const { spotDetail, spotsLoaded } = this.props
-    const appLoading = !spotsLoaded && !spotDetail
-
-    if (appLoading) {
-      return <Spinner />
-    }
-
-    return <>
-      <Header fullSize={!spotDetail} />
-      {spotDetail &&
-        <Detail spotDetail={spotDetail} />
-      }
-    </>
+    const { initialLoad, spotDetail } = this.props
+    return initialLoad
+      ? <Spinner />
+      : <>
+        <Header fullSize={!spotDetail} />
+        {spotDetail &&
+          <Detail spotDetail={spotDetail} />
+        }
+      </>
   }
 }
 
 export default connect(({ spots, spotDetail }) => ({
-  spotsLoaded: !!spots.length,
+  initialLoad: !spots.length && !spotDetail,
   spotDetail
 }))(App)
