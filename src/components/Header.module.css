@@ -19,25 +19,8 @@
   box-shadow: var(--fat-shadow);
 }
 
-.header.full h1 {
-  color: var(--color-text-inverted);
-  text-align: center;
-  font-size: var(--logo-font-size);
-  letter-spacing: -1.6px;
+.header.full .logo {
   margin-top: 20vh;
-  line-height: calc(3 * var(--baseline));
-  cursor: default;
-  white-space: nowrap;
-}
-
-.header h1 > * {
-  vertical-align: middle;
-}
-
-.header h1 svg {
-  width: 40px;
-  height: 40px;
-  fill: var(--color-text-inverted);
 }
 
 .header.full .search {
@@ -49,14 +32,8 @@
 }
 
 @media (width > 700px) {
-  .header.full h1 {
-    font-size: var(--logo-desktop-font-size);
+  .header.full .logo {
     margin-top: calc(4 * var(--baseline));
-  }
-
-  .header.full h1 svg {
-    width: 49px;
-    height: 49px;
   }
 
   .header.top {
