@@ -1,9 +1,12 @@
+.header {
+  background: var(--gradient-background);
+}
+
 .header.full {
   height: 100vh;
   max-width: none;
   box-sizing: border-box;
   padding-bottom: calc(2 * var(--baseline));
-  background: var(--gradient-background);
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
