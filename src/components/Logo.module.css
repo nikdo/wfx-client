@@ -39,11 +39,6 @@
 }
 
 @media (width > 700px) {
-  .logo svg {
-    width: 38px;
-    height: 38px;
-  }
-
   .logo.fat svg {
     width: 49px;
     height: 49px;
