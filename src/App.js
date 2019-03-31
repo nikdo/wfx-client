@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Route } from 'react-router-dom'
 import { fetchSpots } from './actions'
 import Detail from './pages/Detail'
 import Header from './components/Header'
@@ -17,9 +18,9 @@ class App extends Component {
       ? <Spinner />
       : <>
         <Header fullSize={!spotDetail} />
-        {spotDetail &&
-          <Detail spotDetail={spotDetail} />
-        }
+        <Route path='/:spotId' render={() =>
+          spotDetail && <Detail spotDetail={spotDetail} />
+        } />
       </>
   }
 }
