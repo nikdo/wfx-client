@@ -13,17 +13,15 @@ class App extends Component {
   }
 
   render () {
-    const { initialLoad, spotDetail } = this.props
-    return initialLoad
+    return this.props.initialLoad
       ? <Spinner />
       : <>
-        <Header fullSize={!spotDetail} />
+        <Header />
         <Route path='/:spotId' component={SpotDetailContainer} />
       </>
   }
 }
 
 export default connect(({ spots, spotDetail }) => ({
-  initialLoad: !spots.length && !spotDetail,
-  spotDetail
+  initialLoad: !spots.length && !spotDetail
 }))(App)
