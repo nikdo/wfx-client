@@ -2,6 +2,15 @@
 .header {
   background: var(--gradient-background);
   box-shadow: var(--fat-shadow);
+  /* necessary for correct animation of header rolling over spot detail */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.header :global .layout-section {
+  transition: height var(--transition-massive-duration) ease-out;
 }
 
 /* restraints content: padding + max-width */
@@ -18,7 +27,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: calc(2.5 * var(--baseline));
+  height: var(--header-height-mobile);
 }
 
 .header.full .logo {
@@ -43,7 +52,7 @@
   }
 
   .header.top :global .layout-section {
-    height: calc(3 * var(--baseline));
+    height: var(--header-height-desktop);
   }
 }
 
