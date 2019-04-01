@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchSpotDetail } from '../actions'
 import Spinner from '../components/Spinner'
-import Detail from '../pages/Detail'
+import SpotDetail from '../components/SpotDetail'
 
 class SpotDetailContainer extends Component {
   componentDidMount () {
@@ -14,7 +14,7 @@ class SpotDetailContainer extends Component {
 
   render () {
     return this.props.spotDetail
-      ? <Detail spotDetail={this.props.spotDetail} />
+      ? <SpotDetail spotDetail={this.props.spotDetail} />
       : <Spinner />
   }
 }
