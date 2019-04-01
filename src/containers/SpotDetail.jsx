@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fetchSpotDetail } from '../actions'
 import Spinner from '../components/Spinner'
 import Detail from '../pages/Detail'
 
-const SpotDetailContainer = ({ spotDetail }) => (
-  spotDetail
-    ? <Detail spotDetail={spotDetail} />
-    : <Spinner />
-)
+class SpotDetailContainer extends Component {
+  componentDidMount () {
+    const { spotDetail, match, dispatch } = this.props
+    if (!spotDetail || spotDetail._id !== match.params.spotId) {
+      fetchSpotDetail(dispatch, match.params.spotId)
+    }
+  }
+
+  render () {
+    return this.props.spotDetail
+      ? <Detail spotDetail={this.props.spotDetail} />
+      : <Spinner />
+  }
+}
 
 const mapStateToProps = ({ spotDetail }) => ({ spotDetail })
 
