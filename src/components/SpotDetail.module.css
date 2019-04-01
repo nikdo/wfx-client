@@ -1,0 +1,12 @@
+.main {
+  padding-bottom: var(--baseline);
+  /* necessary for correct animation of header rolling over spot detail */
+  margin-top: var(--header-height-mobile);
+  overflow: auto;
+}
+
+@media (width > 700px) {
+  .main {
+    margin-top: var(--header-height-desktop);
+  }
+}

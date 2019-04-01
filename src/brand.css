@@ -89,6 +89,7 @@
   --fat-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
   --transition-duration: 200ms;
+  --transition-massive-duration: 300ms;
 
   --input-border-width: 1px;
   --input-border-radius: 4px;
@@ -107,6 +108,9 @@
     (2 * var(--input-fat-vertical-padding)) +
     (var(--line-height) * var(--font-size-large))
   );
+
+  --header-height-mobile: calc(2.5 * var(--baseline));
+  --header-height-desktop: calc(3 * var(--baseline));
 
   /*
   @custom-media --phone-portrait (width <= 440px);

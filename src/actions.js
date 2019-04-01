@@ -1,4 +1,5 @@
 import moment from 'moment-timezone'
+import history from './history'
 /* Source: https://github.com/umpirsky/country-list/blob/master/data/en_US/country.json */
 import countries from './countries.json'
 
@@ -53,5 +54,6 @@ export const fetchSpotDetail = (dispatch, id) => {
       document.title = spot.name
       clearTimeout(timeout)
       dispatch(spotFetchCompleted(spot))
+      history.push(`/${spot._id}`)
     })
 }
