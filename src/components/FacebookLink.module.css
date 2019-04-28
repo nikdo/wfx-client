@@ -1,1 +1,15 @@
-.link {}
+.link {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+}
+
+.link svg {
+  width: 30px;
+  height: 30px;
+  fill: var(--color-text-inverted);
+}
+
+.link span {
+  margin-left: 6px;
+}
