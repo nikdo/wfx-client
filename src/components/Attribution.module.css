@@ -9,5 +9,6 @@ a.attribution:focus {
 }
 
 a.attribution img {
+  display: block;
   height: 45px;
 }
