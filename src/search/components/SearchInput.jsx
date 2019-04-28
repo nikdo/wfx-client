@@ -1,9 +1,9 @@
 import React from 'react'
 import classNames from 'classnames'
+import OpacityTransition from 'components/OpacityTransition'
+import Spinner from 'components/Spinner'
 import { ReactComponent as SearchIcon } from './search.svg'
 import { ReactComponent as CrossIcon } from './cross.svg'
-import OpacityTransition from '../../components/OpacityTransition'
-import Spinner from '../../components/Spinner'
 import styles from './SearchInput.module.css'
 
 const SearchControl = ({ spotLoading, fat, showSearchIcon, onSearchClick, onCancelClick }) => {

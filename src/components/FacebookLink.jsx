@@ -1,6 +1,6 @@
 import React from 'react'
 import newTabProps from './newTabProps'
-import { ReactComponent as FacebookLogo } from '../img/facebook.svg'
+import { ReactComponent as FacebookLogo } from 'img/facebook.svg'
 import styles from './FacebookLink.module.css'
 
 const URL = 'https://www.facebook.com/windfreaksnet/'

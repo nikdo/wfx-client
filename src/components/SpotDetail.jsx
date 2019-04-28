@@ -1,7 +1,7 @@
 import React from 'react'
-import SpotTitle from '../components/SpotTitle'
-import Chart from '../chart/components/Chart'
-import OtherForecasts from '../components/OtherForecasts'
+import Chart from 'chart/components/Chart'
+import SpotTitle from './SpotTitle'
+import OtherForecasts from './OtherForecasts'
 import styles from './SpotDetail.module.css'
 
 export default ({ spotDetail }) => (

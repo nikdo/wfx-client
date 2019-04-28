@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchSpotDetail } from '../actions'
-import Spinner from '../components/Spinner'
-import SpotDetail from '../components/SpotDetail'
+import { fetchSpotDetail } from 'actions'
+import Spinner from 'components/Spinner'
+import SpotDetail from 'components/SpotDetail'
 
 class SpotDetailContainer extends Component {
   componentDidMount () {

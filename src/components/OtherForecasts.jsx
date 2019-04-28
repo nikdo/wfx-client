@@ -1,8 +1,8 @@
 import React from 'react'
 import newTabProps from './newTabProps'
-import { ReactComponent as WindyLogo } from '../img/windy.svg'
-import { ReactComponent as WindguruLogo } from '../img/windguru.svg'
-import { ReactComponent as WindfinderLogo } from '../img/windfinder.svg'
+import { ReactComponent as WindyLogo } from 'img/windy.svg'
+import { ReactComponent as WindguruLogo } from 'img/windguru.svg'
+import { ReactComponent as WindfinderLogo } from 'img/windfinder.svg'
 import styles from './OtherForecasts.module.css'
 
 export default ({ lat, lng, windguruId, windfinderId }) => (
