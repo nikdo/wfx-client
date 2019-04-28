@@ -9,6 +9,12 @@
 
 .footer a {
   color: var(--color-text-inverted);
+  transition: all var(--transition-duration) ease-in;
+}
+
+.footer a:hover,
+.footer a:focus {
+  transform: scale(1.1);
 }
 
 .footer a:not(:first-child) {
