@@ -1,4 +1,16 @@
 .footer {
   margin-top: var(--baseline);
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.footer a {
+  color: var(--color-text-inverted);
+}
+
+.footer a:not(:first-child) {
+  margin-left: calc(var(--baseline) * 1.5);
 }

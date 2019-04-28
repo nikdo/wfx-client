@@ -6,9 +6,9 @@
   --font-size-small: 13px;
   --font-size-large: 20px;
 
-  --line-height: 1.5;
-
-  --baseline: calc(var(--line-height) * var(--font-size-base)); /* 24px */
+  --line-height-base: 1.5;
+  --baseline: calc(var(--line-height-base) * var(--font-size-base)); /* 24px */
+  --line-height-small: calc(var(--baseline) / 3 * 2); /* 16px */
 
   --font-weight-bold: 600;
 
@@ -101,12 +101,12 @@
   --input-height: calc(
     (2 * var(--input-border-width)) +
     (2 * var(--input-vertical-padding)) +
-    (var(--line-height) * var(--font-size-base))
+    (var(--line-height-base) * var(--font-size-base))
   );
   --input-fat-height: calc(
     (2 * var(--input-border-width)) +
     (2 * var(--input-fat-vertical-padding)) +
-    (var(--line-height) * var(--font-size-large))
+    (var(--line-height-base) * var(--font-size-large))
   );
 
   --header-height-mobile: calc(2.5 * var(--baseline));
