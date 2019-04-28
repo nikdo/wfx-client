@@ -7,5 +7,4 @@ import ProviderDecorator from '../../.storybook/ProviderDecorator'
 storiesOf('Header', module)
   .addDecorator(StoryRouter())
   .addDecorator(ProviderDecorator)
-  .add('top', () => <Header />)
-  .add('fullSize', () => <Header fullSize />)
+  .add('default', () => <Header />)
