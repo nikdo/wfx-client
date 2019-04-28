@@ -11,7 +11,7 @@ const defaultProps = {
 }
 
 storiesOf('Search', module)
-  .addDecorator(WhitespaceDecorator())
+  .addDecorator(WhitespaceDecorator({ inverted: true }))
   .add('empty', () => <Search {...defaultProps} query='' />)
   .add('query', () => <Search {...defaultProps} autoFocus />)
   .add('loading', () => <Search {...defaultProps} query='Agios Nikolaos' spotLoading />)

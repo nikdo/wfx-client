@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
-import { ReactComponent as Logo } from '../img/logo.svg'
+import { ReactComponent as Logo } from 'img/logo.svg'
 import styles from './Logo.module.css'
 
 export default ({ fat = false, className }) => (

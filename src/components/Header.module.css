@@ -42,10 +42,6 @@
   margin-left: var(--baseline);
 }
 
-.header.full .attribution {
-  text-align: center;
-}
-
 @media (width > 700px) {
   .header.full .logo {
     margin-top: calc(4 * var(--baseline));

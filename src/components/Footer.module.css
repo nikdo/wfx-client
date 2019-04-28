@@ -1,0 +1,30 @@
+.footer {
+  margin-top: var(--baseline);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.footer a {
+  font-weight: var(--font-weight-base);
+  color: var(--color-text-inverted);
+  transition: all var(--transition-duration) ease-in;
+}
+
+.footer a:hover,
+.footer a:active,
+.footer a:focus {
+  text-decoration: none;
+  color: var(--color-text-inverted);
+}
+
+.footer a:hover,
+.footer a:focus {
+  transform: scale(1.1);
+}
+
+.footer a:not(:first-child) {
+  margin-left: calc(var(--baseline) * 1.5);
+}
