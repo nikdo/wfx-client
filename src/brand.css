@@ -10,6 +10,7 @@
   --baseline: calc(var(--line-height-base) * var(--font-size-base)); /* 24px */
   --line-height-small: calc(var(--baseline) / 3 * 2); /* 16px */
 
+  --font-weight-base: 400;
   --font-weight-bold: 600;
 
   --logo-fat-font-size: 43px;
@@ -36,6 +37,8 @@
 
   --color-text: var(--color-mine-shaft);
   --color-text-inverted: var(--color-romance);
+  --color-link: var(--color-san-marino);
+  --color-link-active: var(--color-blue-violet);
   --color-background: var(--color-romance);
   --color-background-semi-transparent: hsla(60, 25%, 98%, 0.2); /* romance + alpha */
   --color-secondary-text: var(--color-mountain-mist);
@@ -44,7 +47,6 @@
   --color-border-inverted: var(--color-text-inverted);
   --color-line: var(--color-mercury);
   --color-selected: var(--color-mercury);
-  --color-highlight: var(--color-san-marino);
   --color-gradient-start: var(--color-scampi);
   --color-gradient-end: var(--color-danube);
 

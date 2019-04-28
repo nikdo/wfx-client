@@ -8,8 +8,16 @@
 }
 
 .footer a {
+  font-weight: var(--font-weight-base);
   color: var(--color-text-inverted);
   transition: all var(--transition-duration) ease-in;
+}
+
+.footer a:hover,
+.footer a:active,
+.footer a:focus {
+  text-decoration: none;
+  color: var(--color-text-inverted);
 }
 
 .footer a:hover,

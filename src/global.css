@@ -28,6 +28,20 @@ input:disabled {
   color: var(--color-secondary-text);
 }
 
+a {
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-link);
+  transition: color var(--transition-duration) ease-out;
+}
+
+a:hover,
+a:active,
+a:focus {
+  text-decoration: underline;
+  color: var(--color-link-active);
+}
+
 h1 {
   font-family: var(--font-family-title);
   font-size: var(--h1-font-size);
