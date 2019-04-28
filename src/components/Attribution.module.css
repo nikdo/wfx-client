@@ -1,17 +1,14 @@
-.attribution {
-  margin-top: var(--baseline);
+a.attribution {
+  display: inline-block;
 }
 
-.attribution img {
+a.attribution img {
   height: 45px;
   transition: all var(--transition-duration) ease-in;
 }
 
-.attribution a {
-  display: inline-block;
-}
 
-.attribution a:hover img,
-.attribution a:focus img {
+a.attribution:hover img,
+a.attribution:focus img {
   transform: scale(1.1);
 }

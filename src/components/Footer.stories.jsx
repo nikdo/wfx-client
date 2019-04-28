@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import WhitespaceDecorator from '../../.storybook/WhitespaceDecorator'
-import Attribution from './Attribution'
+import Footer from './Footer'
 
-storiesOf('Attribution', module)
+storiesOf('Footer', module)
   .addDecorator(WhitespaceDecorator({ inverted: true }))
-  .add('default', () => <Attribution />)
+  .add('default', () => <Footer />)
