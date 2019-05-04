@@ -1,6 +1,15 @@
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
 
+export const nameMatchesFirst = (a, b) => {
+  if (a.nameMatches.length && !b.nameMatches.length) {
+    return -1
+  }
+  if (!a.nameMatches.length && b.nameMatches.length) {
+    return 1
+  }
+  return 0
+}
 export default (spots, query) => spots
   .map(spot => ({
     ...spot,
@@ -11,15 +20,7 @@ export default (spots, query) => spots
     regionMatches: spot.nameMatches.length ? [] : match(spot.region, query)
   }))
   .filter(spot => spot.nameMatches.length || spot.regionMatches.length)
-  .slice().sort((a, b) => {
-    if (a.nameMatches.length && !b.nameMatches.length) {
-      return -1
-    }
-    if (!a.nameMatches.length && b.nameMatches.length) {
-      return 1
-    }
-    return 0
-  })
+  .slice().sort(nameMatchesFirst)
   .map(spotWithMatches => {
     const { nameMatches, ...spot } = spotWithMatches
     return {

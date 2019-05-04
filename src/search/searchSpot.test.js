@@ -1,5 +1,36 @@
-import searchSpot from './searchSpot'
+import searchSpot, {
+  nameMatchesFirst
+} from './searchSpot'
 
+describe('nameMatchesFirst', () => {
+  it('returns -1 if a has name matches while b has none', () => {
+    expect(nameMatchesFirst(
+      { nameMatches: ['match'] },
+      { nameMatches: [] }
+    )).toEqual(-1)
+  })
+
+  it('returns -1 if a has no name matches while b has', () => {
+    expect(nameMatchesFirst(
+      { nameMatches: [] },
+      { nameMatches: ['match'] }
+    )).toEqual(1)
+  })
+
+  it('returns 0 if both have name matches', () => {
+    expect(nameMatchesFirst(
+      { nameMatches: ['match'] },
+      { nameMatches: ['match'] }
+    )).toEqual(0)
+  })
+
+  it('returns 0 if both have no name matches', () => {
+    expect(nameMatchesFirst(
+      { nameMatches: [] },
+      { nameMatches: [] }
+    )).toEqual(0)
+  })
+})
 describe('searchSpot', () => {
   it('returns spots with names starting with query', () => {
     expect(searchSpot(
