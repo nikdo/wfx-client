@@ -1,5 +1,6 @@
 import searchSpot, {
-  nameMatchesFirst
+  nameMatchesFirst,
+  startMatchesFirst
 } from './searchSpot'
 
 describe('nameMatchesFirst', () => {
@@ -31,6 +32,72 @@ describe('nameMatchesFirst', () => {
     )).toEqual(0)
   })
 })
+
+describe('startMatchesFirst', () => {
+  it('returns negative number if a matches start while b not', () => {
+    expect(startMatchesFirst(
+      { nameMatches: [[0, 2]] },
+      { nameMatches: [[2, 4]] }
+    )).toBeLessThan(0)
+  })
+
+  it('returns positive number if a does not match start while be does', () => {
+    expect(startMatchesFirst(
+      { nameMatches: [[2, 4]] },
+      { nameMatches: [[0, 2]] }
+    )).toBeGreaterThan(0)
+  })
+
+  it('returns 0 if a and b both match start', () => {
+    expect(startMatchesFirst(
+      { nameMatches: [[0, 2]] },
+      { nameMatches: [[0, 2]] }
+    )).toEqual(0)
+  })
+
+  it('returns 0 if none matches start', () => {
+    expect(startMatchesFirst(
+      { nameMatches: [[2, 4]] },
+      { nameMatches: [[2, 4]] }
+    )).toEqual(0)
+  })
+
+  it('returns negative number if a matches start while be has no matches', () => {
+    expect(startMatchesFirst(
+      { nameMatches: [[0, 2]] },
+      { nameMatches: [] }
+    )).toBeLessThan(0)
+  })
+
+  it('returns positive number if a has no matches while matches start', () => {
+    expect(startMatchesFirst(
+      { nameMatches: [] },
+      { nameMatches: [[0, 2]] }
+    )).toBeGreaterThan(0)
+  })
+
+  it('returns 0 if a has non-start match and b has no matches', () => {
+    expect(startMatchesFirst(
+      { nameMatches: [2, 4] },
+      { nameMatches: [] }
+    )).toEqual(0)
+  })
+
+  it('returns 0 if a has no matches and b has non-start match', () => {
+    expect(startMatchesFirst(
+      { nameMatches: [] },
+      { nameMatches: [2, 4] }
+    )).toEqual(0)
+  })
+
+  it('returns 0 if a and b have no matches', () => {
+    expect(startMatchesFirst(
+      { nameMatches: [] },
+      { nameMatches: [] }
+    )).toEqual(0)
+  })
+})
+
 describe('searchSpot', () => {
   it('returns spots with names starting with query', () => {
     expect(searchSpot(
@@ -114,6 +181,28 @@ describe('searchSpot', () => {
       expect.objectContaining({ name: 'Foo' }),
       expect.objectContaining({ name: 'Far' }),
       expect.objectContaining({ region: 'Fax' })
+    ])
+  })
+
+  it('sorts first word matches in name before other word matches', () => {
+    expect(searchSpot(
+      [{ name: 'Ak Bar' }, { name: 'Barbar' }, { name: 'Foo Bar' }],
+      'ba'
+    )).toEqual([
+      expect.objectContaining({ name: 'Barbar' }),
+      expect.objectContaining({ name: 'Ak Bar' }),
+      expect.objectContaining({ name: 'Foo Bar' })
+    ])
+  })
+
+  it('does not reorder non-first word matches', () => {
+    expect(searchSpot(
+      [{ name: 'Ak Boo Bar' }, { name: 'Barbar' }, { name: 'Foo Bar' }],
+      'ba'
+    )).toEqual([
+      expect.objectContaining({ name: 'Barbar' }),
+      expect.objectContaining({ name: 'Ak Boo Bar' }),
+      expect.objectContaining({ name: 'Foo Bar' })
     ])
   })
 })
