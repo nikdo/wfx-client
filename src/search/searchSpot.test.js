@@ -59,63 +59,63 @@ describe('nameMatchesFirst', () => {
 
 describe('startMatchesFirst', () => {
   it('returns negative number if a matches start while b not', () => {
-    expect(startMatchesFirst(
+    expect(startMatchesFirst(result => result.nameMatches)(
       { nameMatches: [[0, 2]] },
       { nameMatches: [[2, 4]] }
     )).toBeLessThan(0)
   })
 
   it('returns positive number if a does not match start while be does', () => {
-    expect(startMatchesFirst(
+    expect(startMatchesFirst(result => result.nameMatches)(
       { nameMatches: [[2, 4]] },
       { nameMatches: [[0, 2]] }
     )).toBeGreaterThan(0)
   })
 
   it('returns 0 if a and b both match start', () => {
-    expect(startMatchesFirst(
+    expect(startMatchesFirst(result => result.nameMatches)(
       { nameMatches: [[0, 2]] },
       { nameMatches: [[0, 2]] }
     )).toEqual(0)
   })
 
   it('returns 0 if none matches start', () => {
-    expect(startMatchesFirst(
+    expect(startMatchesFirst(result => result.nameMatches)(
       { nameMatches: [[2, 4]] },
       { nameMatches: [[2, 4]] }
     )).toEqual(0)
   })
 
   it('returns negative number if a matches start while be has no matches', () => {
-    expect(startMatchesFirst(
+    expect(startMatchesFirst(result => result.nameMatches)(
       { nameMatches: [[0, 2]] },
       { nameMatches: [] }
     )).toBeLessThan(0)
   })
 
   it('returns positive number if a has no matches while matches start', () => {
-    expect(startMatchesFirst(
+    expect(startMatchesFirst(result => result.nameMatches)(
       { nameMatches: [] },
       { nameMatches: [[0, 2]] }
     )).toBeGreaterThan(0)
   })
 
   it('returns 0 if a has non-start match and b has no matches', () => {
-    expect(startMatchesFirst(
+    expect(startMatchesFirst(result => result.nameMatches)(
       { nameMatches: [[2, 4]] },
       { nameMatches: [] }
     )).toEqual(0)
   })
 
   it('returns 0 if a has no matches and b has non-start match', () => {
-    expect(startMatchesFirst(
+    expect(startMatchesFirst(result => result.nameMatches)(
       { nameMatches: [] },
       { nameMatches: [[2, 4]] }
     )).toEqual(0)
   })
 
   it('returns 0 if a and b have no matches', () => {
-    expect(startMatchesFirst(
+    expect(startMatchesFirst(result => result.nameMatches)(
       { nameMatches: [] },
       { nameMatches: [] }
     )).toEqual(0)
@@ -208,36 +208,67 @@ describe('searchSpot', () => {
     ])
   })
 
-  it('sorts first word matches in name before other word matches', () => {
+  it('sorts first word matches in name before other word matches in name', () => {
     expect(searchSpot(
       [{ name: 'Ak Bar' }, { name: 'Barbar' }, { name: 'Foo Bar' }],
       'ba'
-    )).toEqual([
-      expect.objectContaining({ name: 'Barbar' }),
-      expect.objectContaining({ name: 'Ak Bar' }),
-      expect.objectContaining({ name: 'Foo Bar' })
-    ])
+    ).map(result => result.name))
+      .toEqual(['Barbar', 'Ak Bar', 'Foo Bar'])
+  })
+
+  it('sorts first word matches in region before other word matches in region', () => {
+    expect(searchSpot(
+      [{ region: 'Ak Bar' }, { region: 'Barbar' }, { region: 'Foo Bar' }],
+      'ba'
+    ).map(result => result.region))
+      .toEqual(['Barbar', 'Ak Bar', 'Foo Bar'])
   })
 
   it('does not reorder non-first word matches', () => {
     expect(searchSpot(
       [{ name: 'Ak Boo Bar' }, { name: 'Barbar' }, { name: 'Foo Bar' }],
       'ba'
-    )).toEqual([
-      expect.objectContaining({ name: 'Barbar' }),
-      expect.objectContaining({ name: 'Ak Boo Bar' }),
-      expect.objectContaining({ name: 'Foo Bar' })
-    ])
+    ).map(result => result.name))
+      .toEqual([ 'Barbar', 'Ak Boo Bar', 'Foo Bar' ])
   })
 
   it('sorts multiple matches before single word matches', () => {
     expect(searchSpot(
       [{ name: 'Ak Boo Bar' }, { name: 'No Barbar' }, { name: 'Another Bar' }],
       'a bar'
-    )).toEqual([
-      expect.objectContaining({ name: 'Ak Boo Bar' }),
-      expect.objectContaining({ name: 'Another Bar' }),
-      expect.objectContaining({ name: 'No Barbar' })
+    ).map(result => result.name))
+      .toEqual([ 'Ak Boo Bar', 'Another Bar', 'No Barbar' ])
+  })
+
+  it('sorts single match types correctly', () => {
+    expect(
+      searchSpot([
+        { name: 'Deadly Spot', region: 'Los Nostros' },
+        { name: 'Merkur', region: 'Nové Mlýny' },
+        { name: 'Ostrožská Nová Ves' },
+        { name: 'Noli' }
+      ],
+      'no'
+      ).map(result => result.name)
+    ).toEqual([
+      // first-word match in name
+      'Noli',
+      // second-word match in name
+      'Ostrožská Nová Ves',
+      // first-word match in region
+      'Merkur',
+      // second-word match in region
+      'Deadly Spot'
     ])
+  })
+
+  it('sorts all types of matches correctly', () => {
+    // TODO: test & fix
+    // 1. more matches in name
+    // 2. more matches in region
+    // 3. first word matches in name
+    // 4. single non-first word matches in name
+    // 5. first word matches in region
+    // 6. single non-first word matches in region
   })
 })
