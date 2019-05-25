@@ -30,10 +30,10 @@ export default (spots, query) => spots
     regionMatches: spot.nameMatches.length ? [] : match(spot.region, query)
   }))
   .filter(spot => spot.nameMatches.length || spot.regionMatches.length)
-  .slice().sort(moreMatchesFirst(spot => spot.regionMatches))
-  .slice().sort(moreMatchesFirst(spot => spot.nameMatches))
   .slice().sort(startMatchesFirst(spot => spot.regionMatches))
   .slice().sort(startMatchesFirst(spot => spot.nameMatches))
+  .slice().sort(moreMatchesFirst(spot => spot.regionMatches))
+  .slice().sort(moreMatchesFirst(spot => spot.nameMatches))
   .slice().sort(nameMatchesFirst)
   .map(spotWithMatches => {
     const { nameMatches, ...spot } = spotWithMatches

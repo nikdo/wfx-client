@@ -253,30 +253,26 @@ describe('searchSpot', () => {
       searchSpot([
         { name: 'Deadly Spot', region: 'Los Nostros' },
         { name: 'Merkur', region: 'Nové Mlýny' },
+        { name: 'Lavos', region: 'Yo No Lhotse' },
         { name: 'Ostrožská Nová Ves' },
-        { name: 'Noli' }
+        { name: 'Noli' },
+        { name: 'Úplně Nová Lhota' }
       ],
-      'no'
+      'no lh'
       ).map(spot => spot.name)
     ).toEqual([
-      // first-word match in name
+      // 1. more matches in name
+      'Úplně Nová Lhota',
+      // 2. first-word match in name
       'Noli',
-      // second-word match in name
+      // 3. second-word match in name
       'Ostrožská Nová Ves',
-      // first-word match in region
+      // 4. more matches in region
+      'Lavos',
+      // 5. first-word match in region
       'Merkur',
-      // second-word match in region
+      // 6. second-word match in region
       'Deadly Spot'
     ])
-  })
-
-  it('sorts all types of matches correctly', () => {
-    // TODO: test & fix
-    // 1. more matches in name
-    // 2. more matches in region
-    // 3. first word matches in name
-    // 4. single non-first word matches in name
-    // 5. first word matches in region
-    // 6. single non-first word matches in region
   })
 })
