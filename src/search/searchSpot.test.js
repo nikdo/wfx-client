@@ -6,21 +6,21 @@ import searchSpot, {
 
 describe('moreMatchesFirst', () => {
   it('returns 0 given same amount of matches', () => {
-    expect(moreMatchesFirst(
+    expect(moreMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [[0, 2]] },
       { nameMatches: [[0, 2]] }
     )).toEqual(0)
   })
 
   it('returns -2 given a has 3 matches while b has 1', () => {
-    expect(moreMatchesFirst(
+    expect(moreMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [[0, 2], [5, 6], [8, 12]] },
       { nameMatches: [[0, 2]] }
     )).toEqual(-2)
   })
 
   it('returns 1 given a has 1 match while b has 2', () => {
-    expect(moreMatchesFirst(
+    expect(moreMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [[0, 2]] },
       { nameMatches: [[0, 2], [5, 6]] }
     )).toEqual(1)
@@ -59,63 +59,63 @@ describe('nameMatchesFirst', () => {
 
 describe('startMatchesFirst', () => {
   it('returns negative number if a matches start while b not', () => {
-    expect(startMatchesFirst(result => result.nameMatches)(
+    expect(startMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [[0, 2]] },
       { nameMatches: [[2, 4]] }
     )).toBeLessThan(0)
   })
 
   it('returns positive number if a does not match start while be does', () => {
-    expect(startMatchesFirst(result => result.nameMatches)(
+    expect(startMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [[2, 4]] },
       { nameMatches: [[0, 2]] }
     )).toBeGreaterThan(0)
   })
 
   it('returns 0 if a and b both match start', () => {
-    expect(startMatchesFirst(result => result.nameMatches)(
+    expect(startMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [[0, 2]] },
       { nameMatches: [[0, 2]] }
     )).toEqual(0)
   })
 
   it('returns 0 if none matches start', () => {
-    expect(startMatchesFirst(result => result.nameMatches)(
+    expect(startMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [[2, 4]] },
       { nameMatches: [[2, 4]] }
     )).toEqual(0)
   })
 
   it('returns negative number if a matches start while be has no matches', () => {
-    expect(startMatchesFirst(result => result.nameMatches)(
+    expect(startMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [[0, 2]] },
       { nameMatches: [] }
     )).toBeLessThan(0)
   })
 
   it('returns positive number if a has no matches while matches start', () => {
-    expect(startMatchesFirst(result => result.nameMatches)(
+    expect(startMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [] },
       { nameMatches: [[0, 2]] }
     )).toBeGreaterThan(0)
   })
 
   it('returns 0 if a has non-start match and b has no matches', () => {
-    expect(startMatchesFirst(result => result.nameMatches)(
+    expect(startMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [[2, 4]] },
       { nameMatches: [] }
     )).toEqual(0)
   })
 
   it('returns 0 if a has no matches and b has non-start match', () => {
-    expect(startMatchesFirst(result => result.nameMatches)(
+    expect(startMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [] },
       { nameMatches: [[2, 4]] }
     )).toEqual(0)
   })
 
   it('returns 0 if a and b have no matches', () => {
-    expect(startMatchesFirst(result => result.nameMatches)(
+    expect(startMatchesFirst(spot => spot.nameMatches)(
       { nameMatches: [] },
       { nameMatches: [] }
     )).toEqual(0)
@@ -212,7 +212,7 @@ describe('searchSpot', () => {
     expect(searchSpot(
       [{ name: 'Ak Bar' }, { name: 'Barbar' }, { name: 'Foo Bar' }],
       'ba'
-    ).map(result => result.name))
+    ).map(spot => spot.name))
       .toEqual(['Barbar', 'Ak Bar', 'Foo Bar'])
   })
 
@@ -220,7 +220,7 @@ describe('searchSpot', () => {
     expect(searchSpot(
       [{ region: 'Ak Bar' }, { region: 'Barbar' }, { region: 'Foo Bar' }],
       'ba'
-    ).map(result => result.region))
+    ).map(spot => spot.region))
       .toEqual(['Barbar', 'Ak Bar', 'Foo Bar'])
   })
 
@@ -228,16 +228,24 @@ describe('searchSpot', () => {
     expect(searchSpot(
       [{ name: 'Ak Boo Bar' }, { name: 'Barbar' }, { name: 'Foo Bar' }],
       'ba'
-    ).map(result => result.name))
+    ).map(spot => spot.name))
       .toEqual([ 'Barbar', 'Ak Boo Bar', 'Foo Bar' ])
   })
 
-  it('sorts multiple matches before single word matches', () => {
+  it('sorts multiple matches in name before single word matches in name', () => {
     expect(searchSpot(
-      [{ name: 'Ak Boo Bar' }, { name: 'No Barbar' }, { name: 'Another Bar' }],
+      [{ name: 'Ak Boo Bar' }, { name: 'Ahinsa' }, { name: 'Another Bar' }],
       'a bar'
-    ).map(result => result.name))
-      .toEqual([ 'Ak Boo Bar', 'Another Bar', 'No Barbar' ])
+    ).map(spot => spot.name))
+      .toEqual([ 'Ak Boo Bar', 'Another Bar', 'Ahinsa' ])
+  })
+
+  it('sorts multiple matches in region before single word matches in region', () => {
+    expect(searchSpot(
+      [{ region: 'Ak Boo Bar' }, { region: 'Ahinsa' }, { region: 'Another Bar' }],
+      'a bar'
+    ).map(spot => spot.region))
+      .toEqual([ 'Ak Boo Bar', 'Another Bar', 'Ahinsa' ])
   })
 
   it('sorts single match types correctly', () => {
@@ -249,7 +257,7 @@ describe('searchSpot', () => {
         { name: 'Noli' }
       ],
       'no'
-      ).map(result => result.name)
+      ).map(spot => spot.name)
     ).toEqual([
       // first-word match in name
       'Noli',

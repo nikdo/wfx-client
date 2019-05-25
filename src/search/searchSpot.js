@@ -17,8 +17,8 @@ const numberOfStartMatches = matches =>
 export const startMatchesFirst = getMatches => (a, b) =>
   numberOfStartMatches(getMatches(b)) - numberOfStartMatches(getMatches(a))
 
-export const moreMatchesFirst = (a, b) =>
-  b.nameMatches.length - a.nameMatches.length
+export const moreMatchesFirst = getMatches => (a, b) =>
+  getMatches(b).length - getMatches(a).length
 
 export default (spots, query) => spots
   .map(spot => ({
@@ -30,9 +30,10 @@ export default (spots, query) => spots
     regionMatches: spot.nameMatches.length ? [] : match(spot.region, query)
   }))
   .filter(spot => spot.nameMatches.length || spot.regionMatches.length)
-  .slice().sort(moreMatchesFirst)
-  .slice().sort(startMatchesFirst(result => result.regionMatches))
-  .slice().sort(startMatchesFirst(result => result.nameMatches))
+  .slice().sort(moreMatchesFirst(spot => spot.regionMatches))
+  .slice().sort(moreMatchesFirst(spot => spot.nameMatches))
+  .slice().sort(startMatchesFirst(spot => spot.regionMatches))
+  .slice().sort(startMatchesFirst(spot => spot.nameMatches))
   .slice().sort(nameMatchesFirst)
   .map(spotWithMatches => {
     const { nameMatches, ...spot } = spotWithMatches
