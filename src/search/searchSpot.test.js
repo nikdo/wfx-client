@@ -1,7 +1,31 @@
 import searchSpot, {
+  moreMatchesFirst,
   nameMatchesFirst,
   startMatchesFirst
 } from './searchSpot'
+
+describe('moreMatchesFirst', () => {
+  it('returns 0 given same amount of matches', () => {
+    expect(moreMatchesFirst(
+      { nameMatches: [[0, 2]] },
+      { nameMatches: [[0, 2]] }
+    )).toEqual(0)
+  })
+
+  it('returns -2 given a has 3 matches while b has 1', () => {
+    expect(moreMatchesFirst(
+      { nameMatches: [[0, 2], [5, 6], [8, 12]] },
+      { nameMatches: [[0, 2]] }
+    )).toEqual(-2)
+  })
+
+  it('returns 1 given a has 1 match while b has 2', () => {
+    expect(moreMatchesFirst(
+      { nameMatches: [[0, 2]] },
+      { nameMatches: [[0, 2], [5, 6]] }
+    )).toEqual(1)
+  })
+})
 
 describe('nameMatchesFirst', () => {
   it('returns -1 if a has name matches while b has none', () => {
@@ -78,7 +102,7 @@ describe('startMatchesFirst', () => {
 
   it('returns 0 if a has non-start match and b has no matches', () => {
     expect(startMatchesFirst(
-      { nameMatches: [2, 4] },
+      { nameMatches: [[2, 4]] },
       { nameMatches: [] }
     )).toEqual(0)
   })
@@ -86,7 +110,7 @@ describe('startMatchesFirst', () => {
   it('returns 0 if a has no matches and b has non-start match', () => {
     expect(startMatchesFirst(
       { nameMatches: [] },
-      { nameMatches: [2, 4] }
+      { nameMatches: [[2, 4]] }
     )).toEqual(0)
   })
 
@@ -203,6 +227,17 @@ describe('searchSpot', () => {
       expect.objectContaining({ name: 'Barbar' }),
       expect.objectContaining({ name: 'Ak Boo Bar' }),
       expect.objectContaining({ name: 'Foo Bar' })
+    ])
+  })
+
+  it('sorts multiple matches before single word matches', () => {
+    expect(searchSpot(
+      [{ name: 'Ak Boo Bar' }, { name: 'No Barbar' }, { name: 'Another Bar' }],
+      'a bar'
+    )).toEqual([
+      expect.objectContaining({ name: 'Ak Boo Bar' }),
+      expect.objectContaining({ name: 'Another Bar' }),
+      expect.objectContaining({ name: 'No Barbar' })
     ])
   })
 })
