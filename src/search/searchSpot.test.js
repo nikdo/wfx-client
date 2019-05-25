@@ -6,21 +6,21 @@ import searchSpot, {
 
 describe('moreMatchesFirst', () => {
   it('returns 0 given same amount of matches', () => {
-    expect(moreMatchesFirst(spot => spot.nameMatches)(
+    expect(moreMatchesFirst(spot => spot.nameMatches.length)(
       { nameMatches: [[0, 2]] },
       { nameMatches: [[0, 2]] }
     )).toEqual(0)
   })
 
   it('returns -2 given a has 3 matches while b has 1', () => {
-    expect(moreMatchesFirst(spot => spot.nameMatches)(
+    expect(moreMatchesFirst(spot => spot.nameMatches.length)(
       { nameMatches: [[0, 2], [5, 6], [8, 12]] },
       { nameMatches: [[0, 2]] }
     )).toEqual(-2)
   })
 
   it('returns 1 given a has 1 match while b has 2', () => {
-    expect(moreMatchesFirst(spot => spot.nameMatches)(
+    expect(moreMatchesFirst(spot => spot.nameMatches.length)(
       { nameMatches: [[0, 2]] },
       { nameMatches: [[0, 2], [5, 6]] }
     )).toEqual(1)
@@ -186,17 +186,6 @@ describe('searchSpot', () => {
     ])
   })
 
-  it('does not highlight region if there is a name match', () => {
-    expect(searchSpot(
-      [{ name: 'Foo', region: 'Fee' }],
-      'f'
-    )).toEqual(
-      [expect.objectContaining({
-        regionFragments: [{ text: 'Fee', highlight: false }]
-      })]
-    )
-  })
-
   it('sorts name matches before region matches', () => {
     expect(searchSpot(
       [{ name: 'Foo' }, { name: 'Boo', region: 'Fax' }, { name: 'Far' }],
@@ -248,6 +237,18 @@ describe('searchSpot', () => {
       .toEqual([ 'Ak Boo Bar', 'Another Bar', 'Ahinsa' ])
   })
 
+  it('sorts multiple matches in region before single word matches in name', () => {
+    expect(searchSpot(
+      [
+        { name: 'Boo', region: 'Foo' },
+        { name: 'Bolivia', region: 'Moo' },
+        { region: 'Ak Boo Bar' }
+      ],
+      'bo bar'
+    ).map(spot => spot.region))
+      .toEqual([ 'Ak Boo Bar', 'Foo', 'Moo' ])
+  })
+
   it('sorts single match types correctly', () => {
     expect(
       searchSpot([
@@ -263,12 +264,12 @@ describe('searchSpot', () => {
     ).toEqual([
       // 1. more matches in name
       'Úplně Nová Lhota',
-      // 2. first-word match in name
-      'Noli',
-      // 3. second-word match in name
-      'Ostrožská Nová Ves',
-      // 4. more matches in region
+      // 2. more matches in region
       'Lavos',
+      // 3. first-word match in name
+      'Noli',
+      // 4. second-word match in name
+      'Ostrožská Nová Ves',
       // 5. first-word match in region
       'Merkur',
       // 6. second-word match in region
