@@ -102,6 +102,10 @@ section.chart {
   stroke-width: 2px;
 }
 
+.chart svg :global .hover-guide .value.disabled text.ms,
+.chart svg :global .hover-guide .value.disabled text.bft { fill: var(--color-secondary-text); }
+.chart svg :global .hover-guide .value.disabled .wind-direction { stroke: var(--color-secondary-text); }
+
 .chart svg :global .hover-guide .time text {
   font-size: var(--font-size-small);
 }

@@ -48,6 +48,7 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
         .append('tspan').text(' ' + bftNames[bft])
       direction.attr('transform', `rotate(${data[i].windBearing})`)
       darkness.attr('display', data[i].isDaylight ? 'none' : null)
+      value.classed('disabled', !data[i].isDaylight)
     }
   })
 }
