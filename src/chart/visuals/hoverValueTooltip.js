@@ -15,6 +15,12 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
     .attr('class', 'bft')
     .attr('dy', lineHeight * 1.5)
 
+  const darkness = value.append('text')
+    .text('darkness')
+    .attr('class', 'darkness')
+    .attr('dx', lineHeight * 1.5)
+    .attr('dy', -lineHeight)
+
   value.selectAll('text')
     .attr('x', lineHeight / 2)
     .attr('paint-order', 'stroke')
@@ -41,6 +47,7 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
         .attr('display', bft > 1 ? null : 'none')
         .append('tspan').text(' ' + bftNames[bft])
       direction.attr('transform', `rotate(${data[i].windBearing})`)
+      darkness.attr('display', data[i].isDaylight ? 'none' : null)
     }
   })
 }
