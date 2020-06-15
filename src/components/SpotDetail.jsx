@@ -4,15 +4,15 @@ import SpotTitle from './SpotTitle'
 import OtherForecasts from './OtherForecasts'
 import styles from './SpotDetail.module.css'
 
-export default ({ spotDetail }) => (
+export default ({ spot }) => (
   <main className={styles.main}>
-    <SpotTitle spot={spotDetail} />
-    <Chart spotId={spotDetail._id} forecast={spotDetail.forecast} />
+    <SpotTitle spot={spot} />
+    <Chart spotId={spot._id} forecast={spot.forecast} />
     <OtherForecasts
-      lat={spotDetail.lat}
-      lng={spotDetail.lng}
-      windguruId={spotDetail.forecasts.Windguru}
-      windfinderId={spotDetail.forecasts.Windfinder}
+      lat={spot.lat}
+      lng={spot.lng}
+      windguruId={spot.forecasts.Windguru}
+      windfinderId={spot.forecasts.Windfinder}
     />
   </main>
 )
