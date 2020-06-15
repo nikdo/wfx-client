@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchSpotDetail } from 'actions'
+import { getSpotDetail } from 'selectors'
 import Spinner from 'components/Spinner'
 import SpotDetail from 'components/SpotDetail'
 
@@ -19,6 +20,8 @@ class SpotDetailContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ spotDetail }) => ({ spotDetail })
+const mapStateToProps = state => ({
+  spotDetail: getSpotDetail(state)
+})
 
 export default connect(mapStateToProps)(SpotDetailContainer)
