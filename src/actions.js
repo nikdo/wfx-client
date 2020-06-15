@@ -14,7 +14,11 @@ const deserializeSpot = spot => ({
     ...frame,
     time: moment.unix(frame.time).tz(spot.timezone),
     windSpeed: Math.round(frame.windSpeed * 10) / 10,
-    windGust: Math.round(frame.windGust * 10) / 10
+    windGust: Math.round(frame.windGust * 10) / 10,
+    isDaylight: spot.daylight.some(day =>
+      day.sunriseTime <= frame.time &&
+      frame.time <= day.sunsetTime
+    )
   })),
   forecasts: spot.forecasts || {}
 })
