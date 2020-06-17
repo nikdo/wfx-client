@@ -29,11 +29,19 @@
   --color-mine-shaft:    #353438;
   --color-mountain-mist: #909090;
   --color-mercury:       #E6E6E6;
+  --color-concrete:      #F2F2F2;
   --color-romance:       #FCFCFA;
+
   --color-blue-violet:   #5657AE;
   --color-scampi:        #7172BA;
   --color-san-marino:    #476FB8;
   --color-danube:        #6586C3;
+
+  --color-vin-rouge:     #9D5068;
+  --color-bossanova:     #9872A2;
+  --color-sunglo:        #E67170;
+  --color-beach-peach:   #F29F70;
+  --color-golden-glow:   #F9E196;
 
   --color-text: var(--color-mine-shaft);
   --color-text-inverted: var(--color-romance);
@@ -71,21 +79,23 @@
     #EBEBEB /* +2 lightness */
   );
 
-  --color-level-2: hsl(60, 0%, 95%);
-  --color-level-3: hsl(230, 29%, 79%);
-  --color-level-4: hsl(78, 100%, 38%);
-  --color-level-5: hsl(43, 95%, 57%);
-  --color-level-6: hsl(32, 100%, 50%);
-  --color-level-7: hsl(346, 100%, 50%);
-  --color-level-8: hsl(336, 38%, 25%);
+  --color-level-2: var(--color-concrete);
+  --color-level-3: var(--color-golden-glow);
+  --color-level-4: var(--color-beach-peach);
+  --color-level-5: var(--color-sunglo);
+  --color-level-6: var(--color-bossanova);
+  --color-level-7: var(--color-scampi);
+  --color-level-8: var(--color-vin-rouge);
 
+/* chart colors with manually-aligned contrast; see Sketch file */
   --color-level-2-text: var(--color-mountain-mist);
-  --color-level-3-text: hsl(230, 29%, 50%);
-  --color-level-4-text: hsl(78, 100%, 25%);
-  --color-level-5-text: hsl(43, 95%, 45%);
-  --color-level-6-text: hsl(32, 100%, 35%);
-  --color-level-7-text: hsl(346, 100%, 40%);
-  --color-level-8-text: hsl(336, 38%, 35%);
+  --color-level-3-text: #D69A00;
+  --color-level-4-text: #ED6B21;
+  --color-level-5-text: #DE5A59;
+  --color-level-6-text: #946F9E;
+  --color-level-7-text: #7475C2;
+  --color-level-8-text: #C45276;
+
 
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   --fat-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
