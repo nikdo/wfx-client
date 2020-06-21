@@ -205,7 +205,7 @@ describe('searchSpot', () => {
       [{ name: 'Ak Boo Bar' }, { name: 'Barbar' }, { name: 'Foo Bar' }],
       'ba'
     ).map(spot => spot.name))
-      .toEqual([ 'Barbar', 'Ak Boo Bar', 'Foo Bar' ])
+      .toEqual(['Barbar', 'Ak Boo Bar', 'Foo Bar'])
   })
 
   it('sorts match types correctly', () => {

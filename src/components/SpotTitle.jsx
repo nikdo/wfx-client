@@ -5,8 +5,8 @@ export default ({ spot }) => (
   <header className='layout-section'>
     <h1 className={styles.title}>{spot.name}</h1>
     <p className={styles.location}>
-      { spot.region && spot.region + ', ' }
-      { spot.country }
+      {spot.region && spot.region + ', '}
+      {spot.country}
     </p>
   </header>
 )
