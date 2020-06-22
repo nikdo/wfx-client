@@ -14,20 +14,20 @@ export default ({ lat, lng, windguruId, windfinderId }) => (
           <WindyLogo />
         </a>
       </li>
-      {windguruId &&
+      {windguruId && (
         <li>
           <a href={`https://www.windguru.cz/${windguruId}`} title='Windguru' {...newTabProps}>
             <WindguruLogo />
           </a>
         </li>
-      }
-      {windfinderId &&
+      )}
+      {windfinderId && (
         <li>
           <a href={`https://www.windfinder.com/forecast/${windfinderId}`} title='Windfinder' {...newTabProps}>
             <WindfinderLogo />
           </a>
         </li>
-      }
+      )}
     </ul>
   </section>
 )

@@ -11,38 +11,42 @@ const SearchControl = ({ spotLoading, fat, showSearchIcon, onSearchClick, onCanc
     return <Spinner inline inverted />
   }
 
-  return <>
-    <OpacityTransition in={showSearchIcon}>
-      <span
-        className={styles.search}
-        onClick={(e) => {
-          e.preventDefault()
-          onSearchClick()
-        }}
-      >
-        <SearchIcon />
-      </span>
-    </OpacityTransition>
-    <OpacityTransition in={!showSearchIcon}>
-      <span
-        className={styles.cancel}
-        onClick={(e) => {
-          e.preventDefault()
-          onCancelClick()
-        }}
-      >
-        <CrossIcon />
-      </span>
-    </OpacityTransition>
-  </>
+  return (
+    <>
+      <OpacityTransition in={showSearchIcon}>
+        <span
+          className={styles.search}
+          onClick={(e) => {
+            e.preventDefault()
+            onSearchClick()
+          }}
+        >
+          <SearchIcon />
+        </span>
+      </OpacityTransition>
+      <OpacityTransition in={!showSearchIcon}>
+        <span
+          className={styles.cancel}
+          onClick={(e) => {
+            e.preventDefault()
+            onCancelClick()
+          }}
+        >
+          <CrossIcon />
+        </span>
+      </OpacityTransition>
+    </>
+  )
 }
 
 export default (props) => {
   const { inputProps, ...controlProps } = props
-  return <div className={classNames(styles.inputContainer, { [styles.fat]: props.fat })}>
-    <input {...inputProps} />
-    <div className={styles.control}>
-      <SearchControl {...controlProps} />
+  return (
+    <div className={classNames(styles.inputContainer, { [styles.fat]: props.fat })}>
+      <input {...inputProps} />
+      <div className={styles.control}>
+        <SearchControl {...controlProps} />
+      </div>
     </div>
-  </div>
+  )
 }

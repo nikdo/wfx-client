@@ -15,10 +15,12 @@ class App extends Component {
   render () {
     return this.props.initialLoad
       ? <Spinner />
-      : <>
-        <Header />
-        <Route path='/:spotId' component={SpotDetailContainer} />
-      </>
+      : (
+        <>
+          <Header />
+          <Route path='/:spotId' component={SpotDetailContainer} />
+        </>
+      )
   }
 }
 

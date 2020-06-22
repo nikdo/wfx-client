@@ -17,19 +17,22 @@ export default ({ inline = false, inverted = false }) => {
       marginLeft: -25,
       marginTop: -25
     }
-  return <svg
-    className={styles.spinner}
-    viewBox='0 0 50 50'
-    style={position}
-  >
-    <linearGradient id='gradient'>
-      <stop offset='30%' stopColor={inverted ? '#FCFCFA' : '#476FB8'} />
-      <stop offset='100%' stopColor={inverted ? '#FCFCFA' : '#5657AE'} />
-    </linearGradient>
-    <circle
-      className={styles.path}
-      cx='25' cy='25' r='20'
-      strokeWidth={inline ? 6 : 4}
-      stroke='url(#gradient)' />
-  </svg>
+  return (
+    <svg
+      className={styles.spinner}
+      viewBox='0 0 50 50'
+      style={position}
+    >
+      <linearGradient id='gradient'>
+        <stop offset='30%' stopColor={inverted ? '#FCFCFA' : '#476FB8'} />
+        <stop offset='100%' stopColor={inverted ? '#FCFCFA' : '#5657AE'} />
+      </linearGradient>
+      <circle
+        className={styles.path}
+        cx='25' cy='25' r='20'
+        strokeWidth={inline ? 6 : 4}
+        stroke='url(#gradient)'
+      />
+    </svg>
+  )
 }
