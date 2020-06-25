@@ -9,11 +9,6 @@ const countryCodeToCountry = spot => ({
 
 const deserializeSpot = spot => ({
   ...countryCodeToCountry(spot),
-  forecast: spot.forecast.map(frame => ({
-    ...frame,
-    windSpeed: Math.round(frame.windSpeed * 10) / 10,
-    windGust: Math.round(frame.windGust * 10) / 10
-  })),
   forecasts: spot.forecasts || {}
 })
 
