@@ -1,14 +1,7 @@
 import history from './history'
-/* Source: https://github.com/umpirsky/country-list/blob/master/data/en_US/country.json */
-import countries from './countries.json'
-
-const countryCodeToCountry = spot => ({
-  ...spot,
-  country: countries[spot.country]
-})
 
 const deserializeSpot = spot => ({
-  ...countryCodeToCountry(spot),
+  ...spot,
   forecasts: spot.forecasts || {}
 })
 
@@ -29,7 +22,6 @@ export const spotFetchCompleted = spot => ({
 export const fetchSpots = dispatch => {
   fetch(process.env.REACT_APP_API_URL + '/spots')
     .then(res => res.json())
-    .then(spots => spots.map(countryCodeToCountry))
     .then(spots => {
       dispatch(spotListCompleted(spots))
     })

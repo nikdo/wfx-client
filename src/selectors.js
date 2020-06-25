@@ -1,4 +1,6 @@
 import moment from 'moment-timezone'
+/* Source: https://github.com/umpirsky/country-list/blob/master/data/en_US/country.json */
+import countries from './countries.json'
 import roundHours from './roundHours'
 
 const getSpotDaylightRounded = state => state.spotDetail &&
@@ -8,7 +10,10 @@ const getSpotDaylightRounded = state => state.spotDetail &&
       sunsetTime: roundHours(day.sunsetTime)
     }))
 
-export const getSpots = state => state.spots
+export const getSpots = state => state.spots.map(spot => ({
+  ...spot,
+  country: countries[spot.country]
+}))
 export const getSearchQuery = state => state.searchQuery
 export const getSpotLoading = state => state.spotLoading
 
@@ -17,6 +22,7 @@ export const getSpot = state => {
   const spot = state.spotDetail
   return spot && ({
     ...spot,
+    country: countries[spot.country],
     forecast: spot.forecast.map(frame => ({
       ...frame,
       time: moment.unix(frame.time).tz(spot.timezone),
