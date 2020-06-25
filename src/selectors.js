@@ -8,6 +8,10 @@ const getSpotDaylightRounded = state => state.spotDetail &&
       sunsetTime: roundHours(day.sunsetTime)
     }))
 
+export const getSpots = state => state.spots
+export const getSearchQuery = state => state.searchQuery
+export const getSpotLoading = state => state.spotLoading
+
 export const getSpot = state => {
   const daylight = getSpotDaylightRounded(state)
   const spot = state.spotDetail

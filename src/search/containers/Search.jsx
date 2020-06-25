@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchSpotDetail } from 'actions'
 import { searchQueryChange } from '../reducer'
+import { getSpots, getSearchQuery, getSpotLoading } from 'selectors'
 import Search from '../components/Search'
 
 class SearchContainer extends Component {
@@ -23,9 +24,9 @@ class SearchContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  spots: state.spots,
-  searchQuery: state.searchQuery,
-  spotLoading: state.spotLoading
+  spots: getSpots(state),
+  searchQuery: getSearchQuery(state),
+  spotLoading: getSpotLoading(state)
 })
 
 export default connect(mapStateToProps)(SearchContainer)
