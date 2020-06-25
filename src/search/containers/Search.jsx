@@ -22,4 +22,10 @@ class SearchContainer extends Component {
   }
 }
 
-export default connect(state => state)(SearchContainer)
+const mapStateToProps = state => ({
+  spots: state.spots,
+  searchQuery: state.searchQuery,
+  spotLoading: state.spotLoading
+})
+
+export default connect(mapStateToProps)(SearchContainer)
