@@ -1,10 +1,5 @@
 import history from './history'
 
-const deserializeSpot = spot => ({
-  ...spot,
-  forecasts: spot.forecasts || {}
-})
-
 export const spotListCompleted = spots => ({
   type: 'SPOT_LIST_COMPLETED',
   payload: spots
@@ -34,7 +29,6 @@ export const fetchSpotDetail = (dispatch, id) => {
   )
   fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
     .then(res => res.json())
-    .then(deserializeSpot)
     .then(spot => {
       document.title = spot.name
       clearTimeout(timeout)
