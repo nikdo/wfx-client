@@ -2,6 +2,7 @@ import { select } from 'd3'
 import fillClip from './defs/fillClip'
 import lineClips from './defs/lineClips'
 import fill from './fill'
+import daylight from './daylight'
 import weekDays from './weekDays'
 import xAxis from './xAxis'
 import yAxis from './yAxis'
@@ -26,6 +27,7 @@ export default (canvasNode, data, visualisations) => {
   lineClips(canvas, dimensions, scales.y(bftCeilings[skippedLevels]))
 
   fill(canvas, dimensions, scales, bftCeilings, skippedLevels, subscribeToHoverEvents)
+  daylight(canvas, dimensions, scales, data.daylight)
 
   xGrid(canvas, dimensions, scales)
   yGrid(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))

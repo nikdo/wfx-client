@@ -18,7 +18,7 @@ export const getSearchQuery = state => state.searchQuery
 export const getSpotLoading = state => state.spotLoading
 
 export const getSpot = state => {
-  const daylight = getSpotDaylightRounded(state)
+  const daylightRounded = getSpotDaylightRounded(state)
   const spot = state.spotDetail
   return spot && ({
     ...spot,
@@ -28,10 +28,14 @@ export const getSpot = state => {
       hourly: spot.weather.hourly.map(frame => ({
         ...frame,
         time: moment.unix(frame.time).tz(spot.timezone),
-        isDaylight: daylight.some(day =>
+        isDaylight: daylightRounded.some(day =>
           day.sunriseTime <= frame.time &&
           frame.time <= day.sunsetTime
         )
+      })),
+      daylight: daylightRounded.map(day => ({
+        sunriseTime: moment.unix(day.sunriseTime).tz(spot.timezone),
+        sunsetTime: moment.unix(day.sunsetTime).tz(spot.timezone)
       }))
     }
   })
