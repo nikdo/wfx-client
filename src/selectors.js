@@ -3,8 +3,8 @@ import moment from 'moment-timezone'
 import countries from './countries.json'
 import roundHours from './roundHours'
 
-const getSpotDaylightRounded = state => state.spotDetail &&
-  state.spotDetail.daylight
+const getSpotDaylightRounded = state =>
+  state.spotDetail?.weather.daylight
     .map(day => ({
       sunriseTime: roundHours(day.sunriseTime),
       sunsetTime: roundHours(day.sunsetTime)
@@ -23,13 +23,16 @@ export const getSpot = state => {
   return spot && ({
     ...spot,
     country: countries[spot.country],
-    forecast: spot.forecast.map(frame => ({
-      ...frame,
-      time: moment.unix(frame.time).tz(spot.timezone),
-      isDaylight: daylight.some(day =>
-        day.sunriseTime <= frame.time &&
-        frame.time <= day.sunsetTime
-      )
-    }))
+    weather: {
+      ...spot.weather,
+      hourly: spot.weather.hourly.map(frame => ({
+        ...frame,
+        time: moment.unix(frame.time).tz(spot.timezone),
+        isDaylight: daylight.some(day =>
+          day.sunriseTime <= frame.time &&
+          frame.time <= day.sunsetTime
+        )
+      }))
+    }
   })
 }

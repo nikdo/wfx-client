@@ -13,8 +13,8 @@ const spots = Object.keys(responses).reduce((spots, key) => ({
   [key]: getSpot({ spotDetail: responses[key] })
 }), {})
 
-export const calm = () => <Chart {...spots.calm} />
-export const extreme = () => <Chart {...spots.extreme} />
-export const flat = () => <Chart {...spots.flat} />
-export const fresh = () => <Chart {...spots.fresh} />
-export const moderate = () => <Chart {...spots.moderate} />
+export const calm = () => <Chart spotId='42' forecast={spots.calm.weather.hourly} />
+export const extreme = () => <Chart spotId='42' forecast={spots.extreme.weather.hourly} />
+export const flat = () => <Chart spotId='42' forecast={spots.flat.weather.hourly} />
+export const fresh = () => <Chart spotId='42' forecast={spots.fresh.weather.hourly} />
+export const moderate = () => <Chart spotId='42' forecast={spots.moderate.weather.hourly} />
