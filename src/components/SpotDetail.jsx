@@ -7,7 +7,7 @@ import styles from './SpotDetail.module.css'
 export default ({ spot }) => (
   <main className={styles.main}>
     <SpotTitle spot={spot} />
-    <Chart spotId={spot._id} forecast={spot.weather.hourly} />
+    <Chart spotId={spot._id} weather={spot.weather} />
     <OtherForecasts
       lat={spot.lat}
       lng={spot.lng}
