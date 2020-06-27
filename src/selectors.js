@@ -32,7 +32,7 @@ export const getSpots = state => state.spots.map(spot => ({
 export const getSearchQuery = state => state.searchQuery
 export const getSpotLoading = state => state.spotLoading
 
-export const getSpot = state => {
+export const getSpotDetail = state => {
   const daylightRounded = getSpotDaylightRounded(state)
   const darkness = daylightToDarkness(daylightRounded)
   const spot = state.spotDetail

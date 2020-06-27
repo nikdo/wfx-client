@@ -1,6 +1,6 @@
 import React from 'react'
 import Chart from './Chart'
-import { getSpot } from 'selectors'
+import { getSpotDetail } from 'selectors'
 import responses from './sample-api-responses'
 
 export default {
@@ -10,7 +10,7 @@ export default {
 
 const spots = Object.keys(responses).reduce((spots, key) => ({
   ...spots,
-  [key]: getSpot({ spotDetail: responses[key] })
+  [key]: getSpotDetail({ spotDetail: responses[key] })
 }), {})
 
 export const calm = () => <Chart spotId='42' weather={spots.calm.weather} />

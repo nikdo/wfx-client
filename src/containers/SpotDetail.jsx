@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchSpotDetail } from 'actions'
-import { getSpot } from 'selectors'
+import { getSpotDetail } from 'selectors'
 import Spinner from 'components/Spinner'
 import SpotDetail from 'components/SpotDetail'
 
 export default ({ match }) => {
-  const spot = useSelector(getSpot)
+  const spot = useSelector(getSpotDetail)
   const dispatch = useDispatch()
 
   useEffect(() => {
