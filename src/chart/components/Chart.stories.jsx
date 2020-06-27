@@ -18,3 +18,4 @@ export const extreme = () => <Chart spotId='42' weather={spots.extreme.weather} 
 export const flat = () => <Chart spotId='42' weather={spots.flat.weather} />
 export const fresh = () => <Chart spotId='42' weather={spots.fresh.weather} />
 export const moderate = () => <Chart spotId='42' weather={spots.moderate.weather} />
+export const night = () => <Chart spotId='42' weather={spots.night.weather} />
