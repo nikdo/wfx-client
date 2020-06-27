@@ -1,6 +1,5 @@
-import { axisBottom } from 'd3'
-import { fillClipUrl } from './defs/fillClip'
 import darknessOverlay from './darknessOverlay'
+import darknessSeparators from './darknessSeparators'
 
 export default (canvas, dimensions, scales, data) => {
   // TODO: filter out of range data sooner by comparing to max value
@@ -13,20 +12,5 @@ export default (canvas, dimensions, scales, data) => {
     .filter(night => Object.keys(night).length)
 
   darknessOverlay(canvas, dimensions, scales, nights)
-
-  const separators = axisBottom()
-    .scale(scales.x)
-    .tickSize(-dimensions.h)
-    .tickValues([
-      ...nights.map(night => night.start),
-      ...nights.map(night => night.end)
-    ].filter(time => time))
-    .tickFormat('')
-
-  canvas.append('g')
-    .attr('class', 'x daylight')
-    .attr('clip-path', fillClipUrl)
-    .append('g')
-    .attr('transform', `translate(0, ${dimensions.h})`)
-    .call(separators)
+  darknessSeparators(canvas, dimensions, scales, nights)
 }
