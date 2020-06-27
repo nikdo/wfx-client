@@ -31,13 +31,31 @@ const setCountryName = spot => ({
   country: countries[spot.country]
 })
 
+const setTimezone = timezone => time => moment.unix(time).tz(timezone)
+const applyTimezone = spot => {
+  const setSpotTimezone = setTimezone(spot.timezone)
+  return {
+    ...spot,
+    weather: {
+      ...spot.weather,
+      hourly: spot.weather.hourly.map(frame => ({
+        ...frame,
+        time: setSpotTimezone(frame.time)
+      })),
+      darkness: spot.weather.darkness.map(night => ({
+        start: night.start && setSpotTimezone(night.start),
+        end: night.end && setSpotTimezone(night.end)
+      }))
+    }
+  }
+}
+
 export const getSpots = state => state.spots.map(setCountryName)
 export const getSearchQuery = state => state.searchQuery
 export const getSpotLoading = state => state.spotLoading
 
 export const getSpotDetail = state => {
   const daylightRounded = getSpotDaylightRounded(state)
-  const darkness = daylightToDarkness(daylightRounded)
   const spot = state.spotDetail
   return spot && pipe(
     setCountryName,
@@ -47,17 +65,14 @@ export const getSpotDetail = state => {
         ...spot.weather,
         hourly: spot.weather.hourly.map(frame => ({
           ...frame,
-          time: moment.unix(frame.time).tz(spot.timezone),
           isDaylight: daylightRounded.some(day =>
             day.sunriseTime <= frame.time &&
             frame.time <= day.sunsetTime
           )
         })),
-        darkness: darkness.map(night => ({
-          start: night.start && moment.unix(night.start).tz(spot.timezone),
-          end: night.end && moment.unix(night.end).tz(spot.timezone)
-        }))
+        darkness: daylightToDarkness(daylightRounded)
       }
-    })
+    }),
+    applyTimezone
   )(spot)
 }
