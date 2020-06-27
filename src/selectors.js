@@ -50,6 +50,14 @@ const applyTimezone = spot => {
   }
 }
 
+const setDarkness = daylightRounded => spot => ({
+  ...spot,
+  weather: {
+    ...spot.weather,
+    darkness: daylightToDarkness(daylightRounded)
+  }
+})
+
 export const getSpots = state => state.spots.map(setCountryName)
 export const getSearchQuery = state => state.searchQuery
 export const getSpotLoading = state => state.spotLoading
@@ -69,10 +77,10 @@ export const getSpotDetail = state => {
             day.sunriseTime <= frame.time &&
             frame.time <= day.sunsetTime
           )
-        })),
-        darkness: daylightToDarkness(daylightRounded)
+        }))
       }
     }),
+    setDarkness(daylightRounded),
     applyTimezone
   )(spot)
 }
