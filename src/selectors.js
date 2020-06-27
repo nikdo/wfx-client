@@ -11,7 +11,7 @@ const getSpotDaylightRounded = state =>
     }))
 
 export const daylightToDarkness = days => days
-  .reduce((nights, day) => {
+  ?.reduce((nights, day) => {
     const lastNight = nights[nights.length - 1]
     return [
       ...nights.splice(0, nights.length - 1),
