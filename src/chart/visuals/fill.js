@@ -1,3 +1,5 @@
+import { fillClipUrl } from './defs/fillClip'
+
 export default (canvas, dimensions, scales, bftCeilings, skippedLevels, subscribeToHoverEvents) => {
   const levelsCeilings = bftCeilings.slice(skippedLevels)
   const levels = levelsCeilings.reduce((levels, breakpoint, i, levelsCeilings) => [
@@ -9,7 +11,7 @@ export default (canvas, dimensions, scales, bftCeilings, skippedLevels, subscrib
   ], [])
 
   const fillGroup = canvas.append('g')
-    .attr('clip-path', 'url(#fill-clip)')
+    .attr('clip-path', fillClipUrl)
 
   levels.forEach(({ start, end }, level) => {
     fillGroup.append('rect')

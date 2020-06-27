@@ -1,3 +1,5 @@
+import { fillClipUrl } from './defs/fillClip'
+
 export default (canvas, dimensions, scales, data) => {
   const rectDimensions = data
     .map(({ start, end }) => ({
@@ -18,6 +20,6 @@ export default (canvas, dimensions, scales, data) => {
       .attr('x', x)
       .attr('width', width)
       .attr('height', dimensions.h)
-      .attr('clip-path', 'url(#fill-clip)')
+      .attr('clip-path', fillClipUrl)
   })
 }

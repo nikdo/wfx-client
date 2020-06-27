@@ -1,4 +1,5 @@
 import { axisBottom } from 'd3'
+import { fillClipUrl } from './defs/fillClip'
 import darknessOverlay from './darknessOverlay'
 
 export default (canvas, dimensions, scales, data) => {
@@ -24,7 +25,7 @@ export default (canvas, dimensions, scales, data) => {
 
   canvas.append('g')
     .attr('class', 'x daylight')
-    .attr('clip-path', 'url(#fill-clip)')
+    .attr('clip-path', fillClipUrl)
     .append('g')
     .attr('transform', `translate(0, ${dimensions.h})`)
     .call(separators)
