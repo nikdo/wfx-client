@@ -4,8 +4,8 @@ import { pipe } from 'functional'
 import countries from './countries.json'
 import roundHours from './roundHours'
 
-const getSpotDaylightRounded = state =>
-  state.spotDetail?.weather.daylight
+const getSpotDaylightRounded = spot =>
+  spot?.weather.daylight
     .map(day => ({
       sunriseTime: roundHours(day.sunriseTime),
       sunsetTime: roundHours(day.sunsetTime)
@@ -76,13 +76,12 @@ export const getSpots = state => state.spots.map(setCountryName)
 export const getSearchQuery = state => state.searchQuery
 export const getSpotLoading = state => state.spotLoading
 
-export const getSpotDetail = state => {
-  const daylightRounded = getSpotDaylightRounded(state)
-  const spot = state.spotDetail
-  return spot && pipe(
+export const getSpotDetail = ({ spotDetail }) => {
+  const daylightRounded = getSpotDaylightRounded(spotDetail)
+  return spotDetail && pipe(
     setCountryName,
     setDaylightFlag(daylightRounded),
     setDarkness(daylightRounded),
     applyTimezone
-  )(spot)
+  )(spotDetail)
 }
