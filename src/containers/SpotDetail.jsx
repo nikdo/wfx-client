@@ -1,27 +1,24 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { fetchSpotDetail } from 'actions'
-import { getSpot } from 'selectors'
+import { getSpotDetail } from 'selectors'
 import Spinner from 'components/Spinner'
 import SpotDetail from 'components/SpotDetail'
 
-class SpotDetailContainer extends Component {
-  componentDidMount () {
-    const { spot, match, dispatch } = this.props
-    if (!spot || spot._id !== match.params.spotId) {
+export default ({ match }) => {
+  const spot = useSelector(getSpotDetail)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    // fetch is initiated from here only if this is not accessed from search
+    // selection callback: opening app right on spot detail URL
+    if (!spot) {
       fetchSpotDetail(dispatch, match.params.spotId)
     }
-  }
+  // eslint-disable-next-line
+  }, [])
 
-  render () {
-    return this.props.spot
-      ? <SpotDetail spot={this.props.spot} />
-      : <Spinner />
-  }
+  return spot
+    ? <SpotDetail spot={spot} />
+    : <Spinner />
 }
-
-const mapStateToProps = state => ({
-  spot: getSpot(state)
-})
-
-export default connect(mapStateToProps)(SpotDetailContainer)

@@ -1,8 +1,11 @@
 import { area, curveNatural } from 'd3'
 
+const fillClipId = 'fill-clip'
+export const fillClipUrl = `url(#${fillClipId})`
+
 export default (defs, dimensions, scales, data) => {
   defs.append('clipPath')
-    .attr('id', 'fill-clip')
+    .attr('id', fillClipId)
     .append('path')
     .datum(data)
     .attr('d', area()

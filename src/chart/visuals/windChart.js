@@ -2,6 +2,8 @@ import { select } from 'd3'
 import fillClip from './defs/fillClip'
 import lineClips from './defs/lineClips'
 import fill from './fill'
+import darknessOverlay from './darknessOverlay'
+import darknessSeparators from './darknessSeparators'
 import weekDays from './weekDays'
 import xAxis from './xAxis'
 import yAxis from './yAxis'
@@ -22,14 +24,16 @@ export default (canvasNode, data, visualisations) => {
   const hoverEventHandlers = []
   const subscribeToHoverEvents = handler => hoverEventHandlers.push(handler)
 
-  fillClip(canvas, dimensions, scales, data)
+  fillClip(canvas, dimensions, scales, data.hourly)
   lineClips(canvas, dimensions, scales.y(bftCeilings[skippedLevels]))
 
   fill(canvas, dimensions, scales, bftCeilings, skippedLevels, subscribeToHoverEvents)
+  darknessOverlay(canvas, dimensions, scales, data.darkness)
+  darknessSeparators(canvas, dimensions, scales, data.darkness)
 
   xGrid(canvas, dimensions, scales)
   yGrid(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
-  line(canvas, dimensions, scales, data, subscribeToHoverEvents)
+  line(canvas, dimensions, scales, data.hourly, subscribeToHoverEvents)
 
   hoverOverlay(canvas, dimensions, subscribeToHoverEvents)
 
@@ -37,7 +41,7 @@ export default (canvasNode, data, visualisations) => {
   xAxis(canvas, dimensions, scales, subscribeToHoverEvents)
   yAxis(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
 
-  hoverGuide(canvas, dimensions, scales, data, bftCeilings, subscribeToHoverEvents)
+  hoverGuide(canvas, dimensions, scales, data.hourly, bftCeilings, subscribeToHoverEvents)
 
   hoverTarget(canvas, dimensions, scales, hoverEventHandlers)
 }

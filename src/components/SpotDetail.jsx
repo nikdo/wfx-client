@@ -7,12 +7,12 @@ import styles from './SpotDetail.module.css'
 export default ({ spot }) => (
   <main className={styles.main}>
     <SpotTitle spot={spot} />
-    <Chart spotId={spot._id} forecast={spot.forecast} />
+    <Chart spotId={spot._id} weather={spot.weather} />
     <OtherForecasts
       lat={spot.lat}
       lng={spot.lng}
-      windguruId={spot.forecasts.Windguru}
-      windfinderId={spot.forecasts.Windfinder}
+      windguruId={spot.forecasts?.Windguru}
+      windfinderId={spot.forecasts?.Windfinder}
     />
   </main>
 )

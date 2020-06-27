@@ -56,6 +56,21 @@ section.chart {
   color: var(--color-line);
 }
 
+.chart svg :global .daylight line {
+  color: var(--color-line);
+  opacity: 0.35;
+}
+
+.chart svg :global .daylight .domain {
+  display: none;
+}
+
+.chart svg :global .darkness-overlay rect {
+  fill: var(--color-mercury);
+  mix-blend-mode: color;
+  opacity: 0.86;
+}
+
 .chart svg :global .hover-target {
   fill: none;
   pointer-events: all;

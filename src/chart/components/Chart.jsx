@@ -22,16 +22,16 @@ export default class Chart extends Component {
   }
 
   static getDerivedStateFromProps (props) {
-    return { visualisations: transform(props.forecast) }
+    return { visualisations: transform(props.weather) }
   }
 
   componentDidMount () {
-    windChart(this.canvasNode.current, this.props.forecast, this.state.visualisations)
+    windChart(this.canvasNode.current, this.props.weather, this.state.visualisations)
   }
 
   componentDidUpdate () {
     this.removeChart()
-    windChart(this.canvasNode.current, this.props.forecast, this.state.visualisations)
+    windChart(this.canvasNode.current, this.props.weather, this.state.visualisations)
   }
 
   render () {

@@ -7,7 +7,7 @@ const unitHeigth = 12
 const hoverTooltipHeight = 30
 
 export default data => {
-  const yMaxValue = max(data.map(d => d.windSpeed)) + hoverTooltipHeight / unitHeigth
+  const yMaxValue = max(data.hourly.map(d => d.windSpeed)) + hoverTooltipHeight / unitHeigth
   const trimmedBftCeilings = trimLevelsCeilings(bftCeilings, Math.max(yMaxValue, minEndValue))
   const yEndValue = trimmedBftCeilings[trimmedBftCeilings.length - 1]
 
@@ -17,7 +17,7 @@ export default data => {
   }
   const scales = {
     x: scalePoint()
-      .domain(data.map(d => d.time))
+      .domain(data.hourly.map(d => d.time))
       .range([0, dimensions.w]),
     y: scaleLinear()
       .domain([0, yEndValue])
