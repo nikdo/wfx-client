@@ -4,12 +4,16 @@ import { pipe } from 'functional'
 import countries from './countries.json'
 import roundHours from './roundHours'
 
-const getSpotDaylightRounded = spot =>
-  spot?.weather.daylight
-    .map(day => ({
+const roundDaylight = spot => ({
+  ...spot,
+  weather: {
+    ...spot.weather,
+    daylight: spot.weather.daylight.map(day => ({
       sunriseTime: roundHours(day.sunriseTime),
       sunsetTime: roundHours(day.sunsetTime)
     }))
+  }
+})
 
 export const daylightToDarkness = days => days
   ?.reduce((nights, day) => {
@@ -56,7 +60,7 @@ const setDarkness = spot => {
     ...spot,
     weather: {
       ...weather,
-      darkness: daylightToDarkness(getSpotDaylightRounded(spot))
+      darkness: daylightToDarkness(daylight)
     }
   }
 }
@@ -67,7 +71,7 @@ const setDaylightFlag = spot => ({
     ...spot.weather,
     hourly: spot.weather.hourly.map(frame => ({
       ...frame,
-      isDaylight: getSpotDaylightRounded(spot).some(day =>
+      isDaylight: spot.weather.daylight.some(day =>
         day.sunriseTime <= frame.time &&
         frame.time <= day.sunsetTime
       )
@@ -82,6 +86,7 @@ export const getSpotLoading = state => state.spotLoading
 export const getSpotDetail = ({ spotDetail }) => spotDetail &&
   pipe(
     setCountryName,
+    roundDaylight,
     setDaylightFlag,
     setDarkness,
     applyTimezone
