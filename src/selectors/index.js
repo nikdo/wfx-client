@@ -57,9 +57,9 @@ const applyTimezone = spot => {
         ...frame,
         time: setSpotTimezone(frame.time)
       })),
-      darkness: spot.weather.darkness.map(night => ({
-        start: night.start && setSpotTimezone(night.start),
-        end: night.end && setSpotTimezone(night.end)
+      darkness: spot.weather.darkness.map(({ start, end }) => ({
+        ...(start && { start: setSpotTimezone(start) }),
+        ...(end && { end: setSpotTimezone(end) })
       }))
     }
   }
