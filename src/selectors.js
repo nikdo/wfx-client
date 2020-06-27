@@ -10,6 +10,21 @@ const getSpotDaylightRounded = state =>
       sunsetTime: roundHours(day.sunsetTime)
     }))
 
+export const daylightToDarkness = days => days
+  .reduce((nights, day) => {
+    const lastNight = nights[nights.length - 1]
+    return [
+      ...nights.splice(0, nights.length - 1),
+      {
+        ...lastNight,
+        end: day.sunriseTime
+      },
+      {
+        start: day.sunsetTime
+      }
+    ]
+  }, [{}])
+
 export const getSpots = state => state.spots.map(spot => ({
   ...spot,
   country: countries[spot.country]
@@ -19,6 +34,7 @@ export const getSpotLoading = state => state.spotLoading
 
 export const getSpot = state => {
   const daylightRounded = getSpotDaylightRounded(state)
+  const darkness = daylightToDarkness(daylightRounded)
   const spot = state.spotDetail
   return spot && ({
     ...spot,
@@ -33,9 +49,9 @@ export const getSpot = state => {
           frame.time <= day.sunsetTime
         )
       })),
-      daylight: daylightRounded.map(day => ({
-        sunriseTime: moment.unix(day.sunriseTime).tz(spot.timezone),
-        sunsetTime: moment.unix(day.sunsetTime).tz(spot.timezone)
+      darkness: darkness.map(night => ({
+        start: night.start && moment.unix(night.start).tz(spot.timezone),
+        end: night.end && moment.unix(night.end).tz(spot.timezone)
       }))
     }
   })

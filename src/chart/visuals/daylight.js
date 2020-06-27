@@ -4,7 +4,7 @@ export default (canvas, dimensions, scales, data) => {
   const separators = axisBottom()
     .scale(scales.x)
     .tickSize(-dimensions.h)
-    .tickValues([...data.map(day => day.sunriseTime), ...data.map(day => day.sunsetTime)])
+    .tickValues([...data.map(night => night.start), ...data.map(night => night.end)])
     .tickFormat('')
 
   canvas.append('g')

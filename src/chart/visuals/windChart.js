@@ -27,7 +27,7 @@ export default (canvasNode, data, visualisations) => {
   lineClips(canvas, dimensions, scales.y(bftCeilings[skippedLevels]))
 
   fill(canvas, dimensions, scales, bftCeilings, skippedLevels, subscribeToHoverEvents)
-  daylight(canvas, dimensions, scales, data.daylight)
+  daylight(canvas, dimensions, scales, data.darkness)
 
   xGrid(canvas, dimensions, scales)
   yGrid(canvas, dimensions, scales, bftCeilings.slice(skippedLevels))
