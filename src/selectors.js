@@ -58,6 +58,20 @@ const setDarkness = daylightRounded => spot => ({
   }
 })
 
+const setDaylightFlag = daylightRounded => spot => ({
+  ...spot,
+  weather: {
+    ...spot.weather,
+    hourly: spot.weather.hourly.map(frame => ({
+      ...frame,
+      isDaylight: daylightRounded.some(day =>
+        day.sunriseTime <= frame.time &&
+        frame.time <= day.sunsetTime
+      )
+    }))
+  }
+})
+
 export const getSpots = state => state.spots.map(setCountryName)
 export const getSearchQuery = state => state.searchQuery
 export const getSpotLoading = state => state.spotLoading
@@ -67,19 +81,7 @@ export const getSpotDetail = state => {
   const spot = state.spotDetail
   return spot && pipe(
     setCountryName,
-    spot => ({
-      ...spot,
-      weather: {
-        ...spot.weather,
-        hourly: spot.weather.hourly.map(frame => ({
-          ...frame,
-          isDaylight: daylightRounded.some(day =>
-            day.sunriseTime <= frame.time &&
-            frame.time <= day.sunsetTime
-          )
-        }))
-      }
-    }),
+    setDaylightFlag(daylightRounded),
     setDarkness(daylightRounded),
     applyTimezone
   )(spot)
