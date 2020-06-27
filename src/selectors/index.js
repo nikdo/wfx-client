@@ -3,6 +3,7 @@ import { pipe } from 'functional'
 /* Source: https://github.com/umpirsky/country-list/blob/master/data/en_US/country.json */
 import countries from './countries.json'
 import roundHours from './roundHours'
+import daylightToDarkness from './daylightToDarkness'
 
 const roundDaylight = spot => ({
   ...spot,
@@ -14,21 +15,6 @@ const roundDaylight = spot => ({
     }))
   }
 })
-
-export const daylightToDarkness = days => days
-  ?.reduce((nights, day) => {
-    const lastNight = nights[nights.length - 1]
-    return [
-      ...nights.splice(0, nights.length - 1),
-      {
-        ...lastNight,
-        end: day.sunriseTime
-      },
-      {
-        start: day.sunsetTime
-      }
-    ]
-  }, [{}])
 
 const setCountryName = spot => ({
   ...spot,

@@ -1,5 +1,5 @@
 import moment from 'moment-timezone'
-import { daylightToDarkness } from './'
+import daylightToDarkness from './daylightToDarkness'
 
 describe('daylightToDarkness', () => {
   it('transforms daylight to darkness', () => {
