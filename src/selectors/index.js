@@ -50,13 +50,16 @@ const applyTimezone = spot => {
   }
 }
 
-const setDarkness = spot => ({
-  ...spot,
-  weather: {
-    ...spot.weather,
-    darkness: daylightToDarkness(getSpotDaylightRounded(spot))
+const setDarkness = spot => {
+  const { daylight, ...weather } = spot.weather
+  return {
+    ...spot,
+    weather: {
+      ...weather,
+      darkness: daylightToDarkness(getSpotDaylightRounded(spot))
+    }
   }
-})
+}
 
 const setDaylightFlag = spot => ({
   ...spot,
