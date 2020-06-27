@@ -46,6 +46,24 @@ const setDarkness = spot => {
   }
 }
 
+const isInRange = (min, max) => item => min < item && item < max
+const trimDarkness = spot => {
+  const hours = spot.weather.hourly.map(frame => frame.time)
+  const isWithinHourlyForecast = isInRange(hours[0], hours[hours.length - 1])
+  return {
+    ...spot,
+    weather: {
+      ...spot.weather,
+      darkness: spot.weather.darkness
+        .map(({ start, end }) => ({
+          ...(isWithinHourlyForecast(start) && { start }),
+          ...(isWithinHourlyForecast(end) && { end })
+        }))
+        .filter(night => Object.keys(night).length)
+    }
+  }
+}
+
 const setTimezone = timezone => time => moment.unix(time).tz(timezone)
 const applyTimezone = spot => {
   const setSpotTimezone = setTimezone(spot.timezone)
@@ -75,5 +93,6 @@ export const getSpotDetail = ({ spotDetail }) => spotDetail &&
     roundDaylight,
     setDaylightFlag,
     setDarkness,
+    trimDarkness,
     applyTimezone
   )(spotDetail)
