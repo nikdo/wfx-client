@@ -2,12 +2,7 @@ import moment from 'moment-timezone'
 import { pipe } from 'functional'
 /* Source: https://github.com/umpirsky/country-list/blob/master/data/en_US/country.json */
 import countries from './countries.json'
-import {
-  roundDaylight,
-  setDaylightFlag,
-  setDarkness,
-  trimDarkness
-} from './daylight'
+import transformDaylight from './daylight'
 
 const setCountryName = spot => ({
   ...spot,
@@ -40,9 +35,9 @@ export const getSpotLoading = state => state.spotLoading
 export const getSpotDetail = ({ spotDetail }) => spotDetail &&
   pipe(
     setCountryName,
-    roundDaylight,
-    setDaylightFlag,
-    setDarkness,
-    trimDarkness,
+    spot => ({
+      ...spot,
+      weather: transformDaylight(spot.weather)
+    }),
     applyTimezone
   )(spotDetail)
