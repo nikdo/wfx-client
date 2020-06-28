@@ -1,4 +1,8 @@
-.logo {
+.logo,
+.logo:active,
+.logo:focus,
+.logo:hover,
+.logo:visited {
   color: var(--color-text-inverted);
   white-space: nowrap;
   display: flex;
