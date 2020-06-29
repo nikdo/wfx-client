@@ -3,31 +3,28 @@ import {
   setHourlyDaylight,
   setDarkness,
   setFrameDaylight,
-  getMatchingSunrise
+  getMatchingTime
 } from './daylight'
 
-describe('getMatchingSunrise', () => {
-  it('returns undefined when no matching rounded sunrise', () => {
-    const daylight = [
-      {
-        sunriseTime: moment('2030-01-01 09:20').unix(),
-        sunsetTime: moment('2030-01-01 19:13').unix()
-      }
+describe('getMatchingTime', () => {
+  it('returns undefined when no matching rounded time is present', () => {
+    const sunrises = [
+      moment('2030-01-01 09:20').unix(),
+      moment('2030-01-01 19:13').unix()
     ]
     const time = moment('2030-01-01 08:00').unix()
-    expect(getMatchingSunrise(daylight)(time)).toEqual(undefined)
+    expect(getMatchingTime(sunrises)(time))
+      .toEqual(undefined)
   })
 
-  it('returns exact sunrise time when matching rounded sunrise', () => {
-    const daylight = [
-      {
-        sunriseTime: moment('2030-01-01 09:29').unix(),
-        sunsetTime: moment('2030-01-01 19:13').unix()
-      }
+  it('returns exact time when matching rounded time is found', () => {
+    const sunrises = [
+      moment('2030-01-01 09:20').unix(),
+      moment('2030-01-01 19:13').unix()
     ]
-    const time = moment('2030-01-01 09:00').unix()
-    expect(getMatchingSunrise(daylight)(time))
-      .toEqual(moment('2030-01-01 09:29').unix())
+    const time = moment('2030-01-01 19:00').unix()
+    expect(getMatchingTime(sunrises)(time))
+      .toEqual(moment('2030-01-01 19:13').unix())
   })
 })
 
@@ -116,7 +113,7 @@ describe('setFrameDaylight', () => {
       .not.toHaveProperty('sunrise')
   })
 
-  xit('sets sunset time when time is at rounded sunset', () => {
+  it('sets sunset time when time is at rounded sunset', () => {
     const daylight = [
       {
         sunriseTime: moment('2030-01-01 09:29').unix(),
@@ -127,10 +124,10 @@ describe('setFrameDaylight', () => {
       time: moment('2030-01-01 19:00').unix()
     }
     expect(setFrameDaylight(daylight)(frame))
-      .toHaveProperty('isDaylight', false)
+      .toHaveProperty('sunset', moment('2030-01-01 19:13').unix())
   })
 
-  xit('does not set sunset time when time is not rounded sunset', () => {
+  it('does not set sunset time when time is not rounded sunset', () => {
     const daylight = [
       {
         sunriseTime: moment('2030-01-01 09:29').unix(),
@@ -138,10 +135,10 @@ describe('setFrameDaylight', () => {
       }
     ]
     const frame = {
-      time: moment('2030-01-01 19:00').unix()
+      time: moment('2030-01-01 22:00').unix()
     }
     expect(setFrameDaylight(daylight)(frame))
-      .toHaveProperty('isDaylight', false)
+      .not.toHaveProperty('sunset')
   })
 })
 
