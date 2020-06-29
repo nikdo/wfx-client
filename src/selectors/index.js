@@ -16,9 +16,10 @@ const applyTimezone = spot => {
     ...spot,
     weather: {
       ...spot.weather,
-      hourly: spot.weather.hourly.map(frame => ({
+      hourly: spot.weather.hourly.map(({ time, sunrise, ...frame }) => ({
         ...frame,
-        time: setSpotTimezone(frame.time)
+        time: setSpotTimezone(time),
+        ...(sunrise && { sunrise: setSpotTimezone(sunrise) })
       })),
       darkness: spot.weather.darkness.map(({ start, end }) => ({
         ...(start && { start: setSpotTimezone(start) }),
