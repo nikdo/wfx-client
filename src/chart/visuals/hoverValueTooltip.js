@@ -1,8 +1,20 @@
 import { bisect } from 'd3'
 import { lineHeight, bftNames } from './constants'
-import { moonId } from '../components/Icons'
+import { moonId, sunriseId, sunsetId } from '../components/Icons'
 
 const toBft = (value, bftCeilings) => bisect(bftCeilings, value)
+
+const daylightIconId = ({ isDaylight, sunrise, sunset }) => {
+  if (sunrise) {
+    return sunriseId
+  } else if (sunset) {
+    return sunsetId
+  } else if (!isDaylight) {
+    return moonId
+  } else {
+    return ''
+  }
+}
 
 export default (value, data, bftCeilings, subscribeToHoverEvents) => {
   value.append('circle')
@@ -45,7 +57,7 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
         .attr('display', bft > 1 ? null : 'none')
         .append('tspan').text(' ' + bftNames[bft])
       direction.attr('transform', `rotate(${data[i].windBearing})`)
-      daylight.attr('xlink:href', data[i].isDaylight ? '' : `#${moonId}`)
+      daylight.attr('xlink:href', `#${daylightIconId(data[i])}`)
       value.classed('disabled', !data[i].isDaylight)
     }
   })
