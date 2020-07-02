@@ -16,8 +16,7 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
     .attr('class', 'bft')
     .attr('dy', lineHeight * 1.5)
 
-  const darkness = value.append('use')
-    .attr('xlink:href', `#${moonId}`)
+  const daylight = value.append('use')
     .attr('transform', `translate(${lineHeight * 2}, ${-lineHeight * 2})`)
 
   value.selectAll('text')
@@ -46,7 +45,7 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
         .attr('display', bft > 1 ? null : 'none')
         .append('tspan').text(' ' + bftNames[bft])
       direction.attr('transform', `rotate(${data[i].windBearing})`)
-      darkness.attr('display', data[i].isDaylight ? 'none' : null)
+      daylight.attr('xlink:href', data[i].isDaylight ? '' : `#${moonId}`)
       value.classed('disabled', !data[i].isDaylight)
     }
   })
