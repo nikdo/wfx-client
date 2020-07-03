@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import transform from '../transformations/transform'
 import windChart from '../visuals/windChart'
 import styles from './Chart.module.css'
+import Icons from './Icons'
 
 export default class Chart extends Component {
   constructor (props) {
@@ -43,6 +44,9 @@ export default class Chart extends Component {
           width={dimensions.w + margin.left + margin.right}
           height={dimensions.h + margin.top + margin.bottom}
         >
+          <defs>
+            <Icons />
+          </defs>
           <g
             ref={this.canvasNode}
             width={dimensions.w}

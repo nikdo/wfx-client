@@ -1,37 +1,69 @@
 import { bisect } from 'd3'
 import { lineHeight, bftNames } from './constants'
+import { arrowId, moonId, sunriseId, sunsetId } from '../components/Icons'
 
 const toBft = (value, bftCeilings) => bisect(bftCeilings, value)
+
+const daylightIconId = ({ isDaylight, sunrise, sunset }) => {
+  if (sunrise) {
+    return sunriseId
+  } else if (sunset) {
+    return sunsetId
+  } else if (!isDaylight) {
+    return moonId
+  } else {
+    return ''
+  }
+}
+
+const daylightText = ({ sunrise, sunset }) => {
+  if (sunrise) {
+    return sunrise.format('HH:mm')
+  } else if (sunset) {
+    return sunset.format('HH:mm')
+  } else {
+    return undefined
+  }
+}
 
 export default (value, data, bftCeilings, subscribeToHoverEvents) => {
   value.append('circle')
     .attr('r', 3)
 
+  const icons = value.append('g')
+    .attr('transform', `translate(${lineHeight / 2}, ${-lineHeight * 2 - lineHeight / 4})`)
+
+  const direction = icons.append('g')
+    .attr('transform', `translate(0, ${((lineHeight * 1.5) - 20) / 2})`)
+    .append('use')
+    .attr('class', 'wind-direction')
+    .attr('xlink:href', `#${arrowId}`)
+
+  const daylight = icons.append('g')
+    .attr('transform', `translate(${lineHeight * 2}, ${((lineHeight * 1.5) - 16) / 2})`)
+    .attr('class', 'daylight-icon')
+    .append('use')
+
+  const daylightTime = icons.append('text')
+    .attr('x', lineHeight * 3 + 4)
+    .attr('y', lineHeight + 2)
+    .attr('class', 'daylight-time')
+    .append('tspan')
+
   const ms = value.append('text')
     .attr('class', 'ms')
+    .attr('x', lineHeight / 2)
     .attr('dy', lineHeight / 4)
 
   const bf = value.append('text')
     .attr('class', 'bft')
+    .attr('x', lineHeight / 2)
     .attr('dy', lineHeight * 1.5)
 
-  const darkness = value.append('path')
-    .attr('class', 'darkness')
-    .attr('d', 'M13.1712349,0 C14.4088571,0 15.6033354,0.182122644 16.728603,0.520668054 C12.8236823,1.83476712 10.0155749,5.48271323 10.0155749,9.77730065 C10.0155749,15.1776447 14.4558887,19.5554885 19.9332934,19.5554885 C21.0035019,19.5554885 22.0341188,19.3883612 22.9997593,19.0791341 C20.7858528,22.0623954 17.2080486,24 13.1712349,24 C6.44924748,24 1,18.627417 1,12 C1,5.372583 6.44924748,0 13.1712349,0 Z')
-    // TODO: find out how to fit SVG path element to specific dimension instead of using scale transform
-    .attr('transform', `translate(${lineHeight * 2}, ${-lineHeight * 2}) scale(0.6)`)
-
   value.selectAll('text')
-    .attr('x', lineHeight / 2)
     .attr('paint-order', 'stroke')
     .style('paint-order', 'stroke') // Safari needs to set style when stroke is set in CSS
     .attr('stroke-linejoin', 'round')
-
-  const direction = value.append('g')
-    .attr('class', 'wind-direction')
-    .attr('transform', `translate(${lineHeight}, ${-lineHeight * 1.5})`)
-    .append('path')
-    .attr('d', 'M-2.5,1 L0,5 L2.5,1 M0,4 V -10')
 
   subscribeToHoverEvents({
     onValueHover: (x, i) => {
@@ -46,8 +78,10 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
         .attr('class', `bft level-${bft}`)
         .attr('display', bft > 1 ? null : 'none')
         .append('tspan').text(' ' + bftNames[bft])
-      direction.attr('transform', `rotate(${data[i].windBearing})`)
-      darkness.attr('display', data[i].isDaylight ? 'none' : null)
+      direction.attr('transform', `rotate(${data[i].windBearing} 10 10)`)
+      daylight.attr('xlink:href', `#${daylightIconId(data[i])}`)
+        .attr('class', daylightIconId(data[i]))
+      daylightTime.text(daylightText(data[i]))
       value.classed('disabled', !data[i].isDaylight)
     }
   })
