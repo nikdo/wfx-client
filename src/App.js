@@ -18,7 +18,9 @@ class App extends Component {
       : (
         <>
           <Header />
-          <Route path='/:spotId' component={SpotDetailContainer} />
+          <Route path='/:spotId'>
+            <SpotDetailContainer />
+          </Route>
         </>
       )
   }
