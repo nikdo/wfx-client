@@ -1,13 +1,14 @@
 import React from 'react'
 import classNames from 'classnames'
-import { withRouter } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import Logo from 'components/Logo'
 import SearchContainer from 'search/containers/Search'
 import Footer from 'components/Footer'
 import styles from './Header.module.css'
 
-const Header = ({ location }) => {
+export default () => {
+  const location = useLocation()
   const fullSize = location.pathname === '/'
   return (
     <header className={classNames(styles.header, fullSize ? styles.full : styles.top)}>
@@ -20,5 +21,3 @@ const Header = ({ location }) => {
     </header>
   )
 }
-
-export default withRouter(Header)
