@@ -16,6 +16,16 @@ const daylightIconId = ({ isDaylight, sunrise, sunset }) => {
   }
 }
 
+const daylightText = ({ sunrise, sunset }) => {
+  if (sunrise) {
+    return sunrise.format('HH:mm')
+  } else if (sunset) {
+    return sunset.format('HH:mm')
+  } else {
+    return undefined
+  }
+}
+
 export default (value, data, bftCeilings, subscribeToHoverEvents) => {
   value.append('circle')
     .attr('r', 3)
@@ -33,16 +43,23 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
     .attr('transform', `translate(${lineHeight * 2}, ${((lineHeight * 1.5) - 16) / 2})`)
     .append('use')
 
+  const daylightTime = icons.append('text')
+    .attr('x', lineHeight * 3 + 4)
+    .attr('y', lineHeight + 2)
+    .attr('class', 'daylight-time')
+    .append('tspan')
+
   const ms = value.append('text')
     .attr('class', 'ms')
+    .attr('x', lineHeight / 2)
     .attr('dy', lineHeight / 4)
 
   const bf = value.append('text')
     .attr('class', 'bft')
+    .attr('x', lineHeight / 2)
     .attr('dy', lineHeight * 1.5)
 
   value.selectAll('text')
-    .attr('x', lineHeight / 2)
     .attr('paint-order', 'stroke')
     .style('paint-order', 'stroke') // Safari needs to set style when stroke is set in CSS
     .attr('stroke-linejoin', 'round')
@@ -62,6 +79,7 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
         .append('tspan').text(' ' + bftNames[bft])
       direction.attr('transform', `rotate(${data[i].windBearing} 10 10)`)
       daylight.attr('xlink:href', `#${daylightIconId(data[i])}`)
+      daylightTime.text(daylightText(data[i]))
       value.classed('disabled', !data[i].isDaylight)
     }
   })
