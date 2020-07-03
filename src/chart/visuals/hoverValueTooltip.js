@@ -41,8 +41,8 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
 
   const daylight = icons.append('g')
     .attr('transform', `translate(${lineHeight * 2}, ${((lineHeight * 1.5) - 16) / 2})`)
-    .append('use')
     .attr('class', 'daylight-icon')
+    .append('use')
 
   const daylightTime = icons.append('text')
     .attr('x', lineHeight * 3 + 4)
@@ -80,6 +80,7 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
         .append('tspan').text(' ' + bftNames[bft])
       direction.attr('transform', `rotate(${data[i].windBearing} 10 10)`)
       daylight.attr('xlink:href', `#${daylightIconId(data[i])}`)
+        .attr('class', daylightIconId(data[i]))
       daylightTime.text(daylightText(data[i]))
       value.classed('disabled', !data[i].isDaylight)
     }
