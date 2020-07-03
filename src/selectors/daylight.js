@@ -2,13 +2,15 @@ import { pipe } from 'functional'
 import roundHours from './roundHours'
 import daylightToDarkness from './daylightToDarkness'
 
-export const getMatchingTime = list => query =>
-  list.find(time => roundHours(time) === query)
+export const getMatchingTime = round => list => query =>
+  list.find(time => round(time) === round(query))
+
+const getTimeMatchingRounded = getMatchingTime(roundHours)
 
 const getMatchingSunrise = daylight =>
-  getMatchingTime(daylight.map(day => day.sunriseTime))
+  getTimeMatchingRounded(daylight.map(day => day.sunriseTime))
 const getMatchingSunset = daylight =>
-  getMatchingTime(daylight.map(day => day.sunsetTime))
+  getTimeMatchingRounded(daylight.map(day => day.sunsetTime))
 
 export const setFrameDaylight = daylight => frame => {
   const sunrise = getMatchingSunrise(daylight)(frame.time)
