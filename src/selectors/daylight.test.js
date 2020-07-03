@@ -9,7 +9,7 @@ describe('setFrameDaylight', () => {
   it('sets isDaylight to false when time is before sunrise', () => {
     const daylight = [
       {
-        sunriseTime: moment('2030-01-01 09:29').unix(),
+        sunriseTime: moment('2030-01-01 09:52').unix(),
         sunsetTime: moment('2030-01-01 19:13').unix()
       }
     ]
@@ -23,7 +23,7 @@ describe('setFrameDaylight', () => {
   it('sets isDaylight to true when time is between sunrise and sunset', () => {
     const daylight = [
       {
-        sunriseTime: moment('2030-01-01 09:29').unix(),
+        sunriseTime: moment('2030-01-01 09:52').unix(),
         sunsetTime: moment('2030-01-01 19:13').unix()
       }
     ]
@@ -34,10 +34,10 @@ describe('setFrameDaylight', () => {
       .toHaveProperty('isDaylight', true)
   })
 
-  it('sets isDaylight to false when time is at rounded sunrise', () => {
+  it('sets isDaylight to false when time is at floored sunrise', () => {
     const daylight = [
       {
-        sunriseTime: moment('2030-01-01 09:29').unix(),
+        sunriseTime: moment('2030-01-01 09:52').unix(),
         sunsetTime: moment('2030-01-01 19:13').unix()
       }
     ]
@@ -48,10 +48,38 @@ describe('setFrameDaylight', () => {
       .toHaveProperty('isDaylight', false)
   })
 
-  it('sets isDaylight to false when time is at rounded sunset', () => {
+  it('sets isDaylight to true when time is right after floored sunrise', () => {
     const daylight = [
       {
-        sunriseTime: moment('2030-01-01 09:29').unix(),
+        sunriseTime: moment('2030-01-01 09:52').unix(),
+        sunsetTime: moment('2030-01-01 19:13').unix()
+      }
+    ]
+    const frame = {
+      time: moment('2030-01-01 10:00').unix()
+    }
+    expect(setFrameDaylight(daylight)(frame))
+      .toHaveProperty('isDaylight', true)
+  })
+
+  it('sets isDaylight to false when time is at ceiled sunset', () => {
+    const daylight = [
+      {
+        sunriseTime: moment('2030-01-01 09:52').unix(),
+        sunsetTime: moment('2030-01-01 19:13').unix()
+      }
+    ]
+    const frame = {
+      time: moment('2030-01-01 20:00').unix()
+    }
+    expect(setFrameDaylight(daylight)(frame))
+      .toHaveProperty('isDaylight', false)
+  })
+
+  it('sets isDaylight to true when time is right before ceiled sunset', () => {
+    const daylight = [
+      {
+        sunriseTime: moment('2030-01-01 09:52').unix(),
         sunsetTime: moment('2030-01-01 19:13').unix()
       }
     ]
@@ -59,13 +87,13 @@ describe('setFrameDaylight', () => {
       time: moment('2030-01-01 19:00').unix()
     }
     expect(setFrameDaylight(daylight)(frame))
-      .toHaveProperty('isDaylight', false)
+      .toHaveProperty('isDaylight', true)
   })
 
-  it('sets sunrise time when time is at rounded sunrise', () => {
+  it('sets sunrise time when time is at floored sunrise', () => {
     const daylight = [
       {
-        sunriseTime: moment('2030-01-01 09:29').unix(),
+        sunriseTime: moment('2030-01-01 09:52').unix(),
         sunsetTime: moment('2030-01-01 19:13').unix()
       }
     ]
@@ -73,13 +101,13 @@ describe('setFrameDaylight', () => {
       time: moment('2030-01-01 09:00').unix()
     }
     expect(setFrameDaylight(daylight)(frame))
-      .toHaveProperty('sunrise', moment('2030-01-01 09:29').unix())
+      .toHaveProperty('sunrise', moment('2030-01-01 09:52').unix())
   })
 
-  it('does not set sunrise time when time is not rounded sunrise', () => {
+  it('does not set sunrise time when time is not floored sunrise', () => {
     const daylight = [
       {
-        sunriseTime: moment('2030-01-01 09:29').unix(),
+        sunriseTime: moment('2030-01-01 09:52').unix(),
         sunsetTime: moment('2030-01-01 19:13').unix()
       }
     ]
@@ -90,24 +118,24 @@ describe('setFrameDaylight', () => {
       .not.toHaveProperty('sunrise')
   })
 
-  it('sets sunset time when time is at rounded sunset', () => {
+  it('sets sunset time when time is at ceiled sunset', () => {
     const daylight = [
       {
-        sunriseTime: moment('2030-01-01 09:29').unix(),
+        sunriseTime: moment('2030-01-01 09:52').unix(),
         sunsetTime: moment('2030-01-01 19:13').unix()
       }
     ]
     const frame = {
-      time: moment('2030-01-01 19:00').unix()
+      time: moment('2030-01-01 20:00').unix()
     }
     expect(setFrameDaylight(daylight)(frame))
       .toHaveProperty('sunset', moment('2030-01-01 19:13').unix())
   })
 
-  it('does not set sunset time when time is not rounded sunset', () => {
+  it('does not set sunset time when time is not ceiled sunset', () => {
     const daylight = [
       {
-        sunriseTime: moment('2030-01-01 09:29').unix(),
+        sunriseTime: moment('2030-01-01 09:52').unix(),
         sunsetTime: moment('2030-01-01 19:13').unix()
       }
     ]
@@ -125,11 +153,11 @@ describe('setHourlyDaylight', () => {
       daylight: [
         {
           sunriseTime: moment('2030-01-01 09:29').unix(),
-          sunsetTime: moment('2030-01-01 19:13').unix()
+          sunsetTime: moment('2030-01-01 19:31').unix()
         },
         {
           sunriseTime: moment('2030-01-02 09:31').unix(),
-          sunsetTime: moment('2030-01-02 19:11').unix()
+          sunsetTime: moment('2030-01-02 19:29').unix()
         }
       ],
       hourly: [
@@ -166,11 +194,11 @@ describe('setDarkness', () => {
       daylight: [
         {
           sunriseTime: moment('2030-01-01 09:29').unix(),
-          sunsetTime: moment('2030-01-01 19:13').unix()
+          sunsetTime: moment('2030-01-01 19:31').unix()
         },
         {
           sunriseTime: moment('2030-01-02 09:31').unix(),
-          sunsetTime: moment('2030-01-02 19:11').unix()
+          sunsetTime: moment('2030-01-02 19:29').unix()
         }
       ]
     }
@@ -179,11 +207,11 @@ describe('setDarkness', () => {
         end: moment('2030-01-01 09:00').unix()
       },
       {
-        start: moment('2030-01-01 19:00').unix(),
-        end: moment('2030-01-02 10:00').unix()
+        start: moment('2030-01-01 20:00').unix(),
+        end: moment('2030-01-02 09:00').unix()
       },
       {
-        start: moment('2030-01-02 19:00').unix()
+        start: moment('2030-01-02 20:00').unix()
       }
     ])
   })

@@ -1,11 +1,16 @@
 import { pipe } from 'functional'
-import roundHours, { getTimeMatchingRounded } from './roundHours'
+import {
+  floorHour,
+  ceilHour,
+  getTimeMatchingFloored,
+  getTimeMatchingCeiled
+} from './roundHours'
 import daylightToDarkness from './daylightToDarkness'
 
 const getMatchingSunrise = daylight =>
-  getTimeMatchingRounded(daylight.map(day => day.sunriseTime))
+  getTimeMatchingFloored(daylight.map(day => day.sunriseTime))
 const getMatchingSunset = daylight =>
-  getTimeMatchingRounded(daylight.map(day => day.sunsetTime))
+  getTimeMatchingCeiled(daylight.map(day => day.sunsetTime))
 
 export const setFrameDaylight = daylight => frame => {
   const sunrise = getMatchingSunrise(daylight)(frame.time)
@@ -13,8 +18,8 @@ export const setFrameDaylight = daylight => frame => {
   return {
     ...frame,
     isDaylight: daylight.some(day =>
-      roundHours(day.sunriseTime) < frame.time &&
-      frame.time < roundHours(day.sunsetTime)
+      floorHour(day.sunriseTime) < frame.time &&
+      frame.time < ceilHour(day.sunsetTime)
     ),
     ...(sunrise && { sunrise }),
     ...(sunset && { sunset })
@@ -26,8 +31,8 @@ export const setHourlyDaylight = weather => ({
 })
 
 const roundDaylight = days => days.map(day => ({
-  sunriseTime: roundHours(day.sunriseTime),
-  sunsetTime: roundHours(day.sunsetTime)
+  sunriseTime: floorHour(day.sunriseTime),
+  sunsetTime: ceilHour(day.sunsetTime)
 }))
 
 export const setDarkness = weather => {
