@@ -42,6 +42,7 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
   const daylight = icons.append('g')
     .attr('transform', `translate(${lineHeight * 2}, ${((lineHeight * 1.5) - 16) / 2})`)
     .append('use')
+    .attr('class', 'daylight-icon')
 
   const daylightTime = icons.append('text')
     .attr('x', lineHeight * 3 + 4)

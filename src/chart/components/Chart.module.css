@@ -115,6 +115,10 @@ section.chart {
   fill: var(--color-text);
 }
 
+.chart svg :global .hover-guide .value .daylight-icon {
+  fill: var(--color-text);
+}
+
 .chart svg :global .hover-guide .value.disabled text.ms,
 .chart svg :global .hover-guide .value.disabled text.bft,
 .chart svg :global .hover-guide .value.disabled .wind-direction { fill: var(--color-secondary-text); }
