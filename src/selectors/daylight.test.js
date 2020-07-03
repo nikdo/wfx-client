@@ -2,44 +2,8 @@ import moment from 'moment-timezone'
 import {
   setHourlyDaylight,
   setDarkness,
-  setFrameDaylight,
-  getMatchingTime
+  setFrameDaylight
 } from './daylight'
-
-describe('getMatchingTime', () => {
-  it('returns undefined when no matching time is present', () => {
-    const round = time => time
-    const sunrises = [
-      moment('2030-01-01 09:20').unix(),
-      moment('2030-01-01 19:13').unix()
-    ]
-    const time = moment('2030-01-01 09:10').unix()
-    expect(getMatchingTime(round)(sunrises)(time))
-      .toEqual(undefined)
-  })
-
-  it('returns exact time when matching time is found', () => {
-    const round = time => time
-    const sunrises = [
-      moment('2030-01-01 09:20').unix(),
-      moment('2030-01-01 19:13').unix()
-    ]
-    const time = moment('2030-01-01 19:13').unix()
-    expect(getMatchingTime(round)(sunrises)(time))
-      .toEqual(moment('2030-01-01 19:13').unix())
-  })
-
-  it('returns exact time when matching floored time is found', () => {
-    const floorHour = time => time - time % (60 * 60)
-    const sunrises = [
-      moment('2030-01-01 09:20').unix(),
-      moment('2030-01-01 19:56').unix()
-    ]
-    const time = moment('2030-01-01 19:13').unix()
-    expect(getMatchingTime(floorHour)(sunrises)(time))
-      .toEqual(moment('2030-01-01 19:56').unix())
-  })
-})
 
 describe('setFrameDaylight', () => {
   it('sets isDaylight to false when time is before sunrise', () => {
