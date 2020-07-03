@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { getSpots, getSearchQuery, getSpotLoading } from 'selectors'
 import { fetchSpotDetail } from 'actions'
 import { searchQueryChange } from '../reducer'
@@ -10,6 +11,12 @@ export default props => {
   const searchQuery = useSelector(getSearchQuery)
   const spotLoading = useSelector(getSpotLoading)
   const dispatch = useDispatch()
+  const history = useHistory()
+
+  const handleSpotSelected = id =>
+    fetchSpotDetail(dispatch, id)
+      .then(() => history.push(`/${id}`))
+
   return (
     <Search
       {...props}
@@ -17,7 +24,7 @@ export default props => {
       query={searchQuery}
       spotLoading={spotLoading}
       onChange={query => dispatch(searchQueryChange(query))}
-      onSpotSelected={id => fetchSpotDetail(dispatch, id)}
+      onSpotSelected={handleSpotSelected}
     />
   )
 }

@@ -1,5 +1,3 @@
-import history from './history'
-
 export const spotListCompleted = spots => ({
   type: 'SPOT_LIST_COMPLETED',
   payload: spots
@@ -27,12 +25,11 @@ export const fetchSpotDetail = (dispatch, id) => {
     () => dispatch(spotFetchDelayed()),
     1000
   )
-  fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
+  return fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
     .then(res => res.json())
     .then(spot => {
       document.title = spot.name
       clearTimeout(timeout)
       dispatch(spotFetchCompleted(spot))
-      history.push(`/${spot._id}`)
     })
 }
