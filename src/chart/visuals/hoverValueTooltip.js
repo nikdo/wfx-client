@@ -1,6 +1,6 @@
 import { bisect } from 'd3'
 import { lineHeight, bftNames } from './constants'
-import { moonId, sunriseId, sunsetId } from '../components/Icons'
+import { arrowId, moonId, sunriseId, sunsetId } from '../components/Icons'
 
 const toBft = (value, bftCeilings) => bisect(bftCeilings, value)
 
@@ -20,6 +20,19 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
   value.append('circle')
     .attr('r', 3)
 
+  const icons = value.append('g')
+    .attr('transform', `translate(${lineHeight / 2}, ${-lineHeight * 2 - lineHeight / 4})`)
+
+  const direction = icons.append('g')
+    .attr('transform', `translate(0, ${((lineHeight * 1.5) - 20) / 2})`)
+    .append('use')
+    .attr('class', 'wind-direction')
+    .attr('xlink:href', `#${arrowId}`)
+
+  const daylight = icons.append('g')
+    .attr('transform', `translate(${lineHeight * 2}, ${((lineHeight * 1.5) - 16) / 2})`)
+    .append('use')
+
   const ms = value.append('text')
     .attr('class', 'ms')
     .attr('dy', lineHeight / 4)
@@ -28,20 +41,11 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
     .attr('class', 'bft')
     .attr('dy', lineHeight * 1.5)
 
-  const daylight = value.append('use')
-    .attr('transform', `translate(${lineHeight * 2}, ${-lineHeight * 2})`)
-
   value.selectAll('text')
     .attr('x', lineHeight / 2)
     .attr('paint-order', 'stroke')
     .style('paint-order', 'stroke') // Safari needs to set style when stroke is set in CSS
     .attr('stroke-linejoin', 'round')
-
-  const direction = value.append('g')
-    .attr('class', 'wind-direction')
-    .attr('transform', `translate(${lineHeight}, ${-lineHeight * 1.5})`)
-    .append('path')
-    .attr('d', 'M-2.5,1 L0,5 L2.5,1 M0,4 V -10')
 
   subscribeToHoverEvents({
     onValueHover: (x, i) => {
@@ -56,7 +60,7 @@ export default (value, data, bftCeilings, subscribeToHoverEvents) => {
         .attr('class', `bft level-${bft}`)
         .attr('display', bft > 1 ? null : 'none')
         .append('tspan').text(' ' + bftNames[bft])
-      direction.attr('transform', `rotate(${data[i].windBearing})`)
+      direction.attr('transform', `rotate(${data[i].windBearing} 10 10)`)
       daylight.attr('xlink:href', `#${daylightIconId(data[i])}`)
       value.classed('disabled', !data[i].isDaylight)
     }

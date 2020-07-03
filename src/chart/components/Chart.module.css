@@ -112,14 +112,12 @@ section.chart {
 .chart svg :global .hover-guide .value text.bft.level-12 { fill: var(--color-level-8-text); }
 
 .chart svg :global .hover-guide .value .wind-direction {
-  fill: none;
-  stroke: var(--color-text);
-  stroke-width: 2px;
+  fill: var(--color-text);
 }
 
 .chart svg :global .hover-guide .value.disabled text.ms,
-.chart svg :global .hover-guide .value.disabled text.bft { fill: var(--color-secondary-text); }
-.chart svg :global .hover-guide .value.disabled .wind-direction { stroke: var(--color-secondary-text); }
+.chart svg :global .hover-guide .value.disabled text.bft,
+.chart svg :global .hover-guide .value.disabled .wind-direction { fill: var(--color-secondary-text); }
 
 .chart svg :global .hover-guide .time text {
   font-size: var(--font-size-small);
