@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import { fetchSpots } from './actions'
 import SpotDetailContainer from './containers/SpotDetail'
 import Header from './components/Header'
@@ -17,6 +18,9 @@ class App extends Component {
       ? <Spinner />
       : (
         <>
+          <Helmet>
+            <title>Wind Freaks</title>
+          </Helmet>
           <Header />
           <Route path='/:spotId'>
             <SpotDetailContainer />

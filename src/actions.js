@@ -28,7 +28,6 @@ export const fetchSpotDetail = (dispatch, id) => {
   return fetch(process.env.REACT_APP_API_URL + `/spots/${id}`)
     .then(res => res.json())
     .then(spot => {
-      document.title = spot.name
       clearTimeout(timeout)
       dispatch(spotFetchCompleted(spot))
     })
