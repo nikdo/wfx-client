@@ -16,7 +16,8 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.4.1",
     "react-transition-group": "^4.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.19",

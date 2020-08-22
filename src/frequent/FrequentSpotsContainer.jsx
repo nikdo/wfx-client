@@ -8,9 +8,9 @@ export default () => {
 
   return (
     <ul>
-      {spots.map(id => (
-        <li key={id}>
-          <Link to={`/${id}`}>{id}</Link>
+      {spots.map(spot => (
+        <li key={spot._id}>
+          <Link to={`/${spot._id}`}>{spot.name}</Link>
         </li>
       ))}
     </ul>
