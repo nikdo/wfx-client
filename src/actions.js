@@ -12,6 +12,11 @@ export const spotFetchCompleted = spot => ({
   payload: spot
 })
 
+export const spotVisited = id => ({
+  type: 'SPOT_VISITED',
+  payload: id
+})
+
 export const fetchSpots = dispatch => {
   fetch(process.env.REACT_APP_API_URL + '/spots')
     .then(res => res.json())
@@ -21,6 +26,7 @@ export const fetchSpots = dispatch => {
 }
 
 export const fetchSpotDetail = (dispatch, id) => {
+  dispatch(spotVisited(id))
   const timeout = setTimeout(
     () => dispatch(spotFetchDelayed()),
     1000
