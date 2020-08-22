@@ -1,3 +1,5 @@
+import moment from 'moment-timezone'
+
 export const spotListCompleted = spots => ({
   type: 'SPOT_LIST_COMPLETED',
   payload: spots
@@ -14,7 +16,10 @@ export const spotFetchCompleted = spot => ({
 
 export const spotVisited = id => ({
   type: 'SPOT_VISITED',
-  payload: id
+  payload: {
+    id,
+    date: moment().unix()
+  }
 })
 
 export const fetchSpots = dispatch => {

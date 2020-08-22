@@ -2,19 +2,22 @@ import visits from './visits'
 import { spotVisited } from '../actions'
 
 describe('visits reducer', () => {
-  it('adds a single visit when SPOT_VISITED action', () => {
+  it('adds first visit date on SPOT_VISITED action', () => {
     const state = {}
     const action = spotVisited(42)
+    const generatedDate = action.payload.date
     const result = visits(state, action)
-    expect(result).toHaveProperty('42', 1)
+    expect(result).toHaveProperty('42', [generatedDate])
   })
 
-  it('increments visit count when SPOT_VISITED action', () => {
+  it('appends a visit date on SPOT_VISITED action', () => {
+    const recordedVisits = [1578918720, 1579048320]
     const state = {
-      42: 3
+      42: recordedVisits
     }
     const action = spotVisited(42)
+    const generatedDate = action.payload.date
     const result = visits(state, action)
-    expect(result).toHaveProperty('42', 4)
+    expect(result).toHaveProperty('42', [...recordedVisits, generatedDate])
   })
 })
