@@ -31,7 +31,6 @@ export const fetchSpots = dispatch => {
 }
 
 export const fetchSpotDetail = (dispatch, id) => {
-  dispatch(spotVisited(id))
   const timeout = setTimeout(
     () => dispatch(spotFetchDelayed()),
     1000
@@ -41,5 +40,6 @@ export const fetchSpotDetail = (dispatch, id) => {
     .then(spot => {
       clearTimeout(timeout)
       dispatch(spotFetchCompleted(spot))
+      dispatch(spotVisited(id))
     })
 }
