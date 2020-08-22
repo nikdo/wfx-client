@@ -21,6 +21,28 @@ describe('getFrequentSpotsIds', () => {
     }
     expect(getFrequentSpotsIds(state)).toEqual(['13', '14', '12'])
   })
+
+  it('returns only first 12 IDs given more than 12 spots visited', () => {
+    const state = {
+      visits: {
+        1: [1598126063],
+        2: [1578918720],
+        3: [1579048320],
+        4: [1581624180],
+        5: [1598129999],
+        6: [1581589380],
+        7: [1598126063],
+        8: [1578918720],
+        9: [1579048320],
+        10: [1581624180],
+        11: [1598129999],
+        12: [1581589380],
+        13: [1598126063],
+        14: [1578918720]
+      }
+    }
+    expect(getFrequentSpotsIds(state).length).toEqual(12)
+  })
 })
 
 describe('getFrequentSpots', () => {
