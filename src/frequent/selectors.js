@@ -1,10 +1,15 @@
 import { createSelector } from 'reselect'
 import { getSpots } from '../selectors'
 
+const lastVisitsFirst = (a, b) => b.visits[b.visits.length - 1] - a.visits[a.visits.length - 1]
+
+const moreVisitsFirst = (a, b) => b.visits.length - a.visits.length
+
 export const getFrequentSpotsIds = state =>
   Object.keys(state.visits)
     .map(key => ({ id: key, visits: state.visits[key] }))
-    .concat().sort((a, b) => b.visits.length - a.visits.length)
+    .slice().sort(lastVisitsFirst)
+    .slice().sort(moreVisitsFirst)
     .slice(0, 12)
     .map(spotVisits => spotVisits.id)
 
