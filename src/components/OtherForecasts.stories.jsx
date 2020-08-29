@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import OtherForecasts from './OtherForecasts'
 
 const defaultProps = {
@@ -7,6 +6,12 @@ const defaultProps = {
   lng: 4.589882
 }
 
-storiesOf('OtherForecasts', module)
-  .add('all', () => <OtherForecasts {...defaultProps} windguruId='48606' windfinderId='beauduc' />)
-  .add('Windy only', () => <OtherForecasts {...defaultProps} />)
+export default {
+  title: 'Other Forecasts'
+}
+
+export const All = () => (
+  <OtherForecasts {...defaultProps} windguruId='48606' windfinderId='beauduc' />
+)
+
+export const Single = () => <OtherForecasts {...defaultProps} />

@@ -1,13 +1,13 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import WhitespaceDecorator from '../../.storybook/WhitespaceDecorator'
 import Spinner from './Spinner'
 
-storiesOf('Spinner', module)
-  .addDecorator(WhitespaceDecorator())
-  .add('default', () => <Spinner />)
-  .add('inline', () => <Spinner inline />)
+export default {
+  title: 'Spinner'
+}
 
-storiesOf('Spinner', module)
-  .addDecorator(WhitespaceDecorator({ inverted: true }))
-  .add('inverted', () => <Spinner inline inverted />)
+export const Default = () => <Spinner />
+export const Inline = () => <Spinner inline />
+export const Inverted = () => <Spinner inline inverted />
+Inverted.parameters = {
+  backgrounds: { default: 'gradient' }
+}

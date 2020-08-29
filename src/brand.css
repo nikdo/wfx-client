@@ -47,7 +47,7 @@
   --color-text-inverted: var(--color-romance);
   --color-link: var(--color-san-marino);
   --color-link-active: var(--color-blue-violet);
-  --color-background: var(--color-romance);
+  --color-background: var(--color-romance); /* keep in sync with @storybook/addon-backgrounds config */
   --color-background-semi-transparent: hsla(60, 25%, 98%, 0.2); /* romance + alpha */
   --color-secondary-text: var(--color-mountain-mist);
   --color-secondary-text-inverted: hsla(60, 25%, 98%, 0.6); /* romance + alpha */
@@ -60,6 +60,7 @@
 
   --opacity-secondary-icon: 0.83;
 
+  /* keep in sync with @storybook/addon-backgrounds config */
   --gradient-background: linear-gradient(
     120deg,
     var(--color-gradient-start),

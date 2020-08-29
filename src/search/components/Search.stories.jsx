@@ -1,7 +1,5 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import WhitespaceDecorator from '../../../.storybook/WhitespaceDecorator'
 import Search from './Search'
 
 const defaultProps = {
@@ -10,14 +8,17 @@ const defaultProps = {
   onChange: action('onChange')
 }
 
-storiesOf('Search', module)
-  .addDecorator(WhitespaceDecorator({ inverted: true }))
-  .add('empty', () => <Search {...defaultProps} query='' />)
-  .add('query', () => <Search {...defaultProps} autoFocus />)
-  .add('loading', () => <Search {...defaultProps} query='Agios Nikolaos' spotLoading />)
+export default {
+  title: 'Search',
+  parameters: {
+    backgrounds: { default: 'gradient' }
+  }
+}
 
-storiesOf('Search/fat', module)
-  .addDecorator(WhitespaceDecorator({ inverted: true }))
-  .add('empty', () => <Search {...defaultProps} fat query='' />)
-  .add('query', () => <Search {...defaultProps} fat autoFocus />)
-  .add('loading', () => <Search {...defaultProps} fat query='Agios Nikolaos' spotLoading />)
+export const SlimEmpty = () => <Search {...defaultProps} query='' />
+export const SlimQuery = () => <Search {...defaultProps} autoFocus />
+export const SlimLoading = () => <Search {...defaultProps} query='Agios Nikolaos' spotLoading />
+
+export const FatEmpty = () => <Search {...defaultProps} fat query='' />
+export const FatQuery = () => <Search {...defaultProps} fat autoFocus />
+export const FatLoading = () => <Search {...defaultProps} fat query='Agios Nikolaos' spotLoading />
