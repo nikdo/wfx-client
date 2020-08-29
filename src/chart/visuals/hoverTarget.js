@@ -1,4 +1,4 @@
-import { mouse, range, bisect } from 'd3'
+import { pointer, range, bisect } from 'd3'
 import { d3AxisOffset } from './constants'
 
 // Based on https://stackoverflow.com/a/40574104/5763764
@@ -28,8 +28,8 @@ export default (canvas, dimensions, scales, eventHandlers) => {
       selectedIndex = null
       eventHandlers.forEach(handler => handler.onMouseOut && handler.onMouseOut())
     })
-    .on('mousemove', function () {
-      const newIndex = getClosestValueIndex(hourTickPositions, mouse(this)[0])
+    .on('mousemove', e => {
+      const newIndex = getClosestValueIndex(hourTickPositions, pointer(e)[0])
       if (newIndex !== selectedIndex) {
         selectedIndex = newIndex
         const x = hourTickPositions[selectedIndex]
