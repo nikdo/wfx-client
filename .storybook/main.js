@@ -1,8 +1,7 @@
 module.exports = {
-  stories: ['../src/**/*.stories.jsx'],
+  stories: ['../src/**/*.stories.@(js|jsx)'],
   addons: [
-    '@storybook/preset-create-react-app',
-    '@storybook/addon-actions',
-    '@storybook/addon-backgrounds'
+    '@storybook/addon-essentials',
+    '@storybook/preset-create-react-app'
   ]
 }
