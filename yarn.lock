@@ -2792,24 +2792,6 @@
     react "^16.8.3"
     regenerator-runtime "^0.13.3"
 
-"@storybook/addon-links@^6.0.16":
-  version "6.0.16"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-6.0.16.tgz#2f81545f1593718cf720cd399635f890a1f3c916"
-  integrity sha512-5rQLzrjqQWmukBAIYghrQKZUrz/X9bx83DSh0W3RH+y1X+MJguah0WxbARePtJxggwb0s2rkoE/oR/uFePO+Pg==
-  dependencies:
-    "@storybook/addons" "6.0.16"
-    "@storybook/client-logger" "6.0.16"
-    "@storybook/core-events" "6.0.16"
-    "@storybook/csf" "0.0.1"
-    "@storybook/router" "6.0.16"
-    "@types/qs" "^6.9.0"
-    core-js "^3.0.1"
-    global "^4.3.2"
-    prop-types "^15.7.2"
-    qs "^6.6.0"
-    regenerator-runtime "^0.13.3"
-    ts-dedent "^1.1.1"
-
 "@storybook/addons@6.0.16", "@storybook/addons@^6.0.16":
   version "6.0.16"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-6.0.16.tgz#a20a219bd5b1474ad02b92e79a74652898a684d9"

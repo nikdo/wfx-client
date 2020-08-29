@@ -3,7 +3,6 @@ module.exports = {
   addons: [
     '@storybook/preset-create-react-app',
     '@storybook/addon-actions',
-    '@storybook/addon-backgrounds',
-    '@storybook/addon-links'
+    '@storybook/addon-backgrounds'
   ]
 }
