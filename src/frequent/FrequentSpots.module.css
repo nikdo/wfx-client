@@ -1,0 +1,28 @@
+/* Search.module.css and SearchSuggestion.module.css duplications here;
+   not easy to reuse because of react-autosuggest predefined classes */
+
+ul.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.spot a {
+  display: block;
+  padding: var(--input-fat-padding);
+}
+
+li.spot a,
+li.spot a:hover,
+li.spot a:active,
+li.spot a:focus {
+  text-decoration: none;
+  color: var(--color-text-inverted);
+  font-weight: var(--font-weight-base);
+}
+
+li.spot .location {
+  font-size: var(--font-size-small);
+  margin-top: -1px; /* put closer to spot name */
+  margin-bottom: 2px; /* stretch to match vertical rhythm */
+}
