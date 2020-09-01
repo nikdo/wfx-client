@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styles from './FrequentSpots.module.css'
+import styles from './SpotList.module.css'
 
 export default ({ spots }) => (
   <ul className={styles.list}>

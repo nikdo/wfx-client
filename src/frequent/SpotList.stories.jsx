@@ -1,17 +1,17 @@
 import React from 'react'
 import StoryRouter from 'storybook-react-router'
 import VerticalRhythmDecorator from '../../.storybook/VerticalRhythmDecorator'
-import FrequentSpots from './FrequentSpots'
+import SpotList from './SpotList'
 
 export default {
-  title: 'Frequent Spots',
+  title: 'SpotList',
   decorators: [StoryRouter(), VerticalRhythmDecorator],
   parameters: {
     backgrounds: { default: 'gradient' }
   }
 }
 
-const Template = args => <FrequentSpots {...args} />
+const Template = args => <SpotList {...args} />
 
 export const Full = Template.bind({})
 Full.args = {
