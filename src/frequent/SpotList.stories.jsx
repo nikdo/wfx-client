@@ -1,11 +1,10 @@
 import React from 'react'
 import StoryRouter from 'storybook-react-router'
-import VerticalRhythmDecorator from '../../.storybook/VerticalRhythmDecorator'
 import SpotList from './SpotList'
 
 export default {
   title: 'SpotList',
-  decorators: [StoryRouter(), VerticalRhythmDecorator],
+  decorators: [StoryRouter()],
   parameters: {
     backgrounds: { default: 'gradient' }
   }
