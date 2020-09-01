@@ -9,7 +9,18 @@ ul.list {
 
 li.spot a {
   display: block;
-  padding: var(--input-fat-padding);
+  padding: var(--input-fat-vertical-padding) var(--baseline);
+}
+
+li.spot:not(:last-child)::after {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-top: -1px;
+  opacity: 0.2;
+  background:
+    linear-gradient(to right, rgba(var(--color-romance-rgb), 0), var(--color-romance) 36px, var(--color-romance) 51%, transparent 51%),
+    linear-gradient(to left, rgba(var(--color-romance-rgb), 0), var(--color-romance) 36px, var(--color-romance) 51%, transparent 51%);
 }
 
 li.spot a,
