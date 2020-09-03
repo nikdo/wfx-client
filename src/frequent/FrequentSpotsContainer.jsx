@@ -6,5 +6,10 @@ import SpotList from './SpotList'
 export default () => {
   const spots = useSelector(getFrequentSpots)
 
-  return <SpotList spots={spots} />
+  return (
+    <>
+      <h2>Frequent</h2>
+      <SpotList spots={spots} />
+    </>
+  )
 }

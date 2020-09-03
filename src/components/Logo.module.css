@@ -43,7 +43,7 @@
 
 .logo.fat .name {
   display: inline;
-  font-family: var(--font-family-title);
+  font-family: var(--font-family-heading);
   font-size: var(--logo-fat-font-size);
   font-weight: var(--h1-font-weight);
   letter-spacing: -1.6px;

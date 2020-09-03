@@ -1,6 +1,6 @@
 :root {
   --font-family: 'Open Sans', sans-serif;
-  --font-family-title: 'Nunito', sans-serif;
+  --font-family-heading: 'Nunito', sans-serif;
 
   --font-size-base: 16px;
   --font-size-small: 13px;
@@ -21,10 +21,15 @@
   --h1-font-size: 28px;
   --h1-font-weight: 400;
   --h1-line-height: 32px;
+  --h2-font-size: 21px;
+  --h2-font-weight: 600;
+  --h2-line-height: 24px;
 
   /* https://www.modularscale.com/?16,20&px&1.5 */
   --h1-desktop-font-size: 36px;
   --h1-desktop-line-height: 40px;
+  --h2-desktop-font-size: 24px;
+  --h2-desktop-line-height: 24px;
 
   --color-mine-shaft:    #353438;
   --color-mountain-mist: #909090;
