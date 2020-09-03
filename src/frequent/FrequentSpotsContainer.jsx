@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { getFrequentSpots } from './selectors'
+import SectionHeading from 'components/SectionHeading'
 import SpotList from './SpotList'
 
 export default () => {
@@ -8,7 +9,7 @@ export default () => {
 
   return (
     <>
-      <h2>Frequent</h2>
+      <SectionHeading>Frequent</SectionHeading>
       <SpotList spots={spots} />
     </>
   )
