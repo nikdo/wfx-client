@@ -2,10 +2,11 @@ import React from 'react'
 import SectionHeading from './SectionHeading'
 
 export default {
-  title: 'Section Heading'
+  title: 'Section Heading',
+  args: { text: 'Section Heading' }
 }
 
-const Template = args => <SectionHeading {...args}>Section Heading</SectionHeading>
+const Template = args => <SectionHeading {...args} />
 
 export const Default = Template.bind({})
 

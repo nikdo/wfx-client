@@ -9,7 +9,7 @@ export default () => {
 
   return !!spots?.length && (
     <>
-      <SectionHeading inverted>Frequent</SectionHeading>
+      <SectionHeading text='Frequent' inverted />
       <SpotList spots={spots} />
     </>
   )
