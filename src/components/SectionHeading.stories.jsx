@@ -8,3 +8,9 @@ export default {
 const Template = args => <SectionHeading {...args}>Section Heading</SectionHeading>
 
 export const Default = Template.bind({})
+
+export const Inverted = Template.bind({})
+Inverted.args = { inverted: true }
+Inverted.parameters = {
+  backgrounds: { default: 'gradient' }
+}
