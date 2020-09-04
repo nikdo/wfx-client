@@ -7,9 +7,9 @@ import SpotList from './SpotList'
 export default () => {
   const spots = useSelector(getFrequentSpots)
 
-  return (
+  return !!spots?.length && (
     <>
-      <SectionHeading>Frequent</SectionHeading>
+      <SectionHeading inverted>Frequent</SectionHeading>
       <SpotList spots={spots} />
     </>
   )
